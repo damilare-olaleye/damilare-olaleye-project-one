@@ -1,0 +1,25 @@
+package com.revature.service;
+
+public class AuthService {
+
+	public void authorizeEmployeeAndFinanceManger(User user) throws UnauthorizedException {
+
+		if (user == null
+				|| !(user.getUser_role().equals("Employee") || user.getUser_role().equals("Finance Manager"))) {
+			throw new UnauthorizedException("Sign in as an Employee or Finance Manager to access this resources");
+		}
+	}
+
+	public void authorizeFinanceManager(User user) throws UnauthorizedException {
+		if (user == null || !user.getUser_role().equals("Finance Manager")) {
+			throw new UnauthorizedException("Sign in as a Finance Manager to access this resources");
+		}
+	}
+
+	public void authorizeEmployee(User user) throws UnauthorizedException {
+		if (user == null || !user.getUser_role().equals("Employee")) {
+			throw new UnauthorizedException("You must be logged in and have a role of employee for this resource");
+		}
+
+	}
+}

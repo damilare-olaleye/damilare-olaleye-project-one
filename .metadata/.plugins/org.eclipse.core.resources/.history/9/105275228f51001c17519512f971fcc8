@@ -1,0 +1,23 @@
+package com.revature.service;
+
+import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
+import java.sql.SQLException;
+
+import com.revature.exceptions.FailedAuthenticationException;
+import com.revature.exceptions.InvalidParameterException;
+import com.revature.exceptions.NotFoundException;
+import com.revature.model.User;
+
+public interface UserServiceInterface {
+
+	public User userLogin(String username, String password)
+			throws SQLException, NoSuchAlgorithmException, InvalidKeySpecException;
+
+	public void deleteUser(String username, String password)
+			throws SQLException, NoSuchAlgorithmException, InvalidKeySpecException;
+
+	public User userSignup(String username, String password, String firstName, String lastName, String email,
+			String role) throws SQLException, NoSuchAlgorithmException, InvalidKeySpecException,
+			InvalidParameterException, NotFoundException, FailedAuthenticationException;
+}

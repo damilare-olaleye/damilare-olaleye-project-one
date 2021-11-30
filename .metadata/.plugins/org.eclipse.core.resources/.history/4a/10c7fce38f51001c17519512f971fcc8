@@ -1,0 +1,6 @@
+package com.revature.controller;
+
+public interface Controller {
+
+	public void mapEndPoints(Javalin app);
+}

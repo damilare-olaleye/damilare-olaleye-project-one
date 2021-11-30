@@ -1,0 +1,25 @@
+package com.revature.service;
+
+import java.sql.SQLException;
+import java.util.List;
+
+import com.revature.exceptions.InvalidParameterException;
+import com.revature.exceptions.NotFoundException;
+import com.revature.exceptions.UnauthorizedException;
+import com.revature.exceptions.reimbursementAlreadyResloved;
+import com.revature.model.Reimbursement;
+import com.revature.model.User;
+
+public interface ReimbursementServiceInterface {
+
+	public Reimbursement submitReimbursementRequest(User currentlyLoggedInUser, String type, String description,
+			int amount) throws InvalidParameterException, SQLException;
+
+	public List<Reimbursement> getAllReimbursement(User currentlyLoggedInUser)
+			throws SQLException, InvalidParameterException, UnauthorizedException;
+
+	public Reimbursement updateReimbursement(User currentlyLoggedInUser, String reimbursementId, String status)
+			throws InvalidParameterException, SQLException, NotFoundException, reimbursementAlreadyResloved;
+	
+	
+}

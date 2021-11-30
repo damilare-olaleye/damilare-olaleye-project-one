@@ -1,0 +1,91 @@
+package com.revature.controller;
+
+import java.util.List;
+
+import com.revature.dao.ReimbursementDAO;
+import com.revature.dto.MessageDTO;
+import com.revature.model.Reimbursement;
+import com.revature.model.User;
+import com.revature.service.AuthService;
+import com.revature.service.ReimbursementService;
+
+import io.javalin.Javalin;
+import io.javalin.http.Handler;
+
+public class ReimbursementController implements Controller {
+
+	private AuthService authorizationService;
+	private ReimbursementService reimbursementService;
+
+	ReimbursementDAO remibursementDao = new ReimbursementDAO();
+
+	public ReimbursementController() {
+		this.authorizationService = new AuthService();
+		this.reimbursementService = new ReimbursementService();
+	}
+
+	private Handler submitRequest = (ctx) -> {
+
+		User currentlyLoggedInUser = (User) ctx.req.getSession().getAttribute("currentuser");
+		this.authorizationService.authorizeEmployee(currentlyLoggedInUser);
+
+		String reimbursementType = ctx.formParam("type");
+		String amount = ctx.formParam("amount");
+		String description = ctx.formParam("description");
+
+		int amt = Integer.parseInt(amount);
+
+		if (amount == null) {
+			ctx.status(400);
+			ctx.json(new MessageDTO("Must input amount"));
+			return;
+		}
+
+		if (reimbursementType == null) {
+			ctx.status(400);
+			ctx.json(new MessageDTO("Must input reimbursement type"));
+			return;
+		}
+
+		if (description == null) {
+			ctx.status(400);
+			ctx.json(new MessageDTO("Must input description"));
+			return;
+		}
+
+		Reimbursement addedReimbursement = this.reimbursementService.submitReimbursementRequest(currentlyLoggedInUser,
+				reimbursementType, description, amt);
+
+		ctx.json(addedReimbursement);
+		ctx.status(201);
+	};
+
+	private Handler viewAllReimbursements = (ctx) -> {
+
+		User currentlyLoggedInUser = (User) ctx.req.getSession().getAttribute("currentuser");
+		this.authorizationService.authorizeFinanceManager(currentlyLoggedInUser);
+
+		List<Reimbursement> reimbursements = this.reimbursementService.getAllReimbursement(currentlyLoggedInUser);
+
+		ctx.json(reimbursements);
+		ctx.status(201);
+	};
+
+	private Handler updateReimbursement = (ctx) -> {
+
+		User currentlyLoggedInUser = (User) ctx.req.getSession().getAttribute("currentuser");
+		this.authorizationService.authorizeFinanceManager(currentlyLoggedInUser);
+
+	};
+
+	@Override
+	public void mapEndPoints(Javalin app) {
+
+		// EMPLOYEE
+		app.post("/submitRequest", submitRequest);
+
+		// FINANCE MANAGER
+		app.get("/allreimbursements", viewAllReimbursements);
+	}
+
+}

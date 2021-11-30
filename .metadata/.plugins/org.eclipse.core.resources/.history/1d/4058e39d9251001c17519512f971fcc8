@@ -1,0 +1,26 @@
+package com.revature.exceptions;
+
+public class ExceptionMapper {
+
+	public void mapExceptions(Javalin app) {
+		app.exception(FailedLoginException.class, (e, ctx) -> {
+			ctx.status(400);
+			ctx.json(new MessageDTO(e.getMessage()));
+		});
+		
+		app.exception(UnauthorizedException.class, (e, ctx) -> {
+			ctx.status(401);
+			ctx.json(new MessageDTO(e.getMessage()));
+		});
+	
+		app.exception(InvalidParameterException.class, (e, ctx) -> {
+			ctx.status(400);
+			ctx.json(new MessageDTO(e.getMessage()));
+		});
+		
+		app.exception(ImageNotFoundException.class, (e, ctx) -> {
+			ctx.status(404);
+			ctx.json(new MessageDTO(e.getMessage()));
+		});
+	}
+}

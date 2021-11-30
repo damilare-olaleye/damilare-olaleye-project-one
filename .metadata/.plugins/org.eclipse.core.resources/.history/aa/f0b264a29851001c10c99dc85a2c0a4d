@@ -1,0 +1,66 @@
+package com.revature.controller;
+
+import com.revature.dao.ReimbursementDAO;
+import com.revature.dto.MessageDTO;
+import com.revature.model.Reimbursement;
+import com.revature.model.User;
+import com.revature.service.AuthService;
+import com.revature.service.ReimbursementService;
+
+import io.javalin.Javalin;
+import io.javalin.http.Handler;
+
+public class ReimbursementController implements Controller {
+
+	private AuthService authorizationService;
+	private ReimbursementService reimbursementService;
+
+	ReimbursementDAO remibursementDao = new ReimbursementDAO();
+
+	public ReimbursementController() {
+		this.authorizationService = new AuthService();
+		this.reimbursementService = new ReimbursementService();
+	}
+
+	private Handler submitRequest = (ctx) -> {
+
+		User currentlyLoggedInUser = (User) ctx.req.getSession().getAttribute("currentuser");
+		this.authorizationService.authorizeEmployee(currentlyLoggedInUser);
+
+		String reimbursementType = ctx.formParam("type");
+		String amount = ctx.formParam("amount");
+		String description = ctx.formParam("description");
+
+		if (amount == null) {
+			ctx.status(400);
+			ctx.json(new MessageDTO("Must input amount"));
+			return;
+		}
+
+		if (reimbursementType == null) {
+			ctx.status(400);
+			ctx.json(new MessageDTO("Must input reimbursement type"));
+			return;
+		}
+
+		if (description == null) {
+			ctx.status(400);
+			ctx.json(new MessageDTO("Must input description"));
+			return;
+		}
+
+		Reimbursement addedReimbursement = this.reimbursementService.submitReimbursementRequest(currentlyLoggedInUser,
+				reimbursementType, description, amount);
+
+		ctx.json(addedReimbursement);
+		ctx.status(201);
+	};
+
+	@Override
+	public void mapEndPoints(Javalin app) {
+		// EMPLOYEE
+		app.post("/submitRequest", submitRequest);
+
+	}
+
+}

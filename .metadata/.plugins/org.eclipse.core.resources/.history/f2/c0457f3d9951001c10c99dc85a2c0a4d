@@ -1,0 +1,24 @@
+package com.revature.model;
+
+import java.io.InputStream;
+import java.sql.Timestamp;
+import java.util.Objects;
+
+public class Reimbursement {
+
+	private int reimbId;
+	private String status;
+	private String type;
+	private String description;
+	private String amount;
+	private InputStream receipt;
+	private int author;
+	private int resolver;
+	private int userId;
+
+	public Reimbursement() {
+	}
+
+	
+
+}

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+    <fullyQualifiedTypeName name="java.security.NoSuchAlgorithmException"/>
+    <fullyQualifiedTypeName name="java.security.spec.InvalidKeySpecException"/>
+    <fullyQualifiedTypeName name="org.postgresql.Driver"/>
+    <fullyQualifiedTypeName name="java.sql.DriverManager"/>
+    <fullyQualifiedTypeName name="org.eclipse.jetty.client.api.Connection"/>
+    <fullyQualifiedTypeName name="java.util.List"/>
+    <fullyQualifiedTypeName name="java.util.ArrayList"/>
+    <fullyQualifiedTypeName name="com.revature.util.JDBCUtil"/>
+    <fullyQualifiedTypeName name="java.sql.Connection"/>
+    <fullyQualifiedTypeName name="java.sql.PreparedStatement"/>
+    <fullyQualifiedTypeName name="java.sql.ResultSet"/>
+    <fullyQualifiedTypeName name="java.io.InputStream"/>
+    <fullyQualifiedTypeName name="java.sql.Statement"/>
+    <fullyQualifiedTypeName name="java.sql.SQLException"/>
+    <fullyQualifiedTypeName name="java.sql.Timestamp"/>
+    <fullyQualifiedTypeName name="com.revature.exceptions.UnauthorizedException"/>
+    <fullyQualifiedTypeName name="com.revature.dao.UserDAO"/>
+    <fullyQualifiedTypeName name="java.util.Set"/>
+    <fullyQualifiedTypeName name="java.util.HashSet"/>
+    <fullyQualifiedTypeName name="com.revature.exceptions.InvalidParameterException"/>
+    <fullyQualifiedTypeName name="com.revature.exceptions.NotFoundException"/>
+    <fullyQualifiedTypeName name="com.revature.exceptions.FailedAuthenticationException"/>
+    <fullyQualifiedTypeName name="javax.security.auth.login.FailedLoginException"/>
+    <fullyQualifiedTypeName name="com.revature.service.UserService"/>
+    <fullyQualifiedTypeName name="com.revature.dto.SignupDTO"/>
+    <fullyQualifiedTypeName name="com.revature.dto.LoginDTO"/>
+    <fullyQualifiedTypeName name="javax.servlet.http.HttpServletRequest"/>
+    <fullyQualifiedTypeName name="javax.servlet.http.HttpSession"/>
+    <fullyQualifiedTypeName name="com.revature.controller.AuthController"/>
+    <fullyQualifiedTypeName name="com.revature.exceptions.ExceptionMapper"/>
+    <fullyQualifiedTypeName name="org.slf4j.Logger"/>
+    <fullyQualifiedTypeName name="org.slf4j.LoggerFactory"/>
+    <fullyQualifiedTypeName name="com.revature.service.ReimbursementService"/>
+    <fullyQualifiedTypeName name="com.revature.dao.ReimbursementDAO"/>
+    <fullyQualifiedTypeName name="com.revature.dto.MessageDTO"/>
+    <fullyQualifiedTypeName name="com.revature.model.Reimbursement"/>
+    <fullyQualifiedTypeName name="com.revature.controller.ReimbursementController"/>
+    <fullyQualifiedTypeName name="com.revature.service.AuthService"/>
+    <fullyQualifiedTypeName name="io.javalin.http.Handler"/>
+    <fullyQualifiedTypeName name="com.revature.model.User"/>
+    <fullyQualifiedTypeName name="io.javalin.Javalin"/>
+    <fullyQualifiedTypeName name="com.revature.controller.UserController"/>
+    <fullyQualifiedTypeName name="com.revature.controller.Controller"/>
+</qualifiedTypeNameHistroy>

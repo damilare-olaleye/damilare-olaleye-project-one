@@ -1,0 +1,7 @@
+package com.revature.service;
+
+public class ReimbursementServiceInterface {
+
+	public Reimbursement submitReimbursementRequest(User currentlyLoggedInUser, String dateSubmitted, String type,
+			String description, String amount) throws InvalidParameterException, SQLException;
+}

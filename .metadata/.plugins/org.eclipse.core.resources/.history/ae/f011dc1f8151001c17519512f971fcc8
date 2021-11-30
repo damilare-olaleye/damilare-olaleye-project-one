@@ -1,0 +1,6 @@
+package com.revature.exceptions;
+
+public class UnauuthorizedException extends Exception {
+
+	
+}

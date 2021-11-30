@@ -1,0 +1,14 @@
+package com.revature.service;
+
+import java.sql.SQLException;
+
+import com.revature.exceptions.InvalidParameterException;
+import com.revature.model.Reimbursement;
+import com.revature.model.User;
+
+public interface ReimbursementServiceInterface {
+
+	public Reimbursement submitReimbursementRequest(User currentlyLoggedInUser, String type,
+			String description, String amount) throws InvalidParameterException, SQLException;
+
+}
