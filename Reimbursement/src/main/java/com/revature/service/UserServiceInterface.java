@@ -25,4 +25,8 @@ public interface UserServiceInterface {
 			InvalidParameterException, NotFoundException, FailedAuthenticationException;
 	
 	public UserProfile displayUserbyUsername(String username) throws NotFoundException, SQLException, InvalidParameterException;
+
+	User updateUserProfile(User currentlyLoggedInUser, String userId, String username, String password,
+			String firstName, String lastName, String role, String email)
+			throws InvalidParameterException, SQLException, NotFoundException;
 }

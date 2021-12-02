@@ -1,6 +1,5 @@
 package com.revature.model;
 
-import java.io.InputStream;
 import java.util.Objects;
 
 public class Reimbursement {
@@ -14,13 +13,12 @@ public class Reimbursement {
 	private double amount;
 	private int author;
 	private int resolver;
-	private int userId;
 
 	public Reimbursement() {
 	}
 
 	public Reimbursement(int reimbId, String submitted, String resolved, String status, String type, String description,
-			double amount, int author, int resolver, int userId) {
+			double amount, int author, int resolver) {
 		super();
 		this.reimbId = reimbId;
 		this.submitted = submitted;
@@ -31,7 +29,6 @@ public class Reimbursement {
 		this.amount = amount;
 		this.author = author;
 		this.resolver = resolver;
-		this.userId = userId;
 	}
 
 	public int getReimbId() {
@@ -106,17 +103,9 @@ public class Reimbursement {
 		this.resolver = resolver;
 	}
 
-	public int getUserId() {
-		return userId;
-	}
-
-	public void setUserId(int userId) {
-		this.userId = userId;
-	}
-
 	@Override
 	public int hashCode() {
-		return Objects.hash(amount, author, description, reimbId, resolved, resolver, status, submitted, type, userId);
+		return Objects.hash(amount, author, description, reimbId, resolved, resolver, status, submitted, type);
 	}
 
 	@Override
@@ -132,15 +121,14 @@ public class Reimbursement {
 				&& Objects.equals(description, other.description) && reimbId == other.reimbId
 				&& Objects.equals(resolved, other.resolved) && resolver == other.resolver
 				&& Objects.equals(status, other.status) && Objects.equals(submitted, other.submitted)
-				&& Objects.equals(type, other.type) && userId == other.userId;
+				&& Objects.equals(type, other.type);
 	}
 
 	@Override
 	public String toString() {
 		return "Reimbursement [reimbId=" + reimbId + ", submitted=" + submitted + ", resolved=" + resolved + ", status="
 				+ status + ", type=" + type + ", description=" + description + ", amount=" + amount + ", author="
-				+ author + ", resolver=" + resolver + ", userId=" + userId + "]";
+				+ author + ", resolver=" + resolver + "]";
 	}
 
-	
 }

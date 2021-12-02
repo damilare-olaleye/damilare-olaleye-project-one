@@ -11,7 +11,9 @@ import javax.security.auth.login.FailedLoginException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.revature.dao.ReimbursementDAO;
 import com.revature.dao.UserDAO;
+import com.revature.dto.UserDTO;
 import com.revature.exceptions.FailedAuthenticationException;
 import com.revature.exceptions.InvalidParameterException;
 import com.revature.exceptions.NotFoundException;
@@ -23,8 +25,9 @@ public class UserService implements UserServiceInterface {
 	private Logger logger = LoggerFactory.getLogger(UserService.class);
 
 	private UserDAO userDao;
+	private ReimbursementDAO reimbursementDao;
 
-	// For Mockito Test
+	// default constructor
 	public UserService(UserDAO userDao) {
 		this.userDao = userDao;
 	}
@@ -32,11 +35,20 @@ public class UserService implements UserServiceInterface {
 	// Constructor
 	public UserService() {
 		this.userDao = new UserDAO();
+		this.reimbursementDao = new ReimbursementDAO();
+	}
+
+	// For Mockito Test
+	public UserService(UserDAO userDao, ReimbursementDAO reimbursementDao) {
+		this.userDao = userDao;
+		this.reimbursementDao = reimbursementDao;
 	}
 
 	@Override
 	public User userLogin(String username, String password)
 			throws SQLException, NoSuchAlgorithmException, InvalidKeySpecException, FailedLoginException {
+
+		logger.info("userLogin(username, password)");
 
 		User user = this.userDao.userLogin(username, password);
 
@@ -168,6 +180,33 @@ public class UserService implements UserServiceInterface {
 			throw new InvalidParameterException("Invalid parameter was thrown");
 		}
 
+	}
+
+	@Override
+	public User updateUserProfile(User currentlyLoggedInUser, String userId, String username, String password, String firstName, String lastName, String role, String email)
+			throws InvalidParameterException, SQLException, NotFoundException {
+
+		try {
+
+			int id = Integer.parseInt(userId);
+
+			User userProfileToEdit = this.userDao.getUserById(id);
+			
+			int user_Id = currentlyLoggedInUser.getUserId();
+
+			if (userProfileToEdit == null) {
+				throw new NotFoundException("Cannot update profile at this time, please try again later!");
+			}
+			
+			UserDTO dto = new UserDTO(user_Id, password, username, firstName, lastName, role, email);
+
+			User updatedUser = this.userDao.updateUserProfile(id, dto);
+			
+			return updatedUser;
+		
+		} catch (NumberFormatException e) {
+			throw new InvalidParameterException("The Id provided is not int convertible value");
+		}
 	}
 
 }

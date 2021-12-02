@@ -26,6 +26,7 @@ public class ReimbursementController implements Controller {
 	public ReimbursementController() {
 		this.authorizationService = new AuthService();
 		this.reimbursementService = new ReimbursementService();
+
 	}
 
 	private Handler submitRequest = (ctx) -> {
@@ -37,7 +38,7 @@ public class ReimbursementController implements Controller {
 		String amount = ctx.formParam("amount");
 		String description = ctx.formParam("description");
 		UploadedFile file = ctx.uploadedFile("receipt");
-		
+
 		if (file == null) {
 			ctx.status(400);
 			ctx.json(new MessageDTO("Must have an image to upload"));
@@ -61,9 +62,9 @@ public class ReimbursementController implements Controller {
 			ctx.json(new MessageDTO("Must input description"));
 			return;
 		}
-		
+
 		InputStream content = file.getContent();
-		
+
 		Tika tika = new Tika();
 		String mimetype = tika.detect(content);
 
@@ -81,13 +82,15 @@ public class ReimbursementController implements Controller {
 
 		List<Reimbursement> reimbursements = this.reimbursementService.getAllReimbursement(currentlyLoggedInUser);
 
-		if (reimbursements.isEmpty()) {
+		if (reimbursements == null) {
 			ctx.json("Reimbursements is currently null, try again later");
 			ctx.status(404);
+		} else {
+
+			ctx.json(reimbursements);
+			ctx.status(201);
 		}
 
-		ctx.json(reimbursements);
-		ctx.status(201);
 	};
 
 	private Handler updateReimbursement = (ctx) -> {
@@ -95,11 +98,11 @@ public class ReimbursementController implements Controller {
 		User currentlyLoggedInUser = (User) ctx.req.getSession().getAttribute("currentuser");
 		this.authorizationService.authorizeFinanceManager(currentlyLoggedInUser);
 
-		String reimbursementId = ctx.pathParam("id");
+		String reimbursementId = ctx.formParam("rembursement id");
 		String status = ctx.formParam("status");
 
-		Reimbursement reimbursement = this.reimbursementService.updateReimbursement(currentlyLoggedInUser,
-				reimbursementId, status);
+		Reimbursement reimbursement = this.reimbursementService.updateReimbursement(currentlyLoggedInUser, status,
+				reimbursementId);
 
 		ctx.json(reimbursement);
 		ctx.status(200);
@@ -109,9 +112,11 @@ public class ReimbursementController implements Controller {
 	private Handler viewPastTickets = (ctx) -> {
 
 		User currentlyLoggedInUser = (User) ctx.req.getSession().getAttribute("currentuser");
-		this.authorizationService.authorizeEmployee(currentlyLoggedInUser);
+		this.authorizationService.authorizeEmployeeAndFinanceManger(currentlyLoggedInUser);
 
-		String reimbursementId = ctx.pathParam("id");
+		String reimbursementId = ctx.formParam("ReimbursementId");
+
+		System.out.println("riembid " + reimbursementId);
 
 		InputStream image = this.reimbursementService.getImageFromReimbursementById(currentlyLoggedInUser,
 				reimbursementId);
@@ -129,8 +134,8 @@ public class ReimbursementController implements Controller {
 		User currentlyLoggedInUser = (User) ctx.req.getSession().getAttribute("currentuser");
 		this.authorizationService.authorizeEmployee(currentlyLoggedInUser);
 
-		String reimbursementId = ctx.pathParam("id");
-		String reimbursementStatus = ctx.formParam("status");
+		String reimbursementId = ctx.formParam("ReimbursementId");
+		String reimbursementStatus = ctx.formParam("Status");
 
 		Reimbursement reimbursement = this.reimbursementService.getPendingRequestById(currentlyLoggedInUser,
 				reimbursementId, reimbursementStatus);
@@ -140,17 +145,80 @@ public class ReimbursementController implements Controller {
 
 	};
 
+	private Handler viewReimbursementStatus = (ctx) -> {
+
+		User currentlyLoggedInUser = (User) ctx.req.getSession().getAttribute("currentuser");
+		this.authorizationService.authorizeEmployee(currentlyLoggedInUser);
+
+		String reimbursementId = ctx.formParam("ReimbursementId");
+
+		Reimbursement reimbursement = this.reimbursementService.getReimbursementStatus(currentlyLoggedInUser,
+				reimbursementId);
+
+		ctx.json(reimbursement);
+		ctx.status(200);
+	};
+
+	private Handler viewAllEmployeePastReimHistory = (ctx) -> {
+
+		User currentlyLoggedInUser = (User) ctx.req.getSession().getAttribute("currentuser");
+		this.authorizationService.authorizeFinanceManager(currentlyLoggedInUser);
+
+		List<Reimbursement> reimbursements = this.reimbursementService
+				.getEmployeeReimbPastHistoy(currentlyLoggedInUser);
+
+		if (reimbursements == null) {
+			ctx.json("Reimbursements is currently null, try again later");
+		} else {
+
+			ctx.json(reimbursements);
+			ctx.status(201);
+		}
+
+	};
+
+	private Handler getallReimbursementsByResolver = (ctx) -> {
+
+		User currentlyLoggedInUser = (User) ctx.req.getSession().getAttribute("currentuser");
+		this.authorizationService.authorizeFinanceManager(currentlyLoggedInUser);
+
+		String resolver = ctx.formParam("resolver");
+
+		List<Reimbursement> amounts = this.reimbursementService.getAllReimbursementByUserId(currentlyLoggedInUser,
+				resolver, ctx);
+
+		ctx.json(amounts);
+		ctx.status(200);
+
+	};
+
+//	private Handler filteredReimbursementStatus = (ctx) -> {
+//
+//		User currentlyLoggedInUser = (User) ctx.req.getSession().getAttribute("currentuser");
+//		this.authorizationService.authorizeEmployee(currentlyLoggedInUser);
+//
+//		List<Reimbursement> reimbursement = this.reimbursementService.getAllFilteredStatus(currentlyLoggedInUser, ctx);
+//
+//		ctx.json(reimbursement);
+//		ctx.status(200);
+//
+//	};
+
 	@Override
 	public void mapEndPoints(Javalin app) {
 
 		// EMPLOYEE
-		app.post("/submitRequest", submitRequest);
-		app.get("/reimbursement/{id}/reciept", viewPastTickets);
-		app.get("/pendingReimbursements/{id}", viewPendingReimbursements);
+		app.post("/submitRequest", submitRequest); // works
+		app.get("/reimbursement/reciept", viewPastTickets); // works
+		app.get("/pendingReimbursements", viewPendingReimbursements); // works
+		app.get("/reimbursementStatusById", viewReimbursementStatus); // works
+//		app.get("/filterReimbursementsStatus", filteredReimbursementStatus);
 
 		// FINANCE MANAGER
-		app.get("/allreimbursements", viewAllReimbursements);
-		app.patch("/reimbursement/{id}/status", updateReimbursement);
+		app.get("/allreimbursements", viewAllReimbursements); // works
+		app.patch("/reimbursement/status", updateReimbursement); // works
+		app.get("/employeesHistory", viewAllEmployeePastReimHistory); // works
+		app.get("/viewReimbursemenByResolver", getallReimbursementsByResolver);
 	}
 
 }

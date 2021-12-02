@@ -4,6 +4,7 @@ import java.io.InputStream;
 import java.sql.SQLException;
 import java.util.List;
 
+import com.revature.exceptions.FilteredStatusErrorExceptions;
 import com.revature.exceptions.ImageNotFoundException;
 import com.revature.exceptions.InvalidParameterException;
 import com.revature.exceptions.NotFoundException;
@@ -13,11 +14,13 @@ import com.revature.exceptions.reimbursementAlreadyResloved;
 import com.revature.model.Reimbursement;
 import com.revature.model.User;
 
+import io.javalin.http.Context;
+
 public interface ReimbursementServiceInterface {
 
 	public Reimbursement submitReimbursementRequest(User currentlyLoggedInUser, String type, String description,
-			String amount, String mimeType, InputStream content)
-			throws InvalidParameterException, SQLException, NotFoundException, SubmitFailException;
+			String amount, String mimeType, InputStream content) throws InvalidParameterException, SQLException,
+			NotFoundException, SubmitFailException, FilteredStatusErrorExceptions;
 
 	public List<Reimbursement> getAllReimbursement(User currentlyLoggedInUser)
 			throws SQLException, InvalidParameterException, UnauthorizedException, NotFoundException;
@@ -27,4 +30,20 @@ public interface ReimbursementServiceInterface {
 
 	public InputStream getImageFromReimbursementById(User currentlyLoggedInUser, String reimbursementID)
 			throws UnauthorizedException, SQLException, ImageNotFoundException, InvalidParameterException;
+
+	Reimbursement getPendingRequestById(User currentlyLoggedInUser, String pending, String userId)
+			throws InvalidParameterException, NotFoundException, SQLException, UnauthorizedException;
+
+	Reimbursement getReimbursementStatus(User currentlyLoggedInUser, String reimbId)
+			throws InvalidParameterException, SQLException, UnauthorizedException, NotFoundException;
+
+	Reimbursement getFilteredReimbStatus(User currentlyLoggedInUser, String filteredStatus)
+			throws InvalidParameterException, NotFoundException, SQLException, UnauthorizedException,
+			FilteredStatusErrorExceptions;
+
+	List<Reimbursement> getEmployeeReimbPastHistoy(User currentlyLoggedInUser)
+			throws SQLException, InvalidParameterException, NotFoundException, UnauthorizedException;
+
+	List<Reimbursement> getAllReimbursementByUserId(User currentlyLoggedInUser, String userId, Context ctx)
+			throws SQLException, InvalidParameterException;
 }

@@ -11,6 +11,7 @@ import java.sql.Statement;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.revature.dto.UserDTO;
 import com.revature.model.User;
 import com.revature.model.UserProfile;
 import com.revature.util.JDBCUtil;
@@ -18,6 +19,33 @@ import com.revature.util.JDBCUtil;
 public class UserDAO implements UserInterfaceDAO {
 
 	private Logger logger = LoggerFactory.getLogger(UserDAO.class);
+
+	public User getUserById(int id) throws SQLException {
+
+		logger.info("userLogin(username, password) invoked");
+
+		try (Connection con = JDBCUtil.getConnection()) {
+
+			String sql = "SELECT * FROM users WHERE user_id = ?;";
+
+			PreparedStatement pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, id);
+
+			ResultSet rs = pstmt.executeQuery();
+
+			if (rs.next()) {
+				return new User(rs.getInt("user_id"), rs.getString("employee_username"),
+						rs.getString("employee_password"), rs.getString("user_first_name"),
+						rs.getString("user_last_name"), rs.getString("user_email"), rs.getString("user_role"));
+			} else {
+				return null;
+			}
+
+		} catch (SQLException e) {
+			throw new SQLException("Cannot get user by id, please try again later");
+		}
+
+	}
 
 	@Override
 	public User userLogin(String username, String password)
@@ -49,6 +77,8 @@ public class UserDAO implements UserInterfaceDAO {
 			} else {
 				return null;
 			}
+		} catch (SQLException e) {
+			throw new SQLException("Cannot get user by id, please try again later");
 		}
 
 	}
@@ -74,6 +104,8 @@ public class UserDAO implements UserInterfaceDAO {
 				return;
 			}
 
+		} catch (SQLException e) {
+			throw new SQLException("Cannot delete user, please try again later");
 		}
 
 	}
@@ -123,11 +155,11 @@ public class UserDAO implements UserInterfaceDAO {
 			throw new SQLException("user already exists");
 		}
 	}
-	
+
 	public UserProfile getAllUserbyUsername(String username) throws SQLException {
-		
+
 		logger.info("getalluser(...) invoked");
-		
+
 		try (Connection con = JDBCUtil.getConnection()) {
 			String sql = "SELECT * FROM users WHERE employee_username = ?";
 
@@ -150,6 +182,38 @@ public class UserDAO implements UserInterfaceDAO {
 			}
 		} catch (SQLException e) {
 			throw new SQLException("cannot find user with the username");
+		}
+	}
+
+	public User updateUserProfile(int userId, UserDTO dto) throws SQLException {
+
+		logger.info("updateUserProfile(userId, dto) invoked");
+
+		try (Connection con = JDBCUtil.getConnection()) {
+			String sql = "UPDATE users " + "SET employee_password = ?, " + "employee_username= ?,"
+					+ " user_first_name= ?, " + " user_last_name = ?, " + " user_role = ?, " + " user_email = ?; "
+					+ "WHERE user_id = ?;";
+
+			PreparedStatement pstmt = con.prepareStatement(sql);
+
+			pstmt.setString(1, dto.getPassword());
+			pstmt.setString(2, dto.getFirstName());
+			pstmt.setString(3, dto.getLastName());
+			pstmt.setString(4, dto.getRole());
+			pstmt.setString(5, dto.getEmail());
+
+			int numberOfRecordsUpdated = pstmt.executeUpdate();
+
+			if (numberOfRecordsUpdated != 1) {
+				throw new SQLException("Unable to update your profile, please try again later!");
+
+			}
+
+			return new User(userId, dto.getUsername(), dto.getPassword(), dto.getFirstName(), dto.getLastName(),
+					dto.getEmail(), dto.getRole());
+
+		} catch (SQLException e) {
+			throw new SQLException("Cannot update user profile at this time");
 		}
 	}
 

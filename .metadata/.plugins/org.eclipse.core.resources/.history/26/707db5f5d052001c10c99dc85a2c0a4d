@@ -1,0 +1,225 @@
+package com.revature.controller;
+
+import java.io.InputStream;
+import java.util.List;
+
+import org.apache.tika.Tika;
+
+import com.revature.dao.ReimbursementDAO;
+import com.revature.dto.MessageDTO;
+import com.revature.model.Reimbursement;
+import com.revature.model.User;
+import com.revature.service.AuthService;
+import com.revature.service.ReimbursementService;
+
+import io.javalin.Javalin;
+import io.javalin.http.Handler;
+import io.javalin.http.UploadedFile;
+
+public class ReimbursementController implements Controller {
+
+	private AuthService authorizationService;
+	private ReimbursementService reimbursementService;
+
+	ReimbursementDAO remibursementDao = new ReimbursementDAO();
+
+	public ReimbursementController() {
+		this.authorizationService = new AuthService();
+		this.reimbursementService = new ReimbursementService();
+
+	}
+
+	private Handler submitRequest = (ctx) -> {
+
+		User currentlyLoggedInUser = (User) ctx.req.getSession().getAttribute("currentuser");
+		this.authorizationService.authorizeEmployee(currentlyLoggedInUser);
+
+		String reimbursementType = ctx.formParam("type");
+		String amount = ctx.formParam("amount");
+		String description = ctx.formParam("description");
+		UploadedFile file = ctx.uploadedFile("receipt");
+
+		if (file == null) {
+			ctx.status(400);
+			ctx.json(new MessageDTO("Must have an image to upload"));
+			return;
+		}
+
+		if (amount == null) {
+			ctx.status(400);
+			ctx.json(new MessageDTO("Must input amount"));
+			return;
+		}
+
+		if (reimbursementType == null) {
+			ctx.status(400);
+			ctx.json(new MessageDTO("Must input reimbursement type"));
+			return;
+		}
+
+		if (description == null) {
+			ctx.status(400);
+			ctx.json(new MessageDTO("Must input description"));
+			return;
+		}
+
+		InputStream content = file.getContent();
+
+		Tika tika = new Tika();
+		String mimetype = tika.detect(content);
+
+		Reimbursement addedReimbursement = this.reimbursementService.submitReimbursementRequest(currentlyLoggedInUser,
+				reimbursementType, description, amount, mimetype, content);
+
+		ctx.json(addedReimbursement);
+		ctx.status(201);
+	};
+
+	private Handler viewAllReimbursements = (ctx) -> {
+
+		User currentlyLoggedInUser = (User) ctx.req.getSession().getAttribute("currentuser");
+		this.authorizationService.authorizeFinanceManager(currentlyLoggedInUser);
+
+		List<Reimbursement> reimbursements = this.reimbursementService.getAllReimbursement(currentlyLoggedInUser);
+
+		if (reimbursements == null) {
+			ctx.json("Reimbursements is currently null, try again later");
+			ctx.status(404);
+		} else {
+
+			ctx.json(reimbursements);
+			ctx.status(201);
+		}
+
+	};
+
+	private Handler updateReimbursement = (ctx) -> {
+
+		User currentlyLoggedInUser = (User) ctx.req.getSession().getAttribute("currentuser");
+		this.authorizationService.authorizeFinanceManager(currentlyLoggedInUser);
+
+		String reimbursementId = ctx.formParam("rembursement id");
+		String status = ctx.formParam("status");
+
+		Reimbursement reimbursement = this.reimbursementService.updateReimbursement(currentlyLoggedInUser, status,
+				reimbursementId);
+
+		ctx.json(reimbursement);
+		ctx.status(200);
+
+	};
+
+	private Handler viewPastTickets = (ctx) -> {
+
+		User currentlyLoggedInUser = (User) ctx.req.getSession().getAttribute("currentuser");
+		this.authorizationService.authorizeEmployeeAndFinanceManger(currentlyLoggedInUser);
+
+		String reimbursementId = ctx.formParam("ReimbursementId");
+
+		InputStream image = this.reimbursementService.getImageFromReimbursementById(currentlyLoggedInUser,
+				reimbursementId);
+
+		Tika tika = new Tika();
+		String mimeType = tika.detect(image);
+
+		ctx.contentType(mimeType);
+		ctx.result(image);
+
+	};
+
+	private Handler viewPendingReimbursements = (ctx) -> {
+
+		User currentlyLoggedInUser = (User) ctx.req.getSession().getAttribute("currentuser");
+		this.authorizationService.authorizeEmployee(currentlyLoggedInUser);
+
+		String reimbursementId = ctx.formParam("ReimbursementId");
+		String reimbursementStatus = ctx.formParam("status");
+
+		Reimbursement reimbursement = this.reimbursementService.getPendingRequestById(currentlyLoggedInUser,
+				reimbursementId, reimbursementStatus);
+
+		ctx.json(reimbursement);
+		ctx.status(200);
+
+	};
+
+	private Handler viewReimbursementStatus = (ctx) -> {
+
+		User currentlyLoggedInUser = (User) ctx.req.getSession().getAttribute("currentuser");
+		this.authorizationService.authorizeEmployee(currentlyLoggedInUser);
+
+		String reimbursementId = ctx.formParam("id");
+
+		Reimbursement reimbursement = this.reimbursementService.getReimbursementStatus(currentlyLoggedInUser,
+				reimbursementId);
+
+		ctx.json(reimbursement);
+		ctx.status(200);
+	};
+
+	private Handler filteredReimbursementStatus = (ctx) -> {
+
+		User currentlyLoggedInUser = (User) ctx.req.getSession().getAttribute("currentuser");
+		this.authorizationService.authorizeEmployee(currentlyLoggedInUser);
+
+		String filteredStatus = ctx.formParam("status");
+
+		Reimbursement reimbursement = this.reimbursementService.getReimbursementStatus(currentlyLoggedInUser,
+				filteredStatus);
+
+		ctx.json(reimbursement);
+		ctx.status(200);
+
+	};
+
+	private Handler viewAllEmployeePastReimHistory = (ctx) -> {
+
+		User currentlyLoggedInUser = (User) ctx.req.getSession().getAttribute("currentuser");
+		this.authorizationService.authorizeFinanceManager(currentlyLoggedInUser);
+
+		List<Reimbursement> reimbursements = this.reimbursementService
+				.getEmployeeReimbPastHistoy(currentlyLoggedInUser);
+
+		if (reimbursements == null) {
+			ctx.json("Reimbursements is currently null, try again later");
+		} else {
+
+			ctx.json(reimbursements);
+			ctx.status(201);
+		}
+
+	};
+
+	private Handler getallReimbursementsByUserId = (ctx) -> {
+
+		User currentlyLoggedInUser = (User) ctx.req.getSession().getAttribute("currentuser");
+		this.authorizationService.authorizeFinanceManager(currentlyLoggedInUser);
+
+		String userId = ctx.pathParam("userId");
+
+		List<Reimbursement> amounts = this.reimbursementService.getAllReimbursementByUserId(currentlyLoggedInUser,
+				userId, ctx);
+
+		ctx.json(amounts);
+		ctx.status(200);
+
+	};
+
+	@Override
+	public void mapEndPoints(Javalin app) {
+
+		// EMPLOYEE
+		app.post("/submitRequest", submitRequest); // works
+		app.get("/reimbursement/reciept", viewPastTickets);
+		app.get("/pendingReimbursements", viewPendingReimbursements);
+		app.get("/reimbursementStatus", viewReimbursementStatus);
+		app.get("/filterReimbursementsStatus/{id}", filteredReimbursementStatus);
+
+		// FINANCE MANAGER
+		app.get("/allreimbursements", viewAllReimbursements); // works
+		app.patch("/reimbursement/status", updateReimbursement); // works
+		app.get("/employeesHistory", viewAllEmployeePastReimHistory); // works
+		app.get("/viewReimbursemenByUserId/{userId}", getallReimbursementsByUserId); 
+	}
+
+}

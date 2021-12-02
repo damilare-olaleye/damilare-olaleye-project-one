@@ -7,6 +7,8 @@ import java.util.List;
 import java.util.Set;
 
 import com.revature.dao.ReimbursementDAO;
+import com.revature.dao.UserDAO;
+import com.revature.exceptions.FilteredStatusErrorExceptions;
 import com.revature.exceptions.ImageNotFoundException;
 import com.revature.exceptions.InvalidParameterException;
 import com.revature.exceptions.NotFoundException;
@@ -16,52 +18,55 @@ import com.revature.exceptions.reimbursementAlreadyResloved;
 import com.revature.model.Reimbursement;
 import com.revature.model.User;
 
+import io.javalin.http.Context;
+
 public class ReimbursementService implements ReimbursementServiceInterface {
 
 	ReimbursementDAO reimbursementDao = new ReimbursementDAO();
+	UserDAO userDao = new UserDAO();
 
 	public ReimbursementService() {
 		this.reimbursementDao = new ReimbursementDAO();
+		this.userDao = new UserDAO();
 	}
 
-	public ReimbursementService(ReimbursementDAO reimbursementDao) {
+	// For mock objects
+	public ReimbursementService(ReimbursementDAO reimbursementDao, UserDAO userDao) {
 		this.reimbursementDao = reimbursementDao;
+		this.userDao = userDao;
 	}
 
 	@Override
 	public Reimbursement submitReimbursementRequest(User currentlyLoggedInUser, String type, String description,
-			String amount, String mimeType, InputStream content) throws InvalidParameterException, SQLException, NotFoundException, SubmitFailException {
-			
-			Set<String> reimbursementTypes = new HashSet<>();
-			
-			double submitAmount = Double.parseDouble(amount);
+			String amount, String mimeType, InputStream content) throws InvalidParameterException, SQLException,
+			NotFoundException, SubmitFailException, FilteredStatusErrorExceptions {
 
-			reimbursementTypes.add("LODGING");
-			reimbursementTypes.add("TRAVEL");
-			reimbursementTypes.add("FOOD");
-			reimbursementTypes.add("OTHER");
-			
-			Set<String> allowedFileTypes = new HashSet<>();
-			allowedFileTypes.add("image/jpeg");
-			allowedFileTypes.add("image/png");
+		Set<String> reimbursementTypes = new HashSet<>();
 
-			if (!(reimbursementTypes.contains(type))) {
-				throw new InvalidParameterException(
-						"When adding an reimbursements: LODGING, only TRAVEL, FOOD, or OTHER are allowed");
+		double submitAmount = Double.parseDouble(amount);
 
-			}
-			
-			if (!allowedFileTypes.contains(mimeType)) {
-				throw new InvalidParameterException("When adding an assignment image, only PNG, JPEG, or GIF are allowed");
-			}
+		reimbursementTypes.add("LODGING");
+		reimbursementTypes.add("TRAVEL");
+		reimbursementTypes.add("FOOD");
+		reimbursementTypes.add("OTHER");
 
-			int userId = currentlyLoggedInUser.getUserId();
-			
+		Set<String> allowedFileTypes = new HashSet<>();
+		allowedFileTypes.add("image/jpeg");
+		allowedFileTypes.add("image/png");
 
-			return this.reimbursementDao.submitRequest(type, description, submitAmount, userId, content);
-			
-		
+		if (!(reimbursementTypes.contains(type))) {
+			throw new FilteredStatusErrorExceptions(
+					"When adding an reimbursements: LODGING, only TRAVEL, FOOD, or OTHER are allowed");
 
+		}
+
+		if (!allowedFileTypes.contains(mimeType)) {
+			throw new InvalidParameterException("When adding an assignment image, only PNG, JPEG, or GIF are allowed");
+		}
+
+		int userId = currentlyLoggedInUser.getUserId();
+
+		return this.reimbursementDao.submitRequest(type, description, submitAmount, userId, content);
 
 	}
 
@@ -92,7 +97,7 @@ public class ReimbursementService implements ReimbursementServiceInterface {
 	}
 
 	@Override
-	public Reimbursement updateReimbursement(User currentlyLoggedInUser, String reimbursementId, String status)
+	public Reimbursement updateReimbursement(User currentlyLoggedInUser, String status, String reimbursementId)
 			throws InvalidParameterException, SQLException, NotFoundException, reimbursementAlreadyResloved {
 
 		try {
@@ -130,28 +135,32 @@ public class ReimbursementService implements ReimbursementServiceInterface {
 	}
 
 	@Override
-	public InputStream getImageFromReimbursementById(User currentlyLoggedInUser, String reimbursementID)
+	public InputStream getImageFromReimbursementById(User currentlyLoggedInUser, String reimbursementId)
 			throws UnauthorizedException, SQLException, ImageNotFoundException, InvalidParameterException {
 
 		try {
 
-			int id = Integer.parseInt(reimbursementID);
+			int id = Integer.parseInt(reimbursementId);
 
 			if (currentlyLoggedInUser.getRole().equals("Employee")) {
-				int userId = currentlyLoggedInUser.getUserId();
-				List<Reimbursement> reimbursementThatBelongToEmployee = this.reimbursementDao
-						.getReimbursementByUserId(userId);
 
-				Set<Integer> reimbursementIDsEncountered = new HashSet<>();
+				int userId = currentlyLoggedInUser.getUserId();
+
+				List<Reimbursement> reimbursementThatBelongToEmployee = this.reimbursementDao
+						.getAllReimbursementByEmployee(userId);
+
+				Set<Integer> reimbursementIdsEncountered = new HashSet<>();
+
 				for (Reimbursement reimbursement : reimbursementThatBelongToEmployee) {
-					reimbursementIDsEncountered.add(reimbursement.getReimbId());
+					reimbursementIdsEncountered.add(reimbursement.getReimbId());
 				}
 
-				if (!reimbursementIDsEncountered.contains(id)) {
+				if (!reimbursementIdsEncountered.contains(id)) {
 					throw new UnauthorizedException(
 							"You cannot access the images of reimbursements that do not belong to yourself");
 
 				}
+
 			}
 
 			InputStream image = this.reimbursementDao.getPastTicketById(id);
@@ -169,18 +178,19 @@ public class ReimbursementService implements ReimbursementServiceInterface {
 		}
 	}
 
-	public Reimbursement getPendingRequestById(User currentlyLoggedInUser, String pending, String userId)
+	@Override
+	public Reimbursement getPendingRequestById(User currentlyLoggedInUser, String reimbId, String pending)
 			throws InvalidParameterException, NotFoundException, SQLException, UnauthorizedException {
 
 		try {
 
-			int id = Integer.parseInt(userId);
+			int id = Integer.parseInt(reimbId);
 
 			if (currentlyLoggedInUser.getRole().equals("Employee")) {
 				int user_Id = currentlyLoggedInUser.getUserId();
 
 				List<Reimbursement> reimbursementThatBelongToEmployee = this.reimbursementDao
-						.getReimbursementByUserId(user_Id);
+						.getReimbursementByResolver(user_Id);
 
 				Set<Integer> reimbursementIDsEncountered = new HashSet<>();
 				for (Reimbursement reimbursement : reimbursementThatBelongToEmployee) {
@@ -194,7 +204,7 @@ public class ReimbursementService implements ReimbursementServiceInterface {
 
 			}
 
-			Reimbursement reimbursement = this.reimbursementDao.getPendingRequestById(pending);
+			Reimbursement reimbursement = this.reimbursementDao.getPendingRequestById(id, pending);
 
 			if (pending == null) {
 
@@ -207,5 +217,198 @@ public class ReimbursementService implements ReimbursementServiceInterface {
 			throw new InvalidParameterException("Reimbursement id supplied must be an int");
 		}
 	}
+
+	@Override
+	public Reimbursement getReimbursementStatus(User currentlyLoggedInUser, String reimbId)
+			throws InvalidParameterException, SQLException, UnauthorizedException, NotFoundException {
+
+		try {
+
+			int id = Integer.parseInt(reimbId);
+
+			if (currentlyLoggedInUser.getRole().equals("Employee")) {
+				int user_Id = currentlyLoggedInUser.getUserId();
+
+				List<Reimbursement> reimbursementThatBelongToEmployee = this.reimbursementDao
+						.getReimbursementByResolver(user_Id);
+
+				Set<Integer> reimbursementIDsEncountered = new HashSet<>();
+				for (Reimbursement reimbursement : reimbursementThatBelongToEmployee) {
+					reimbursementIDsEncountered.add(reimbursement.getReimbId());
+				}
+
+				if (!reimbursementIDsEncountered.contains(id)) {
+					throw new UnauthorizedException(
+							"You cannot access the status request of reimbursements that do not belong to you");
+				}
+
+			}
+
+			Reimbursement reimbursement = this.reimbursementDao.getReimbursementStatusById(reimbId);
+
+			if (reimbId == null) {
+
+				throw new NotFoundException("Cannot find user with status" + reimbId);
+			}
+
+			return reimbursement;
+
+		} catch (NumberFormatException e) {
+			throw new InvalidParameterException("Reimbursement id supplied must be an int");
+
+		}
+	}
+
+	@Override
+	public Reimbursement getFilteredReimbStatus(User currentlyLoggedInUser, String filteredStatus)
+			throws InvalidParameterException, NotFoundException, SQLException, UnauthorizedException,
+			FilteredStatusErrorExceptions {
+
+		try {
+
+			Set<String> status = new HashSet<>();
+
+			status.add("PENDING");
+			status.add("APPROVED");
+			status.add("DECLINED");
+
+			if (!status.contains(filteredStatus)) {
+				throw new FilteredStatusErrorExceptions(
+						"Please entered the correct reimbursement status: PENDING, APPROVED or DECLINED");
+			}
+
+			if (currentlyLoggedInUser.getRole().equals("Employee")) {
+				int user_Id = currentlyLoggedInUser.getUserId();
+
+				List<Reimbursement> reimbursementThatBelongToEmployee = this.reimbursementDao
+						.getReimbursementByResolver(user_Id);
+
+				Set<Integer> reimbursementIDsEncountered = new HashSet<>();
+				for (Reimbursement reimbursement : reimbursementThatBelongToEmployee) {
+					reimbursementIDsEncountered.add(reimbursement.getReimbId());
+				}
+
+			}
+
+			Reimbursement reimbursement = this.reimbursementDao.getFilteredStatus(filteredStatus);
+
+			if (filteredStatus == null) {
+
+				throw new NotFoundException("Cannot find user with status" + filteredStatus);
+			}
+
+			return reimbursement;
+
+		} catch (NumberFormatException e) {
+			throw new InvalidParameterException("Reimbursement id supplied must be an int");
+		}
+	}
+
+	@Override
+	public List<Reimbursement> getEmployeeReimbPastHistoy(User currentlyLoggedInUser)
+			throws SQLException, InvalidParameterException, NotFoundException, UnauthorizedException {
+
+		List<Reimbursement> reimbursements = this.reimbursementDao.getEmployeeReimbPastHistory();
+
+		try {
+
+			if (reimbursements == null) {
+				throw new NotFoundException("No reimbursement available");
+			}
+
+			if (currentlyLoggedInUser.getRole().equals("Employee")) {
+				throw new UnauthorizedException("You do not have access to this, sign in as a Finance Manager");
+			} else {
+
+				return reimbursements;
+
+			}
+
+		} catch (NumberFormatException e) {
+			throw new InvalidParameterException("Reimbursement id supplied must be an int");
+
+		}
+
+	}
+
+	@Override
+	public List<Reimbursement> getAllReimbursementByUserId(User currentlyLoggedInUser, String resolver, Context ctx)
+			throws SQLException, InvalidParameterException {
+
+		List<Reimbursement> amounts;
+
+		int id = Integer.parseInt(resolver);
+
+		try {
+
+			if (ctx.queryParam("greaterThan") != null && ctx.queryParam("lessThan") != null) {
+
+				int greaterThan = Integer.parseInt(ctx.queryParam("greaterThan"));
+				int lessThan = Integer.parseInt(ctx.queryParam("lessThan"));
+
+				amounts = this.reimbursementDao.getAllReimbursementByUserId(id, greaterThan, lessThan);
+
+			} else if (ctx.queryParam("lessThan") != null) {
+
+				int lessThan = Integer.parseInt(ctx.queryParam("lessThan"));
+
+				amounts = this.reimbursementDao.getAllReimbursementByUserId(id, 0, lessThan);
+
+			} else if (ctx.queryParam("greaterthan") != null) {
+
+				int greaterThan = Integer.parseInt(ctx.queryParam("greaterThan"));
+
+				amounts = this.reimbursementDao.getAllReimbursementByUserId(id, greaterThan, 50);
+
+			} else {
+				amounts = this.reimbursementDao.getAllReimbursementByUserId(id, 0, 50);
+			}
+
+			return amounts;
+
+		} catch (NumberFormatException e) {
+			throw new InvalidParameterException("User Id number supplied must be an int");
+		}
+
+	}
+
+//	public List<Reimbursement> getAllFilteredStatus(User currentlyLoggedInUser, Context ctx)
+//			throws InvalidParameterException, SQLException {
+//
+//		List<Reimbursement> status;
+//
+//		try {
+//
+//			String pending = ctx.queryParam("pending");
+//			String approved = ctx.queryParam("approved");
+//			String rejected = ctx.queryParam("rejected");
+//
+//			if (ctx.queryParam("pending") != null && ctx.queryParam("approved") != null
+//					&& ctx.queryParam("rejected") != null) {
+//
+//				status = this.reimbursementDao.getAllReimbursementByReimbId(pending, approved, rejected);
+//
+//			} else if (ctx.queryParam("pending") != null) {
+//
+//				status = this.reimbursementDao.getAllReimbursementByReimbId("", approved, rejected);
+//
+//			} else if (ctx.queryParam("approved") != null) {
+//
+//				status = this.reimbursementDao.getAllReimbursementByReimbId(pending, "", rejected);
+//
+//			} else if (ctx.queryParam("approved") != null) {
+//
+//				status = this.reimbursementDao.getAllReimbursementByReimbId(pending, approved, "");
+//
+//			} else {
+//				status = this.reimbursementDao.getAllReimbursementByReimbId(pending, approved, rejected);
+//			}
+//
+//			return status;
+//
+//		} catch (NumberFormatException e) {
+//			throw new InvalidParameterException("User Id number supplied must be an int");
+//		}
+//	}
 
 }

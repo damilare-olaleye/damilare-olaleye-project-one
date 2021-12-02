@@ -47,10 +47,6 @@ CREATE TABLE reimbursement (
 	reimbursement_receipt BYTEA NOT NULL,
 	reimbursement_author INTEGER,
 	reimbursement_resolver INTEGER,
-	user_id INTEGER, 
-	
-	CONSTRAINT fK_user_id FOREIGN KEY (user_id)
-		REFERENCES users(user_id),
 		
 	CONSTRAINT fK_reimb_author FOREIGN KEY (reimbursement_author)
 		REFERENCES users(user_id),
@@ -59,6 +55,19 @@ CREATE TABLE reimbursement (
 		REFERENCES users(user_id)
 	
 );
+
+SELECT reimbursement_status, reimbursement_resolver, reimbursement_type 
+					reimbursement_description FROM reimbursement WHERE reimbursement_id = '1';
+				
+SELECT * FROM Reimbursement WHERE reimbursement_id = '2';
+
+SELECT * FROM reimbursement WHERE user_id = '1';
+
+SELECT * FROM reimbursement WHERE reimbursement_status = 'APPROVED' ORDER BY reimbursement_submitted;
+
+SELECT * FROM reimbursement WHERE reimbursement_id=1;
+
+SELECT * FROM reimbursement ORDER BY reimbursement_submitted = ;
 
 SELECT reimbursement_status FROM reimbursement WHERE reimbursement_status = 'PENDING';
 

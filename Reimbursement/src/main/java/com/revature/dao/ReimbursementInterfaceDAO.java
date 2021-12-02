@@ -10,14 +10,23 @@ public interface ReimbursementInterfaceDAO {
 
 	public List<Reimbursement> getAllReimbursements() throws SQLException;
 
-	public Reimbursement submitRequest(String type, String description, double amount, int author, InputStream receipt) throws SQLException;
+	public Reimbursement submitRequest(String type, String description, double amount, int author, InputStream receipt)
+			throws SQLException;
 
-	public void updateReimbursement(int id, String status, int reimbursementId) throws SQLException;
+	public void updateReimbursement(int reimbursementId, String status, int resolverId) throws SQLException;
 
 	public Reimbursement getReimbursementById(int id) throws SQLException;
 
-	public List<Reimbursement> getReimbursementByUserId(int userID) throws SQLException;
+	public List<Reimbursement> getReimbursementByResolver(int resolverId) throws SQLException;
 
 	public InputStream getPastTicketById(int id) throws SQLException;
+
+	public Reimbursement getPendingRequestById(int ReimbursementId, String pending) throws SQLException;
+
+	public Reimbursement getReimbursementStatusById(String reimbId) throws SQLException;
+
+	public List<Reimbursement> getEmployeeReimbPastHistory() throws SQLException;
+
+	Reimbursement getFilteredStatus(String showStatus) throws SQLException;
 
 }

@@ -52,11 +52,33 @@ public class UserController implements Controller {
 		ctx.status(200);
 	};
 
+	private Handler editProfileById = (ctx) -> {
+
+		User currentlyLoggedInUser = (User) ctx.req.getSession().getAttribute("currentuser");
+		this.authorizationService.authorizeFinanceManager(currentlyLoggedInUser);
+
+		String userId = ctx.pathParam("id");
+
+		String password = ctx.formParam("password");
+		String username = ctx.formParam("username");
+		String firstName = ctx.formParam("firstname");
+		String lastName = ctx.formParam("lastName");
+		String role = ctx.formParam("role");
+		String email = ctx.formParam("email");
+
+		User user = this.userService.updateUserProfile(currentlyLoggedInUser, userId, password, username, firstName,
+				lastName, role, email);
+
+		ctx.json(user);
+		ctx.status(201);
+	};
+
 	@Override
 	public void mapEndPoints(Javalin app) {
 		app.get("/users/{userID}", getUserById);
 		app.post("/users", addFinanceManger);
 		app.get("/userByUsername", getAllUserbyUsername);
+		app.put("/user/{id}", editProfileById);
 
 	}
 
