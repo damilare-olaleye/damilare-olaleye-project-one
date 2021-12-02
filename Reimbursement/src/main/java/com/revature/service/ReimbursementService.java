@@ -135,19 +135,17 @@ public class ReimbursementService implements ReimbursementServiceInterface {
 	}
 
 	@Override
-	public InputStream getImageFromReimbursementById(User currentlyLoggedInUser, String reimbursementId)
+	public InputStream getImageFromReimbursementById(User currentlyLoggedInUser)
 			throws UnauthorizedException, SQLException, ImageNotFoundException, InvalidParameterException {
 
 		try {
-
-			int id = Integer.parseInt(reimbursementId);
+			
+			int id = currentlyLoggedInUser.getUserId();
 
 			if (currentlyLoggedInUser.getRole().equals("Employee")) {
 
-				int userId = currentlyLoggedInUser.getUserId();
-
 				List<Reimbursement> reimbursementThatBelongToEmployee = this.reimbursementDao
-						.getAllReimbursementByEmployee(userId);
+						.getAllReimbursementByEmployee(id);
 
 				Set<Integer> reimbursementIdsEncountered = new HashSet<>();
 
@@ -155,11 +153,11 @@ public class ReimbursementService implements ReimbursementServiceInterface {
 					reimbursementIdsEncountered.add(reimbursement.getReimbId());
 				}
 
-				if (!reimbursementIdsEncountered.contains(id)) {
-					throw new UnauthorizedException(
-							"You cannot access the images of reimbursements that do not belong to yourself");
-
-				}
+//				if (!reimbursementIdsEncountered.contains(id)) {
+//					throw new UnauthorizedException(
+//							"You cannot access the images of reimbursements that do not belong to yourself");
+//
+//				}
 
 			}
 
@@ -179,15 +177,13 @@ public class ReimbursementService implements ReimbursementServiceInterface {
 	}
 
 	@Override
-	public Reimbursement getPendingRequestById(User currentlyLoggedInUser, String reimbId, String pending)
+	public Reimbursement getPendingRequestById(User currentlyLoggedInUser, String pending)
 			throws InvalidParameterException, NotFoundException, SQLException, UnauthorizedException {
 
 		try {
-
-			int id = Integer.parseInt(reimbId);
+			int user_Id = currentlyLoggedInUser.getUserId();
 
 			if (currentlyLoggedInUser.getRole().equals("Employee")) {
-				int user_Id = currentlyLoggedInUser.getUserId();
 
 				List<Reimbursement> reimbursementThatBelongToEmployee = this.reimbursementDao
 						.getReimbursementByResolver(user_Id);
@@ -197,14 +193,14 @@ public class ReimbursementService implements ReimbursementServiceInterface {
 					reimbursementIDsEncountered.add(reimbursement.getReimbId());
 				}
 
-				if (!reimbursementIDsEncountered.contains(id)) {
-					throw new UnauthorizedException(
-							"You cannot access the pending request of reimbursements that do not belong to you");
-				}
+//				if (!reimbursementIDsEncountered.contains(user_Id)) {
+//					throw new UnauthorizedException(
+//							"You cannot access the pending request of reimbursements that do not belong to you");
+//				}
 
 			}
 
-			Reimbursement reimbursement = this.reimbursementDao.getPendingRequestById(id, pending);
+			Reimbursement reimbursement = this.reimbursementDao.getPendingRequestById(user_Id, pending);
 
 			if (pending == null) {
 
@@ -219,37 +215,33 @@ public class ReimbursementService implements ReimbursementServiceInterface {
 	}
 
 	@Override
-	public Reimbursement getReimbursementStatus(User currentlyLoggedInUser, String reimbId)
+	public Reimbursement getReimbursementStatus(User currentlyLoggedInUser)
 			throws InvalidParameterException, SQLException, UnauthorizedException, NotFoundException {
 
 		try {
 
-			int id = Integer.parseInt(reimbId);
+			int id = currentlyLoggedInUser.getUserId();
 
 			if (currentlyLoggedInUser.getRole().equals("Employee")) {
-				int user_Id = currentlyLoggedInUser.getUserId();
+				
 
 				List<Reimbursement> reimbursementThatBelongToEmployee = this.reimbursementDao
-						.getReimbursementByResolver(user_Id);
+						.getReimbursementByResolver(id);
 
 				Set<Integer> reimbursementIDsEncountered = new HashSet<>();
 				for (Reimbursement reimbursement : reimbursementThatBelongToEmployee) {
 					reimbursementIDsEncountered.add(reimbursement.getReimbId());
 				}
 
-				if (!reimbursementIDsEncountered.contains(id)) {
-					throw new UnauthorizedException(
-							"You cannot access the status request of reimbursements that do not belong to you");
-				}
+//				if (!reimbursementIDsEncountered.contains(id)) {
+//					throw new UnauthorizedException(
+//							"You cannot access the status request of reimbursements that do not belong to you");
+//				}
 
 			}
 
-			Reimbursement reimbursement = this.reimbursementDao.getReimbursementStatusById(reimbId);
+			Reimbursement reimbursement = this.reimbursementDao.getReimbursementStatusById(id);
 
-			if (reimbId == null) {
-
-				throw new NotFoundException("Cannot find user with status" + reimbId);
-			}
 
 			return reimbursement;
 

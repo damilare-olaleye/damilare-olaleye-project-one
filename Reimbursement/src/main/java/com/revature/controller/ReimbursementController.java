@@ -68,10 +68,10 @@ public class ReimbursementController implements Controller {
 		Tika tika = new Tika();
 		String mimetype = tika.detect(content);
 
-		Reimbursement addedReimbursement = this.reimbursementService.submitReimbursementRequest(currentlyLoggedInUser,
-				reimbursementType, description, amount, mimetype, content);
+		this.reimbursementService.submitReimbursementRequest(currentlyLoggedInUser, reimbursementType, description,
+				amount, mimetype, content);
 
-		ctx.json(addedReimbursement);
+		ctx.json("Ticket have been successfully submitted!");
 		ctx.status(201);
 	};
 
@@ -114,12 +114,7 @@ public class ReimbursementController implements Controller {
 		User currentlyLoggedInUser = (User) ctx.req.getSession().getAttribute("currentuser");
 		this.authorizationService.authorizeEmployeeAndFinanceManger(currentlyLoggedInUser);
 
-		String reimbursementId = ctx.formParam("ReimbursementId");
-
-		System.out.println("riembid " + reimbursementId);
-
-		InputStream image = this.reimbursementService.getImageFromReimbursementById(currentlyLoggedInUser,
-				reimbursementId);
+		InputStream image = this.reimbursementService.getImageFromReimbursementById(currentlyLoggedInUser);
 
 		Tika tika = new Tika();
 		String mimeType = tika.detect(image);
@@ -134,11 +129,10 @@ public class ReimbursementController implements Controller {
 		User currentlyLoggedInUser = (User) ctx.req.getSession().getAttribute("currentuser");
 		this.authorizationService.authorizeEmployee(currentlyLoggedInUser);
 
-		String reimbursementId = ctx.formParam("ReimbursementId");
 		String reimbursementStatus = ctx.formParam("Status");
 
 		Reimbursement reimbursement = this.reimbursementService.getPendingRequestById(currentlyLoggedInUser,
-				reimbursementId, reimbursementStatus);
+				reimbursementStatus);
 
 		ctx.json(reimbursement);
 		ctx.status(200);
@@ -150,10 +144,7 @@ public class ReimbursementController implements Controller {
 		User currentlyLoggedInUser = (User) ctx.req.getSession().getAttribute("currentuser");
 		this.authorizationService.authorizeEmployee(currentlyLoggedInUser);
 
-		String reimbursementId = ctx.formParam("ReimbursementId");
-
-		Reimbursement reimbursement = this.reimbursementService.getReimbursementStatus(currentlyLoggedInUser,
-				reimbursementId);
+		Reimbursement reimbursement = this.reimbursementService.getReimbursementStatus(currentlyLoggedInUser);
 
 		ctx.json(reimbursement);
 		ctx.status(200);
@@ -209,16 +200,16 @@ public class ReimbursementController implements Controller {
 
 		// EMPLOYEE
 		app.post("/submitRequest", submitRequest); // works
-		app.get("/reimbursement/reciept", viewPastTickets); // works
-		app.get("/pendingReimbursements", viewPendingReimbursements); // works
-		app.get("/reimbursementStatusById", viewReimbursementStatus); // works
+		app.get("/myPastTickets", viewPastTickets); // works
+		app.get("/myPendingReimbursements", viewPendingReimbursements); // works
+		app.get("/myReimbursementStatus", viewReimbursementStatus); // works
 //		app.get("/filterReimbursementsStatus", filteredReimbursementStatus);
 
 		// FINANCE MANAGER
 		app.get("/allreimbursements", viewAllReimbursements); // works
 		app.patch("/reimbursement/status", updateReimbursement); // works
 		app.get("/employeesHistory", viewAllEmployeePastReimHistory); // works
-		app.get("/viewReimbursemenByResolver", getallReimbursementsByResolver);
+		app.get("/viewReimbursemenByResolver", getallReimbursementsByResolver); // incomplete
 	}
 
 }

@@ -28,13 +28,13 @@ public interface ReimbursementServiceInterface {
 	public Reimbursement updateReimbursement(User currentlyLoggedInUser, String reimbursementId, String status)
 			throws InvalidParameterException, SQLException, NotFoundException, reimbursementAlreadyResloved;
 
-	public InputStream getImageFromReimbursementById(User currentlyLoggedInUser, String reimbursementID)
+	public InputStream getImageFromReimbursementById(User currentlyLoggedInUser)
 			throws UnauthorizedException, SQLException, ImageNotFoundException, InvalidParameterException;
 
-	Reimbursement getPendingRequestById(User currentlyLoggedInUser, String pending, String userId)
+	Reimbursement getPendingRequestById(User currentlyLoggedInUser, String pending)
 			throws InvalidParameterException, NotFoundException, SQLException, UnauthorizedException;
 
-	Reimbursement getReimbursementStatus(User currentlyLoggedInUser, String reimbId)
+	Reimbursement getReimbursementStatus(User currentlyLoggedInUser)
 			throws InvalidParameterException, SQLException, UnauthorizedException, NotFoundException;
 
 	Reimbursement getFilteredReimbStatus(User currentlyLoggedInUser, String filteredStatus)

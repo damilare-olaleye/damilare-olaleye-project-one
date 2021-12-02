@@ -190,17 +190,18 @@ public class UserDAO implements UserInterfaceDAO {
 		logger.info("updateUserProfile(userId, dto) invoked");
 
 		try (Connection con = JDBCUtil.getConnection()) {
-			String sql = "UPDATE users " + "SET employee_password = ?, " + "employee_username= ?,"
-					+ " user_first_name= ?, " + " user_last_name = ?, " + " user_role = ?, " + " user_email = ?; "
+			String sql = "UPDATE users SET employee_password = ?, employee_username = ?, "
+					+ "user_first_name = ?, user_last_name = ?, user_role = ?, user_email = ?"
 					+ "WHERE user_id = ?;";
 
 			PreparedStatement pstmt = con.prepareStatement(sql);
 
 			pstmt.setString(1, dto.getPassword());
-			pstmt.setString(2, dto.getFirstName());
-			pstmt.setString(3, dto.getLastName());
-			pstmt.setString(4, dto.getRole());
-			pstmt.setString(5, dto.getEmail());
+			pstmt.setString(2, dto.getUsername());
+			pstmt.setString(3, dto.getFirstName());
+			pstmt.setString(4, dto.getLastName());
+			pstmt.setString(5, dto.getRole());
+			pstmt.setString(6, dto.getEmail());
 
 			int numberOfRecordsUpdated = pstmt.executeUpdate();
 
@@ -216,5 +217,38 @@ public class UserDAO implements UserInterfaceDAO {
 			throw new SQLException("Cannot update user profile at this time");
 		}
 	}
+	
+	public UserProfile updateUserInfo(int userId) throws SQLException {
+
+		logger.info("updateUserProfile(userId) invoked");
+
+		try (Connection con = JDBCUtil.getConnection()) {
+			String sql = "SELECT employee_password , employee_username, user_first_name, user_last_name, user_role, user_email "
+					+ " FROM users "
+					+ "WHERE user_id = ?;";
+
+			PreparedStatement pstmt = con.prepareStatement(sql);
+
+			pstmt.setInt(1, userId);
+
+			ResultSet rs = pstmt.executeQuery();
+
+			if (rs.next()) {
+				
+				String fName = rs.getString("user_first_name");
+				String lName = rs.getString("user_last_name");
+				String email = rs.getString("user_email");
+				String userRole = rs.getString("user_role");
+
+				return new UserProfile(fName, lName, email, userRole);
+
+			} else {
+				return null;
+			}
+		} catch (SQLException e) {
+			throw new SQLException("Cannot update user profile at this time");
+		}
+	}
+
 
 }

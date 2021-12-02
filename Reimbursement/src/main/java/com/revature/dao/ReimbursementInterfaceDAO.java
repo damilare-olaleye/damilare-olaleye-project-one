@@ -23,7 +23,7 @@ public interface ReimbursementInterfaceDAO {
 
 	public Reimbursement getPendingRequestById(int ReimbursementId, String pending) throws SQLException;
 
-	public Reimbursement getReimbursementStatusById(String reimbId) throws SQLException;
+	public Reimbursement getReimbursementStatusById(int reimbId) throws SQLException;
 
 	public List<Reimbursement> getEmployeeReimbPastHistory() throws SQLException;
 
