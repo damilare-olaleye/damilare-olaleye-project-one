@@ -34,7 +34,7 @@ public class UserController implements Controller {
 	};
 
 	// get all users by username
-	private Handler getAllUserbyUsername = (ctx) -> {
+	private Handler getUserbyUsername = (ctx) -> {
 
 		UserDTO userDTO = ctx.bodyAsClass(UserDTO.class);
 
@@ -64,7 +64,7 @@ public class UserController implements Controller {
 		String role = ctx.formParam("role");
 		String email = ctx.formParam("email");
 
-		User user = this.userService.updateUserProfile(currentlyLoggedInUser, password, username, firstName,
+		User user = this.userService.updateUserProfile(currentlyLoggedInUser, username, password, firstName,
 				lastName, role, email);
 
 		ctx.json(user);
@@ -91,8 +91,8 @@ public class UserController implements Controller {
 	public void mapEndPoints(Javalin app) {
 		app.get("/users/{userID}", getUserById); // works
 		app.post("/users", addFinanceManger); // works
-		app.get("/userByUsername", getAllUserbyUsername); // works
-		app.put("/user", editProfile);
+		app.get("/userByUsername", getUserbyUsername); // works
+		app.put("/user", editProfile); // incomplete
 		app.get("/userProfile", viewUserProfile); // works
 
 	}

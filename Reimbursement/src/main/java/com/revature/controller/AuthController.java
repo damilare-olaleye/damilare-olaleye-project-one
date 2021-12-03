@@ -24,10 +24,10 @@ public class AuthController implements Controller {
 
 		SignupDTO signUpDto = ctx.bodyAsClass(SignupDTO.class);
 
-	    this.userService.userSignup(signUpDto.getUsername(), signUpDto.getPassword(),
+	    User user = this.userService.userSignup(signUpDto.getUsername(), signUpDto.getPassword(),
 				signUpDto.getFirstname(), signUpDto.getLastname(), signUpDto.getEmail(), signUpDto.getRole());
 
-		ctx.json("You have successfully signed up as " +  signUpDto.getRole() + ", login to access account");
+		ctx.json(user);
 		ctx.status(201);
 	};
 
@@ -45,7 +45,7 @@ public class AuthController implements Controller {
 		// when user is inactive for 15 min, automatically log them out
 		session.setMaxInactiveInterval(15);
 
-		ctx.json("You have successfully signed in as " + loginDTO.getUsername());
+		ctx.json(user);
 		ctx.status(200);
 
 	};
@@ -92,11 +92,11 @@ public class AuthController implements Controller {
 	@Override
 	public void mapEndPoints(Javalin app) {
 
-		app.post("/signup", signup);
-		app.post("/login", login);
-		app.post("/logout", logout);
-		app.get("/checkloginstatus", checkIfLoggedIn);
-		app.delete("/deleteaccount", deleteAccount);
+		app.post("/signup", signup); // works
+		app.post("/login", login); // works
+		app.post("/logout", logout); // works
+		app.get("/checkloginstatus", checkIfLoggedIn); // works
+		app.delete("/deleteaccount", deleteAccount); // works but not neccessary
 
 	}
 

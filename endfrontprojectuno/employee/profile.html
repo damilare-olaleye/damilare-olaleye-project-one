@@ -4,9 +4,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="style.css">
+<link rel = "stylesheet" href = "username.css">
+
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
 <style>
 html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
 </style>
@@ -23,17 +26,17 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
 <nav class="w3-sidebar w3-collapse w3-white w3-animate-left" style="z-index:3;width:300px;" id="mySidebar"><br>
   <div class="w3-container w3-row">
     <div class="w3-col s8 w3-bar">
-      <h3> Profile Settings</h3><br>
+      <h3> My Profile </h3><br>
     </div>
   </div>
   <hr>
 
   <div class="w3-bar-block">
-    <a href="#" id = "profile" class="w3-bar-item w3-button w3-padding w3-blue"><i class="fa fa-users fa-fw"></i>  Profile Settings</a>
+    <a href="home.html" id = "home-view" class="w3-bar-item w3-button w3-padding"><i class="fa fa-diamond fa-fw"></i>  Submit Request</a>
+    <a href="status.html" id = "pending-staus" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bullseye fa-fw"></i> My Reimbursements Status</a>
     <a href="#" id= "past-receipt" class="w3-bar-item w3-button w3-padding"><i class="fa fa-dashboard"></i> My Past Receipt</a>
-    <a href="#" id = "pending-reimb" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bullseye fa-fw"></i> My Pending Reimbursements</a>
-    <a href="#" id = "pending-status" class="w3-bar-item w3-button w3-padding"><i class="fa fa-diamond fa-fw"></i>  My Reimbursements Status</a>
-    <a href="home.html" id = "home-view" class="w3-bar-item w3-button w3-padding"><i class="fa fa-cog fa-fw"></i>  Submit Request</a><br><br>
+    <a href="pendingReimbursement.html" id = "pending-reimb" class="w3-bar-item w3-button w3-padding"><i class="fa fa-users fa-fw"></i> My Pending Reimbursements</a> 
+    <a href="profile.html" id = "home-view" class="w3-bar-item w3-button w3-padding w3-blue"><i class="fa fa-cog fa-fw"></i>  My Profile </a><br><br>
   </div>
 </nav>
 
@@ -42,67 +45,44 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
 style="cursor:pointer" title="close side menu" id="myOverlay"></div>
 
 <!-- !PAGE CONTENT! -->
+
+
 <div class="w3-main" style="margin-left:300px;margin-top:43px;">
 
-  <div class="topnav">
-    <div class="search-container">
-      <form action="#">
-        <input id= "searchUsername" type="text" placeholder="Search usernames" name="search">
-        <button id ="submitUsername" type="submit"><i class="fa fa-search"></i></button>
-      </form>
+  <div class="container">
+    <div class="card">
+      <img src="https://lh3.googleusercontent.com/ytP9VP86DItizVX2YNA-xTYzV09IS7rh4WexVp7eilIcfHmm74B7odbcwD5DTXmL0PF42i2wnRKSFPBHlmSjCblWHDCD2oD1oaM1CGFcSd48VBKJfsCi4bS170PKxGwji8CPmehwPw=w200-h247-no" alt="Person" class="card__image">
+      <p class="card__name" id="role">Employee</p>
     </div>
-  </div>
-
-  <!-- Header -->
-  <header class="w3-container" style="padding-top:22px">
-    <h5><b><i class="fa fa-users fa-fw"></i> Submit Request </b></h5>
-  </header>
-
-
-  <div class="w3-panel">
-    <div class="w3-row-padding" style="margin:0 -16px">
-      <div class="w3-twothird">
-        <h5>New Request</h5>
-        <table id="employee-table" class="w3-table w3-striped w3-white">
-          <tr>
-            <td><i class="fa fa-user w3-text-blue w3-large"></i></td>
-            <td>Reimbursement type</td>
-            <td>
-                <input type="text" id="reimbType" placeholder="TYPE"> </i>
-            </td>
-          </tr>
-          <tr>
-            <td><i class="fa fa-bell w3-text-red w3-large"></i></td>
-            <td>Reimbursement amount</td>
-            <td>
-                <input type="text" id="reimAmount" placeholder="AMOUNT"> </i>
-            </td>
-          </tr>
-          <tr>
-            <td><i class="fa fa-users w3-text-yellow w3-large"></i></td>
-            <td>Description</td>
-            <td>
-                <input type="text" id="reimDescrip" placeholder="DESCRIPTION"> </i>
-
-            </td>
-          </tr>
-          <tr>
-            <td><i class="fa fa-comment w3-text-red w3-large"></i></td>
-            <td>Receipt</td>
-            <td>
-                <input type="file" id ="receipt-file" />(JPEG or PNG) </i> 
-            </td>
-          </tr>
-         
+ 
+    <div class="container">
+        <table class="table-fill">
+    
+        <tbody class="table-hover">
+        <tr>
+        <td class="text-left">First Name</td>
+        <td id = "firstname" class="text-left">Mikel</td>
+        </tr>
+        <tr>
+        <td class="text-left">Last Name</td>
+        <td id ="lastname" class="text-left">Arteta</td>
+        </tr>
+        <tr>
+        <td class="text-left">Email</td>
+        <td id = "email" class="text-left">marteta8@arsenalfc.com</td>
+        </tr>
+        <tr>
+        <td class="text-left">Role</td>
+        <td id = "role" class="text-left">Finance Manager</td>
+        </tr>
+      
+        </tbody>
         </table>
-
-        <div>
-            <button class="w3-bar-item w3-button w3-padding w3-blue" style="display: block; margin: 0 auto; margin-top: 18px;"
-            id="submit-request-btn">Submit Request</button>
-        </div>
-      </div>
+          
+     </div>   
+  
     </div>
-  </div>
+  </nav>
 
 <script src="employee.js"></script>
 

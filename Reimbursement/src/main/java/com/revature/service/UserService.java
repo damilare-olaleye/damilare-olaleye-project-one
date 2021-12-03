@@ -167,6 +167,12 @@ public class UserService implements UserServiceInterface {
 		logger.info("displayAllUserbyUsername (username...) invoked");
 
 		try {
+
+			if (username.matches(("(?=^.{3,20}$)^[a-zA-Z][a-zA-Z0-9]*[._-]?[a-zA-Z0-9]+$"))) {
+
+				this.userDao.getAllUserbyUsername(username);
+			}
+
 			UserProfile user = this.userDao.getAllUserbyUsername(username);
 
 			if (user == null) {
@@ -183,23 +189,23 @@ public class UserService implements UserServiceInterface {
 	}
 
 	@Override
-	public User updateUserProfile(User currentlyLoggedInUser, String username, String password,
-			String firstName, String lastName, String role, String email)
+	public User updateUserProfile(User currentlyLoggedInUser, String username, String password, String firstName,
+			String lastName, String role, String email)
 			throws InvalidParameterException, SQLException, NotFoundException {
 
 		try {
 
 			int user_Id = currentlyLoggedInUser.getUserId();
-			
+
 			User userProfileToEdit = this.userDao.getUserById(user_Id);
 
 			if (userProfileToEdit == null) {
 				throw new NotFoundException("Cannot update profile at this time, please try again later!");
 			}
 
-			UserDTO dto = new UserDTO(user_Id, password, username, firstName, lastName, role, email);
+			UserDTO dto = new UserDTO(user_Id, username, password, firstName, lastName, role, email);
 
-			User updatedUser = this.userDao.updateUserProfile(user_Id, dto);
+			User updatedUser = this.userDao.updateUserProfile(dto);
 
 			return updatedUser;
 
@@ -214,10 +220,10 @@ public class UserService implements UserServiceInterface {
 		logger.info("displayAllUserbyUsername (username...) invoked");
 
 		try {
-			
+
 			int user_Id = currentlyLoggedInUser.getUserId();
 
-			UserProfile user = this.userDao.updateUserInfo(user_Id);
+			UserProfile user = this.userDao.showUserProfile(user_Id);
 
 			if (user == null) {
 				throw new NotFoundException("Cannot find user");

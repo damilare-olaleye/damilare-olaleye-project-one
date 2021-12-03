@@ -323,46 +323,46 @@ public class ReimbursementService implements ReimbursementServiceInterface {
 
 	}
 
-	@Override
-	public List<Reimbursement> getAllReimbursementByUserId(User currentlyLoggedInUser, String resolver, Context ctx)
-			throws SQLException, InvalidParameterException {
-
-		List<Reimbursement> amounts;
-
-		int id = Integer.parseInt(resolver);
-
-		try {
-
-			if (ctx.queryParam("greaterThan") != null && ctx.queryParam("lessThan") != null) {
-
-				int greaterThan = Integer.parseInt(ctx.queryParam("greaterThan"));
-				int lessThan = Integer.parseInt(ctx.queryParam("lessThan"));
-
-				amounts = this.reimbursementDao.getAllReimbursementByUserId(id, greaterThan, lessThan);
-
-			} else if (ctx.queryParam("lessThan") != null) {
-
-				int lessThan = Integer.parseInt(ctx.queryParam("lessThan"));
-
-				amounts = this.reimbursementDao.getAllReimbursementByUserId(id, 0, lessThan);
-
-			} else if (ctx.queryParam("greaterthan") != null) {
-
-				int greaterThan = Integer.parseInt(ctx.queryParam("greaterThan"));
-
-				amounts = this.reimbursementDao.getAllReimbursementByUserId(id, greaterThan, 50);
-
-			} else {
-				amounts = this.reimbursementDao.getAllReimbursementByUserId(id, 0, 50);
-			}
-
-			return amounts;
-
-		} catch (NumberFormatException e) {
-			throw new InvalidParameterException("User Id number supplied must be an int");
-		}
-
-	}
+//	@Override
+//	public List<Reimbursement> getAllReimbursementByUserId(User currentlyLoggedInUser, String resolver, Context ctx)
+//			throws SQLException, InvalidParameterException {
+//
+//		List<Reimbursement> amounts;
+//
+//		int id = Integer.parseInt(resolver);
+//
+//		try {
+//
+//			if (ctx.queryParam("greaterThan") != null && ctx.queryParam("lessThan") != null) {
+//
+//				int greaterThan = Integer.parseInt(ctx.queryParam("greaterThan"));
+//				int lessThan = Integer.parseInt(ctx.queryParam("lessThan"));
+//
+//				amounts = this.reimbursementDao.getAllReimbursementByUserId(id, greaterThan, lessThan);
+//
+//			} else if (ctx.queryParam("lessThan") != null) {
+//
+//				int lessThan = Integer.parseInt(ctx.queryParam("lessThan"));
+//
+//				amounts = this.reimbursementDao.getAllReimbursementByUserId(id, 0, lessThan);
+//
+//			} else if (ctx.queryParam("greaterthan") != null) {
+//
+//				int greaterThan = Integer.parseInt(ctx.queryParam("greaterThan"));
+//
+//				amounts = this.reimbursementDao.getAllReimbursementByUserId(id, greaterThan, 50);
+//
+//			} else {
+//				amounts = this.reimbursementDao.getAllReimbursementByUserId(id, 0, 50);
+//			}
+//
+//			return amounts;
+//
+//		} catch (NumberFormatException e) {
+//			throw new InvalidParameterException("User Id number supplied must be an int");
+//		}
+//
+//	}
 
 //	public List<Reimbursement> getAllFilteredStatus(User currentlyLoggedInUser, Context ctx)
 //			throws InvalidParameterException, SQLException {

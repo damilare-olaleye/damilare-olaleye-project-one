@@ -44,6 +44,6 @@ public interface ReimbursementServiceInterface {
 	List<Reimbursement> getEmployeeReimbPastHistoy(User currentlyLoggedInUser)
 			throws SQLException, InvalidParameterException, NotFoundException, UnauthorizedException;
 
-	List<Reimbursement> getAllReimbursementByUserId(User currentlyLoggedInUser, String userId, Context ctx)
-			throws SQLException, InvalidParameterException;
+//	List<Reimbursement> getAllReimbursementByUserId(User currentlyLoggedInUser, String userId, Context ctx)
+//			throws SQLException, InvalidParameterException;
 }

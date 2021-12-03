@@ -8,10 +8,12 @@ window.addEventListener('load', async () => {
     if(res.status === 200){
         let userObj = await res.json();
 
-        if(userObj.role === 'Employee'){
-            window.location.href = '#';
-        } else if (userObj.role === 'Finance manager'){
-            window.location.href = '#';
+        if (res.status === 200){
+            if(data.role === 'Employee') {
+                window.location.href = '/employee/home.html';
+            } else if (data.role === 'Finance Manager'){
+                window.location.href = '/finance-manager/finance-manager.html'; 
+            }
         }
     }
 
@@ -31,7 +33,7 @@ async function login() {
     let passwordInput = document.querySelector('#password');
 
     try {
-        let res = await fetch('http://localhost:8080:login', {
+        let res = await fetch('http://localhost:8080/login', {
             method: 'POST',
             credentials: 'include',
             body: JSON.stringify({
@@ -49,15 +51,20 @@ async function login() {
             loginErrorMessage.innerHTML = data.message;
             loginErrorMessage.style.color = 'red';
             loginDiv.appendChild(loginErrorMessage);
+        } else if (res.status === 404){
+            window.location.href = '../../404/404.html';
         }
 
         if (res.status === 200){
             if(data.role === 'Employee') {
-                window.location.href = '#.html';
-            } else if (data.role === 'Finance mamager'){
-                window.location.href = '#.html';
+                window.location.href = '/employee/home.html';
+            } else if (data.role === 'Finance Manager'){
+                window.location.href = '/finance-manager/finance-manager.html'; 
             }
+        } else if (res.status === 404){
+            window.location.href = '../../404/404.html';
         }
+
     } catch(err){
         console.log(err);
     }
@@ -81,7 +88,7 @@ async function signup() {
     let userRoleRadio = document.querySelector('#userRadio');
 
     try {
-        let res = await fetch('http://localhost:8080:signup', {
+        let res = await fetch('http://localhost:8080/signup', {
             method: 'POST',
             credentials: 'include',
             body: JSON.stringify({
@@ -103,13 +110,15 @@ async function signup() {
             signupErrorMessage.innerHTML = data.message;
             signupErrorMessage.style.color = 'red';
             signupDiv.appendChild(signupErrorMessage);
+        } else if (res.status === 404){
+            window.location.href = '../../404/404.html';
         }
 
         if (res.status === 200){
             if(data.role === 'Employee') {
-                window.location.href = '#.html';
+                window.location.href = '/employee/home.html';
             } else if (data.role === 'Finance Manager'){
-                window.location.href = '#.html';
+                window.location.href = '/finance-manager/finance-manager.html'; 
             }
         }
     } catch(err){

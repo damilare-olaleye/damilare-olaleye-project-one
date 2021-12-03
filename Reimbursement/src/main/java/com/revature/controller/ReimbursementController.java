@@ -168,29 +168,17 @@ public class ReimbursementController implements Controller {
 
 	};
 
-	private Handler getallReimbursementsByResolver = (ctx) -> {
-
-		User currentlyLoggedInUser = (User) ctx.req.getSession().getAttribute("currentuser");
-		this.authorizationService.authorizeFinanceManager(currentlyLoggedInUser);
-
-		String resolver = ctx.formParam("resolver");
-
-		List<Reimbursement> amounts = this.reimbursementService.getAllReimbursementByUserId(currentlyLoggedInUser,
-				resolver, ctx);
-
-		ctx.json(amounts);
-		ctx.status(200);
-
-	};
-
-//	private Handler filteredReimbursementStatus = (ctx) -> {
+//	private Handler getallReimbursementsByResolver = (ctx) -> {
 //
 //		User currentlyLoggedInUser = (User) ctx.req.getSession().getAttribute("currentuser");
-//		this.authorizationService.authorizeEmployee(currentlyLoggedInUser);
+//		this.authorizationService.authorizeFinanceManager(currentlyLoggedInUser);
 //
-//		List<Reimbursement> reimbursement = this.reimbursementService.getAllFilteredStatus(currentlyLoggedInUser, ctx);
+//		String resolver = ctx.formParam("resolver");
 //
-//		ctx.json(reimbursement);
+//		List<Reimbursement> amounts = this.reimbursementService.getAllReimbursementByUserId(currentlyLoggedInUser,
+//				resolver, ctx);
+//
+//		ctx.json(amounts);
 //		ctx.status(200);
 //
 //	};
@@ -203,13 +191,12 @@ public class ReimbursementController implements Controller {
 		app.get("/myPastTickets", viewPastTickets); // works
 		app.get("/myPendingReimbursements", viewPendingReimbursements); // works
 		app.get("/myReimbursementStatus", viewReimbursementStatus); // works
-//		app.get("/filterReimbursementsStatus", filteredReimbursementStatus);
 
 		// FINANCE MANAGER
 		app.get("/allreimbursements", viewAllReimbursements); // works
 		app.patch("/reimbursement/status", updateReimbursement); // works
 		app.get("/employeesHistory", viewAllEmployeePastReimHistory); // works
-		app.get("/viewReimbursemenByResolver", getallReimbursementsByResolver); // incomplete
+//		app.get("/viewReimbursemenByResolver", getallReimbursementsByResolver); // incomplete
 	}
 
 }
