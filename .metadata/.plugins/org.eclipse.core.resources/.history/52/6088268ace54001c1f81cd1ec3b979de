@@ -151,9 +151,7 @@ public class UserDAO implements UserInterfaceDAO {
 			} else {
 				return null;
 			}
-		} catch (SQLException e) {
-			throw new SQLException("user already exists");
-		}
+		} 
 	}
 
 	public UserProfile getAllUserbyUsername(String username) throws SQLException {

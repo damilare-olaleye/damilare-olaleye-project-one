@@ -27,7 +27,7 @@ public class AuthController implements Controller {
 	    this.userService.userSignup(signUpDto.getUsername(), signUpDto.getPassword(),
 				signUpDto.getFirstname(), signUpDto.getLastname(), signUpDto.getEmail(), signUpDto.getRole());
 
-		ctx.json("User succesfully signed up as " + signUpDto.getUsername());
+		ctx.json("User succesfully signed up as" + signUpDto.getUsername());
 		ctx.status(201);
 	};
 

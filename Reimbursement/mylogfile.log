@@ -1794,3 +1794,107 @@
 04 Dec 2021 - 00:20:04.721 [qtp388043093-49] INFO  com.revature.dao.ReimbursementDAO - getReimbursementStatusById(reimbId)
 04 Dec 2021 - 00:20:04.769 [qtp388043093-44] INFO  com.revature.main.Main - GETrequest received to the /myReimbursementStatus endpoint
 04 Dec 2021 - 00:20:04.795 [qtp388043093-44] INFO  com.revature.dao.ReimbursementDAO - getReimbursementStatusById(reimbId)
+04 Dec 2021 - 00:29:48.960 [qtp388043093-57] INFO  com.revature.main.Main - GETrequest received to the /checkloginstatus endpoint
+04 Dec 2021 - 00:29:53.292 [qtp388043093-40] INFO  com.revature.main.Main - GETrequest received to the /checkloginstatus endpoint
+04 Dec 2021 - 00:29:53.298 [qtp388043093-44] INFO  com.revature.main.Main - GETrequest received to the /myReimbursementStatus endpoint
+04 Dec 2021 - 00:29:53.378 [qtp388043093-44] INFO  com.revature.dao.ReimbursementDAO - getReimbursementStatusById(reimbId)
+04 Dec 2021 - 00:30:53.834 [qtp388043093-57] INFO  com.revature.main.Main - GETrequest received to the /checkloginstatus endpoint
+04 Dec 2021 - 00:30:55.389 [qtp388043093-33] INFO  com.revature.main.Main - GETrequest received to the /checkloginstatus endpoint
+04 Dec 2021 - 00:30:55.400 [qtp388043093-44] INFO  com.revature.main.Main - GETrequest received to the /userProfile endpoint
+04 Dec 2021 - 00:30:55.401 [qtp388043093-44] INFO  com.revature.service.UserService - displayAllUserbyUsername (username...) invoked
+04 Dec 2021 - 00:30:55.401 [qtp388043093-44] INFO  com.revature.dao.UserDAO - updateUserProfile(userId) invoked
+04 Dec 2021 - 00:30:56.553 [qtp388043093-33] INFO  com.revature.main.Main - GETrequest received to the /checkloginstatus endpoint
+04 Dec 2021 - 00:30:57.755 [qtp388043093-44] INFO  com.revature.main.Main - GETrequest received to the /checkloginstatus endpoint
+04 Dec 2021 - 00:30:57.763 [qtp388043093-33] INFO  com.revature.main.Main - GETrequest received to the /myReimbursementStatus endpoint
+04 Dec 2021 - 00:30:57.802 [qtp388043093-33] INFO  com.revature.dao.ReimbursementDAO - getReimbursementStatusById(reimbId)
+04 Dec 2021 - 00:30:58.751 [qtp388043093-44] INFO  com.revature.main.Main - GETrequest received to the /checkloginstatus endpoint
+04 Dec 2021 - 00:31:00.021 [qtp388043093-33] INFO  com.revature.main.Main - GETrequest received to the /checkloginstatus endpoint
+04 Dec 2021 - 00:31:00.024 [qtp388043093-44] INFO  com.revature.main.Main - GETrequest received to the /myReimbursementStatus endpoint
+04 Dec 2021 - 00:31:00.064 [qtp388043093-44] INFO  com.revature.dao.ReimbursementDAO - getReimbursementStatusById(reimbId)
+04 Dec 2021 - 00:31:00.991 [qtp388043093-33] INFO  com.revature.main.Main - GETrequest received to the /checkloginstatus endpoint
+04 Dec 2021 - 00:31:02.073 [qtp388043093-44] INFO  com.revature.main.Main - GETrequest received to the /checkloginstatus endpoint
+04 Dec 2021 - 00:31:02.078 [qtp388043093-33] INFO  com.revature.main.Main - GETrequest received to the /userProfile endpoint
+04 Dec 2021 - 00:31:02.078 [qtp388043093-33] INFO  com.revature.service.UserService - displayAllUserbyUsername (username...) invoked
+04 Dec 2021 - 00:31:02.078 [qtp388043093-33] INFO  com.revature.dao.UserDAO - updateUserProfile(userId) invoked
+04 Dec 2021 - 00:31:18.702 [qtp388043093-44] INFO  com.revature.main.Main - POSTrequest received to the /logout endpoint
+04 Dec 2021 - 00:31:18.888 [qtp388043093-33] INFO  com.revature.main.Main - GETrequest received to the /checkloginstatus endpoint
+04 Dec 2021 - 00:31:40.522 [qtp388043093-44] INFO  com.revature.main.Main - POSTrequest received to the /signup endpoint
+04 Dec 2021 - 00:31:40.574 [qtp388043093-44] INFO  com.revature.service.UserService - userSignUp (username...) invoked
+04 Dec 2021 - 00:31:41.786 [qtp388043093-33] INFO  com.revature.main.Main - GETrequest received to the /checkloginstatus endpoint
+04 Dec 2021 - 00:33:08.304 [qtp388043093-50] INFO  com.revature.main.Main - POSTrequest received to the /signup endpoint
+04 Dec 2021 - 00:33:08.317 [qtp388043093-50] INFO  com.revature.service.UserService - userSignUp (username...) invoked
+04 Dec 2021 - 00:33:08.329 [qtp388043093-50] INFO  com.revature.dao.UserDAO - addUser(...) invoked
+04 Dec 2021 - 00:33:09.725 [qtp388043093-42] INFO  com.revature.main.Main - GETrequest received to the /checkloginstatus endpoint
+04 Dec 2021 - 00:34:40.142 [qtp388043093-50] INFO  com.revature.main.Main - GETrequest received to the /checkloginstatus endpoint
+04 Dec 2021 - 00:34:40.167 [qtp388043093-49] INFO  com.revature.main.Main - GETrequest received to the /checkloginstatus endpoint
+04 Dec 2021 - 00:34:40.177 [qtp388043093-42] INFO  com.revature.main.Main - GETrequest received to the /myReimbursementStatus endpoint
+04 Dec 2021 - 00:35:04.798 [qtp388043093-40] INFO  com.revature.main.Main - POSTrequest received to the /signup endpoint
+04 Dec 2021 - 00:35:04.807 [qtp388043093-40] INFO  com.revature.service.UserService - userSignUp (username...) invoked
+04 Dec 2021 - 00:35:04.813 [qtp388043093-40] INFO  com.revature.dao.UserDAO - addUser(...) invoked
+04 Dec 2021 - 00:35:32.960 [qtp388043093-42] INFO  com.revature.main.Main - GETrequest received to the /checkloginstatus endpoint
+04 Dec 2021 - 00:35:57.294 [qtp388043093-40] INFO  com.revature.main.Main - GETrequest received to the /checkloginstatus endpoint
+04 Dec 2021 - 00:36:09.392 [qtp388043093-42] INFO  com.revature.main.Main - POSTrequest received to the /signup endpoint
+04 Dec 2021 - 00:36:09.401 [qtp388043093-42] INFO  com.revature.service.UserService - userSignUp (username...) invoked
+04 Dec 2021 - 00:36:09.404 [qtp388043093-42] INFO  com.revature.dao.UserDAO - addUser(...) invoked
+04 Dec 2021 - 00:36:22.037 [qtp388043093-40] INFO  com.revature.main.Main - GETrequest received to the /checkloginstatus endpoint
+04 Dec 2021 - 00:36:35.984 [qtp388043093-42] INFO  com.revature.main.Main - POSTrequest received to the /signup endpoint
+04 Dec 2021 - 00:36:35.988 [qtp388043093-42] INFO  com.revature.service.UserService - userSignUp (username...) invoked
+04 Dec 2021 - 00:36:35.996 [qtp388043093-42] INFO  com.revature.dao.UserDAO - addUser(...) invoked
+04 Dec 2021 - 00:36:41.457 [qtp388043093-40] INFO  com.revature.main.Main - GETrequest received to the /checkloginstatus endpoint
+04 Dec 2021 - 00:37:28.862 [qtp388043093-44] INFO  com.revature.main.Main - POSTrequest received to the /signup endpoint
+04 Dec 2021 - 00:37:28.869 [qtp388043093-44] INFO  com.revature.service.UserService - userSignUp (username...) invoked
+04 Dec 2021 - 00:37:28.870 [qtp388043093-44] INFO  com.revature.dao.UserDAO - addUser(...) invoked
+04 Dec 2021 - 00:38:54.162 [main] INFO  org.eclipse.jetty.util.log - Logging initialized @626ms to org.eclipse.jetty.util.log.Slf4jLog
+04 Dec 2021 - 00:38:56.197 [qtp388043093-14] INFO  com.revature.main.Main - GETrequest received to the /checkloginstatus endpoint
+04 Dec 2021 - 00:39:17.603 [qtp388043093-12] INFO  com.revature.main.Main - POSTrequest received to the /signup endpoint
+04 Dec 2021 - 00:39:17.668 [qtp388043093-12] INFO  com.revature.service.UserService - userSignUp (username...) invoked
+04 Dec 2021 - 00:39:17.669 [qtp388043093-12] INFO  com.revature.dao.UserDAO - userSignup(...) invoked
+04 Dec 2021 - 00:40:43.414 [qtp388043093-12] INFO  com.revature.main.Main - POSTrequest received to the /signup endpoint
+04 Dec 2021 - 00:40:43.419 [qtp388043093-12] INFO  com.revature.service.UserService - userSignUp (username...) invoked
+04 Dec 2021 - 00:40:43.425 [qtp388043093-12] INFO  com.revature.dao.UserDAO - userSignup(...) invoked
+04 Dec 2021 - 00:41:53.776 [qtp388043093-18] INFO  com.revature.main.Main - POSTrequest received to the /signup endpoint
+04 Dec 2021 - 00:41:53.788 [qtp388043093-18] INFO  com.revature.service.UserService - userSignUp (username...) invoked
+04 Dec 2021 - 00:41:53.792 [qtp388043093-18] INFO  com.revature.dao.UserDAO - userSignup(...) invoked
+04 Dec 2021 - 00:41:55.703 [qtp388043093-25] INFO  com.revature.main.Main - POSTrequest received to the /signup endpoint
+04 Dec 2021 - 00:41:55.709 [qtp388043093-25] INFO  com.revature.service.UserService - userSignUp (username...) invoked
+04 Dec 2021 - 00:41:55.712 [qtp388043093-25] INFO  com.revature.dao.UserDAO - userSignup(...) invoked
+04 Dec 2021 - 00:42:07.806 [main] INFO  org.eclipse.jetty.util.log - Logging initialized @584ms to org.eclipse.jetty.util.log.Slf4jLog
+04 Dec 2021 - 00:42:32.714 [qtp388043093-12] INFO  com.revature.main.Main - POSTrequest received to the /signup endpoint
+04 Dec 2021 - 00:42:32.907 [qtp388043093-12] INFO  com.revature.service.UserService - userSignUp (username...) invoked
+04 Dec 2021 - 00:42:32.909 [qtp388043093-12] INFO  com.revature.dao.UserDAO - userSignup(...) invoked
+04 Dec 2021 - 00:43:45.045 [main] INFO  org.eclipse.jetty.util.log - Logging initialized @555ms to org.eclipse.jetty.util.log.Slf4jLog
+04 Dec 2021 - 00:43:51.718 [main] INFO  org.eclipse.jetty.util.log - Logging initialized @543ms to org.eclipse.jetty.util.log.Slf4jLog
+04 Dec 2021 - 00:44:15.118 [qtp802581203-24] INFO  com.revature.main.Main - POSTrequest received to the /signup endpoint
+04 Dec 2021 - 00:44:15.322 [qtp802581203-24] INFO  com.revature.service.UserService - userSignUp (username...) invoked
+04 Dec 2021 - 00:44:15.324 [qtp802581203-24] INFO  com.revature.dao.UserDAO - userSignup(...) invoked
+04 Dec 2021 - 00:44:24.052 [main] INFO  org.eclipse.jetty.util.log - Logging initialized @540ms to org.eclipse.jetty.util.log.Slf4jLog
+04 Dec 2021 - 00:44:28.742 [qtp388043093-18] INFO  com.revature.main.Main - GETrequest received to the /checkloginstatus endpoint
+04 Dec 2021 - 00:44:34.035 [qtp388043093-12] INFO  com.revature.main.Main - GETrequest received to the /checkloginstatus endpoint
+04 Dec 2021 - 00:46:19.471 [qtp388043093-18] INFO  com.revature.main.Main - GETrequest received to the /checkloginstatus endpoint
+04 Dec 2021 - 00:47:04.485 [qtp388043093-14] INFO  com.revature.main.Main - GETrequest received to the /checkloginstatus endpoint
+04 Dec 2021 - 00:47:39.775 [qtp388043093-11] INFO  com.revature.main.Main - GETrequest received to the /checkloginstatus endpoint
+04 Dec 2021 - 00:47:45.692 [qtp388043093-16] INFO  com.revature.main.Main - GETrequest received to the /checkloginstatus endpoint
+04 Dec 2021 - 00:48:09.103 [qtp388043093-18] INFO  com.revature.main.Main - POSTrequest received to the /signup endpoint
+04 Dec 2021 - 00:48:09.173 [qtp388043093-18] INFO  com.revature.service.UserService - userSignUp (username...) invoked
+04 Dec 2021 - 00:48:09.175 [qtp388043093-18] INFO  com.revature.dao.UserDAO - userSignup(...) invoked
+04 Dec 2021 - 00:49:03.828 [main] INFO  org.eclipse.jetty.util.log - Logging initialized @569ms to org.eclipse.jetty.util.log.Slf4jLog
+04 Dec 2021 - 00:49:07.512 [qtp388043093-18] INFO  com.revature.main.Main - GETrequest received to the /checkloginstatus endpoint
+04 Dec 2021 - 00:49:28.124 [qtp388043093-12] INFO  com.revature.main.Main - POSTrequest received to the /signup endpoint
+04 Dec 2021 - 00:49:28.206 [qtp388043093-12] INFO  com.revature.service.UserService - userSignUp (username...) invoked
+04 Dec 2021 - 00:49:28.207 [qtp388043093-12] INFO  com.revature.dao.UserDAO - userSignup(...) invoked
+04 Dec 2021 - 00:49:37.348 [qtp388043093-17] INFO  com.revature.main.Main - GETrequest received to the /checkloginstatus endpoint
+04 Dec 2021 - 00:49:37.364 [qtp388043093-16] INFO  com.revature.main.Main - GETrequest received to the /userProfile endpoint
+04 Dec 2021 - 00:49:39.531 [qtp388043093-13] INFO  com.revature.main.Main - GETrequest received to the /checkloginstatus endpoint
+04 Dec 2021 - 00:50:40.592 [qtp388043093-18] INFO  com.revature.main.Main - POSTrequest received to the /signup endpoint
+04 Dec 2021 - 00:50:40.607 [qtp388043093-18] INFO  com.revature.service.UserService - userSignUp (username...) invoked
+04 Dec 2021 - 00:50:45.447 [qtp388043093-14] INFO  com.revature.main.Main - GETrequest received to the /checkloginstatus endpoint
+04 Dec 2021 - 00:52:07.060 [qtp388043093-11] INFO  com.revature.main.Main - GETrequest received to the /checkloginstatus endpoint
+04 Dec 2021 - 00:52:10.036 [qtp388043093-13] INFO  com.revature.main.Main - GETrequest received to the /checkloginstatus endpoint
+04 Dec 2021 - 00:52:10.924 [qtp388043093-18] INFO  com.revature.main.Main - GETrequest received to the /checkloginstatus endpoint
+04 Dec 2021 - 00:53:34.924 [qtp388043093-11] INFO  com.revature.main.Main - GETrequest received to the /checkloginstatus endpoint
+04 Dec 2021 - 00:54:53.391 [qtp388043093-14] INFO  com.revature.main.Main - GETrequest received to the /checkloginstatus endpoint
+04 Dec 2021 - 00:55:00.046 [qtp388043093-16] INFO  com.revature.main.Main - GETrequest received to the /checkloginstatus endpoint
+04 Dec 2021 - 00:55:42.112 [qtp388043093-12] INFO  com.revature.main.Main - POSTrequest received to the /signup endpoint
+04 Dec 2021 - 00:55:42.118 [qtp388043093-12] INFO  com.revature.service.UserService - userSignUp (username...) invoked
+04 Dec 2021 - 00:55:42.125 [qtp388043093-12] INFO  com.revature.dao.UserDAO - userSignup(...) invoked
+04 Dec 2021 - 00:55:43.455 [qtp388043093-18] INFO  com.revature.main.Main - GETrequest received to the /checkloginstatus endpoint

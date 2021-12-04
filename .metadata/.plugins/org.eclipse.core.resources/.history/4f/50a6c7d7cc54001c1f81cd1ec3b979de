@@ -114,7 +114,7 @@ public class UserDAO implements UserInterfaceDAO {
 	public User userSignup(String username, String password, String firstName, String lastName, String email,
 			String role) throws SQLException, NoSuchAlgorithmException, InvalidKeySpecException {
 
-		logger.info("userSignup(...) invoked");
+		logger.info("addUser(...) invoked");
 
 		try (Connection con = JDBCUtil.getConnection()) {
 			String sql = "INSERT INTO users (employee_username, employee_password, user_first_name, user_last_name, user_email, user_role) "

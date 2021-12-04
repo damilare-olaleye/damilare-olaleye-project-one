@@ -83,12 +83,12 @@ function signupButtonClicked() {
 }
 
 async function signup() {
-    const firstnameInput = document.querySelector('#firstname');
-    const lastnameInput = document.querySelector('#lastname');
-    const emailInput = document.querySelector('#email');
-    const usernameInput = document.querySelector('#username');
-    const passwordInput = document.querySelector('#password');
-    const roleInput = document.querySelector('#role');
+    let firstnameInput = document.querySelector('#firstname');
+    let lastnameInput = document.querySelector('#lastname');
+    let emailInput = document.querySelector('#email');
+    let userNameInput = document.querySelector('#userName');
+    let passWordInput = document.querySelector('#passWord');
+    let roleInput = document.querySelector('#role');
 
     let tbodyElement = document.querySelector("#signup-info");
     tbodyElement.innerHTML = '';
@@ -98,8 +98,8 @@ async function signup() {
             method: 'POST',
             credentials: 'include',
             body: JSON.stringify({
-                username: usernameInput.value,
-                password: passwordInput.value,
+                username: userNameInput.value,
+                password: passWordInput.value,
                 firstname: firstnameInput.value,
                 lastname: lastnameInput.value,
                 email: emailInput.value,
@@ -108,28 +108,39 @@ async function signup() {
             })
         });
 
-        let data = await res.json();
+        let data = await res.text();
+
+        if (res.status === 200 || res.status === 201){
+
+            let successSubmittedMessage = document.createElement('p');
+            let submitDiv = document.querySelector('#signup-info');
+        
+            successSubmittedMessage.innerHTML = data;
+            successSubmittedMessage.style.color = 'green';
+            submitDiv.appendChild(successSubmittedMessage);
+        
+            setTimeout(() => window.location.reload(), 1000);
+        }
         
         if(res.status === 400 || res.status === 404){
             let signupErrorMessage = document.createElement('p');
             let signupDiv = document.querySelector('#signup-info');
 
-            signupErrorMessage.innerHTML = data.message;
+            signupErrorMessage.innerHTML = data;
             signupErrorMessage.style.color = 'red';
             signupDiv.appendChild(signupErrorMessage);
-            signupErrorMessage.innerHTML = '';
 
-            setTimeout(() => window.location.reload(), 1000);
+        }  
+        
+       
 
-        }
-
-        if (res.status === 200){
-            if(data.role === 'Employee') {
-                window.location.href = '/employee/home.html';
-            } else if (data.role === 'Finance Manager'){
-                window.location.href = '/finance-manager/finance-manager.html'; 
-            }
-        }
+        // if (res.status === 200){
+        //     if(data.role === 'Employee') {
+        //         window.location.href = '/employee/home.html';
+        //     } else if (data.role === 'Finance Manager'){
+        //         window.location.href = '/finance-manager/finance-manager.html'; 
+        //     }
+        // }
     } catch(err){
         console.log(err);
     }
