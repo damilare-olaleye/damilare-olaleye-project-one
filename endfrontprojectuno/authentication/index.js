@@ -119,6 +119,8 @@ async function signup() {
             signupDiv.appendChild(signupErrorMessage);
             signupErrorMessage.innerHTML = '';
 
+            setTimeout(() => window.location.reload(), 1000);
+
         }
 
         if (res.status === 200){

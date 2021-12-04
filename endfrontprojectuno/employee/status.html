@@ -1,18 +1,15 @@
 <!DOCTYPE html>
 <html>
-<title>pending-reimbursements</title>
+<title>reimbursement-status</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="status.css">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
 
-<style>
-html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
-</style>
-<body class="w3-light-grey">
+<body >
 
   
 <!-- Top container -->
@@ -47,91 +44,41 @@ style="cursor:pointer" title="close side menu" id="myOverlay"></div>
 
 <div class="w3-main" style="margin-left:300px;margin-top:43px;">
 
-    <div class="myInput">
-        <div class="search-container">
-           
-          <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search table for status" title="Type in a name">
-          
-        </div>
+    <h2>My Reimbursement Status</h2>
+    <div class="table-wrapper">
+        <table id="status-table" class="fl-table">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Submitted</th>
+                <th>Resolved</th>
+                <th>Status</th>
+                <th>Type</th>
+                <th>Description</th>
+                <th>Amount</th>
+                <th>Author</th>
+                <th>Resolver</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr>
+                <td>2</td>
+                <td>12/12/2021</td>
+                <td>null</td>
+                <td>PENDING</td>
+                <td>LODGING</td>
+                <td>with co-workers</td>
+                <td>1200</td>
+                <td>5</td>
+                <td>0</td>
+            </tr>
+            <tbody>
+              
+        </table>
     </div>
-
-      <table id="status-table">
-        <tr class="status-table">
-          <th style="width:auto;">ReimbId</th>
-          <th style="width:auto;">Submitted</th>
-          <th style="width:auto;">Resolved</th>
-          <th style="width:auto;">Status</th>
-          <th style="width:auto;">Type</th>
-          <th style="width:auto;">Description</th>
-          <th style="width:auto;">Amount</th>
-          <th style="width:auto;">Author</th>
-          <th style="width:auto;">Resolver</th>
-
-        </tr>
-        <tr>
-          <td id="reimbId">1</td>
-          <td id="submitted">12/12/2021</td>
-          <td id="resolved"> 12/12/2021</td>
-          <td id="status">PENDING</td>
-          <td id="type">FOODS</td>
-          <td id="description">With co-workers</td>
-          <td id="amount">500</td>
-          <td id="author">1</td>
-          <td id="resolver">1</td>
-        </tr>
-
-        <tr>
-          <td id="reimbId">1</td>
-          <td id="submitted">12/12/2021</td>
-          <td id="resolved"> 12/12/2021</td>
-          <td id="status">PENDING</td>
-          <td id="type">FOODS</td>
-          <td id="description">With co-workers</td>
-          <td id="amount">500</td>
-          <td id="author">1</td>
-          <td id="resolver">1</td>
-        </tr>
-
-        <tr>
-          <td id="reimbId">1</td>
-          <td id="submitted">12/12/2021</td>
-          <td id="resolved"> 12/12/2021</td>
-          <td id="status">APPROVED</td>
-          <td id="type">FOODS</td>
-          <td id="description">With co-workers</td>
-          <td id="amount">500</td>
-          <td id="author">1</td>
-          <td id="resolver">1</td>
-        </tr>
-
-        <tr>
-          <td id="reimbId">1</td>
-          <td id="submitted">12/12/2021</td>
-          <td id="resolved"> 12/12/2021</td>
-          <td id="status">DECLINED</td>
-          <td id="type">FOODS</td>
-          <td id="description">With co-workers</td>
-          <td id="amount">500</td>
-          <td id="author">1</td>
-          <td id="resolver">1</td>
-        </tr>
-
-        <tr>
-          <td id="reimbId">1</td>
-          <td id="submitted">12/12/2021</td>
-          <td id="resolved"> 12/12/2021</td>
-          <td id="status">PENDING</td>
-          <td id="type">FOODS</td>
-          <td id="description">With co-workers</td>
-          <td id="amount">500</td>
-          <td id="author">1</td>
-          <td id="resolver">1</td>
-        </tr>
-      </table>
     
   </nav>
-
-<script src="employee.js"></script>
 
 <script>
     function myFunction() {
@@ -153,6 +100,8 @@ style="cursor:pointer" title="close side menu" id="myOverlay"></div>
       }
     }
     </script>
+
+<script src="status.js"></script>
 
 </body>
 </html>

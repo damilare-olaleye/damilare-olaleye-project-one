@@ -1,21 +1,20 @@
-window.addEventListener('load', async() => {
+window.addEventListener('load', async () => {
 
   let res = await fetch('http://localhost:8080/checkloginstatus', {
-    credentials: 'include', 
-    method: 'GET'
+      credentials: 'include',
+      method: 'GET'
   });
 
-  if(res.status === 200){
-    let userObj = await res.json();
+  if (res.status === 200) {
+      let userObj = await res.json();
 
-    if(userObj.role === 'Finance Manager'){
-      window.location.href = 'finance-manager.html';
-
-    } else if (res.status === 401 || res.status === 404) {
+      if (userObj.userRole === 'Finance Manager') {
+          window.location.href = 'finance-manager.html';
+      }
+  } else if (res.status === 401 || res.status === 404)  {
       window.location.href = '/404/404.html';
-    }
   }
-  
+
 });
 
 let logoutBtn = document.querySelector('#logout');
@@ -61,15 +60,19 @@ submitNewReibursementButton.addEventListener('click', async() => {
     body: formData
   });
 
+
+  let data = await res.text();
+
   if(res.status === 201 || res.status === 200) {
-    console.log("why are you not submittiing?!?");
 
     let successSubmittedMessage = document.createElement('p');
     let submitDiv = document.querySelector('#submit-info');
 
-    successSubmittedMessage.innerHTML = data.message;
+    successSubmittedMessage.innerHTML = data;
     successSubmittedMessage.style.color = 'green';
     submitDiv.appendChild(successSubmittedMessage);
+
+    setTimeout(() => window.location.reload(), 1000);
 
   } else if (res.status === 400 || res.status === 404){
     window.location.href = '/404/404.html';

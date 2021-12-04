@@ -42,6 +42,9 @@ public class AuthController implements Controller {
 		HttpSession session = req.getSession();
 		session.setAttribute("currentuser", user);
 
+		// when user is inactive for 15 min, automatically log them out
+		session.setMaxInactiveInterval(15);
+
 		ctx.json(user);
 		ctx.status(200);
 

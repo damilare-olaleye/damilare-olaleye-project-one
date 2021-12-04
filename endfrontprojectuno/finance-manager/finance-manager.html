@@ -3,16 +3,11 @@
 <title>finance-manager</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="finance-manager.css">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
 
-<style>
-html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
-</style>
-<body class="w3-light-grey">
+<body>
 
   
 <!-- Top container -->
@@ -49,44 +44,32 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
 <div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" 
 style="cursor:pointer" title="close side menu" id="myOverlay"></div>
 
-<!-- !PAGE CONTENT! -->
-
-
 <div class="w3-main" style="margin-left:300px;margin-top:43px;">
-
-    <div class="myInput">
-        <div class="search-container">
-           
-          <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search table for status" title="Type in a name">
-          
-        </div>
+    <h2>All Reimbursements</h2>
+    
+    <div class="search-container" >
+        <input type="text" id="myInput" onkeyup="myFunction()" 
+        placeholder="Search table for status" title="Type in a name">
     </div>
 
-      <table id="status-table">
+    <div class="table-wrapper">
+      <table class="fl-table" id="status-table">
+
+        <thead>
         <tr class="status-table">
-          <th style="width:auto;">ReimbId</th>
-          <th style="width:auto;">Submitted</th>
-          <th style="width:auto;">Resolved</th>
-          <th style="width:auto;">Status</th>
-          <th style="width:auto;">Type</th>
-          <th style="width:auto;">Description</th>
-          <th style="width:auto;">Amount</th>
-          <th style="width:auto;">Author</th>
-          <th style="width:auto;">Resolver</th>
-
+          <th>ID</th>
+                <th>Submitted</th>
+                <th>Resolved</th>
+                <th>Status</th>
+                <th>Type</th>
+                <th>Description</th>
+                <th>Amount</th>
+                <th>Author</th>
+                <th>Resolver</th>
         </tr>
-        <tr>
-          <td id="reimbId">1</td>
-          <td id="submitted">12/12/2021</td>
-          <td id="resolved"> 12/12/2021</td>
-          <td id="status">PENDING</td>
-          <td id="type">FOODS</td>
-          <td id="description">With co-workers</td>
-          <td id="amount">500</td>
-          <td id="author">1</td>
-          <td id="resolver">1</td>
-        </tr>
+      </thead>
 
+      <tbody>
         <tr>
           <td id="reimbId">1</td>
           <td id="submitted">12/12/2021</td>
@@ -127,15 +110,17 @@ style="cursor:pointer" title="close side menu" id="myOverlay"></div>
           <td id="reimbId">1</td>
           <td id="submitted">12/12/2021</td>
           <td id="resolved"> 12/12/2021</td>
-          <td id="status">PENDING</td>
+          <td id="status">APPROVED</td>
           <td id="type">FOODS</td>
           <td id="description">With co-workers</td>
           <td id="amount">500</td>
           <td id="author">1</td>
           <td id="resolver">1</td>
         </tr>
+       
+      </tbody>
       </table>
-    
+    </div>
   </nav>
 
 <script src="finance-manager.js"></script>
