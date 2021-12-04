@@ -29,8 +29,8 @@ function loginButtonClicked() {
 }
 
 async function login() {
-    let usernameInput = document.querySelector('#username');
-    let passwordInput = document.querySelector('#password');
+    const usernameInput = document.querySelector('#username');
+    const passwordInput = document.querySelector('#password');
 
     try {
         let res = await fetch('http://localhost:8080/login', {
@@ -51,6 +51,9 @@ async function login() {
             loginErrorMessage.innerHTML = data.message;
             loginErrorMessage.style.color = 'red';
             loginDiv.appendChild(loginErrorMessage);
+
+            loginErrorMessage.innerHTML = '';
+
         } else if (res.status === 404){
             window.location.href = '../../404/404.html';
         }
@@ -80,12 +83,15 @@ function signupButtonClicked() {
 }
 
 async function signup() {
-    let firstnameInput = document.querySelector('#firstname');
-    let lastnameInput = document.querySelector('#lastname');
-    let emailInput = document.querySelector('#email');
-    let usernameInput = document.querySelector('#username');
-    let passwordInput = document.querySelector('#password');
-    let userRoleRadio = document.querySelector('#userRadio');
+    const firstnameInput = document.querySelector('#firstname');
+    const lastnameInput = document.querySelector('#lastname');
+    const emailInput = document.querySelector('#email');
+    const usernameInput = document.querySelector('#username');
+    const passwordInput = document.querySelector('#password');
+    const roleInput = document.querySelector('#role');
+
+    let tbodyElement = document.querySelector("#signup-info");
+    tbodyElement.innerHTML = '';
 
     try {
         let res = await fetch('http://localhost:8080/signup', {
@@ -97,21 +103,22 @@ async function signup() {
                 firstname: firstnameInput.value,
                 lastname: lastnameInput.value,
                 email: emailInput.value,
-                role: userRoleRadio.value,
+                role: roleInput.value
+                
             })
         });
 
         let data = await res.json();
         
-        if(res.status === 400){
+        if(res.status === 400 || res.status === 404){
             let signupErrorMessage = document.createElement('p');
             let signupDiv = document.querySelector('#signup-info');
 
             signupErrorMessage.innerHTML = data.message;
             signupErrorMessage.style.color = 'red';
             signupDiv.appendChild(signupErrorMessage);
-        } else if (res.status === 404){
-            window.location.href = '../../404/404.html';
+            signupErrorMessage.innerHTML = '';
+
         }
 
         if (res.status === 200){

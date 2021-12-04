@@ -1,0 +1,10 @@
+03 Dec 2021 - 17:59:15.624 [main] INFO  org.eclipse.jetty.util.log - Logging initialized @660ms to org.eclipse.jetty.util.log.Slf4jLog
+03 Dec 2021 - 17:59:25.899 [qtp388043093-24] INFO  com.revature.main.Main - POSTrequest received to the /login endpoint
+03 Dec 2021 - 17:59:26.081 [qtp388043093-24] INFO  com.revature.service.UserService - userLogin(username, password)
+03 Dec 2021 - 17:59:26.081 [qtp388043093-24] INFO  com.revature.dao.UserDAO - userLogin(username, password) invoked
+03 Dec 2021 - 17:59:46.965 [qtp388043093-13] INFO  com.revature.main.Main - POSTrequest received to the /submitRequest endpoint
+03 Dec 2021 - 17:59:53.081 [qtp388043093-11] INFO  com.revature.main.Main - POSTrequest received to the /login endpoint
+03 Dec 2021 - 17:59:53.088 [qtp388043093-11] INFO  com.revature.service.UserService - userLogin(username, password)
+03 Dec 2021 - 17:59:53.089 [qtp388043093-11] INFO  com.revature.dao.UserDAO - userLogin(username, password) invoked
+03 Dec 2021 - 17:59:57.062 [qtp388043093-17] INFO  com.revature.main.Main - POSTrequest received to the /submitRequest endpoint
+03 Dec 2021 - 17:59:57.459 [qtp388043093-17] INFO  com.revature.dao.ReimbursementDAO - submitRequest(...) invoked

@@ -196,14 +196,16 @@ public class UserDAO implements UserInterfaceDAO {
 
 			PreparedStatement pstmt = con.prepareStatement(sql);
 
-			pstmt.setString(1, dto.getUsername());
-			pstmt.setString(2, dto.getPassword());
+			pstmt.setInt(1, dto.getUserId()	);
+			pstmt.setString(2, dto.getUsername());
+			pstmt.setString(3, dto.getPassword());
+			pstmt.setString(4, dto.getFirstName());
+			pstmt.setString(5, dto.getLastName());
+			pstmt.setString(6, dto.getRole());
+			pstmt.setString(7, dto.getEmail());
+				
 			
-			pstmt.setString(3, dto.getFirstName());
-			pstmt.setString(4, dto.getLastName());
-			pstmt.setString(5, dto.getRole());
-			pstmt.setString(6, dto.getEmail());
-			pstmt.setInt(7, dto.getUserId()	);		
+			
 			int numberOfRecordsUpdated = pstmt.executeUpdate();
 
 			if (numberOfRecordsUpdated != 1) {

@@ -127,6 +127,7 @@ body{
 .full-name input{
     width: 140px;
     padding: 8px;
+    margin-bottom: 22xp;
 }
 .email{
     padding-top: 8px;
@@ -166,11 +167,10 @@ body{
     border-radius: 5px;
     cursor: pointer;
     color: #ffffff;
-    margin-top: 8px;
-    margin-bottom: 60px;
+    margin: 55px;
     text-shadow: 0 1px 2px rgba(0,0,0,.5);
     width: 190px;
-
+    float: left;
 }
 
 .container{
