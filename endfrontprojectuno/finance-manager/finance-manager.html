@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<title>finance-manager</title>
+<title>all-reimbursement</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="finance-manager.css">
@@ -9,7 +9,15 @@
 
 <body>
 
-  
+  <style>
+    .search-table-container {
+      position: absolute;
+      right: 0px;
+      width: 300px;
+      border: 0.5px linen #008cff;
+      padding: 10px;
+  }
+  </style>
 <!-- Top container -->
 <div class="w3-bar w3-top w3-deep-orange w3-large" style="z-index:4">
   <button class="w3-bar-item w3-button w3-hide-large w3-hover-none w3-hover-text-light-grey" onclick="w3_open();"><i class="fa fa-bars"></i>  Menu</button>
@@ -46,17 +54,20 @@ style="cursor:pointer" title="close side menu" id="myOverlay"></div>
 
 <div class="w3-main" style="margin-left:300px;margin-top:43px;">
     <h2>All Reimbursements</h2>
+  
     
-    <div class="search-container" >
+    <div class="search-table-container" >
         <input type="text" id="myInput" onkeyup="myFunction()" 
-        placeholder="Search table for status" title="Type in a name">
+        placeholder="Search for Type" title="Type in a name">
     </div>
 
+    <br>
+    <br>
     <div class="table-wrapper">
-      <table class="fl-table" id="status-table">
+      <table class="fl-table" id="all-reimbs-table">
 
         <thead>
-        <tr class="status-table">
+        <tr class="all-reimb-table">
           <th>ID</th>
                 <th>Submitted</th>
                 <th>Resolved</th>
@@ -71,51 +82,6 @@ style="cursor:pointer" title="close side menu" id="myOverlay"></div>
 
       <tbody>
         <tr>
-          <td id="reimbId">1</td>
-          <td id="submitted">12/12/2021</td>
-          <td id="resolved"> 12/12/2021</td>
-          <td id="status">PENDING</td>
-          <td id="type">FOODS</td>
-          <td id="description">With co-workers</td>
-          <td id="amount">500</td>
-          <td id="author">1</td>
-          <td id="resolver">1</td>
-        </tr>
-
-        <tr>
-          <td id="reimbId">1</td>
-          <td id="submitted">12/12/2021</td>
-          <td id="resolved"> 12/12/2021</td>
-          <td id="status">APPROVED</td>
-          <td id="type">FOODS</td>
-          <td id="description">With co-workers</td>
-          <td id="amount">500</td>
-          <td id="author">1</td>
-          <td id="resolver">1</td>
-        </tr>
-
-        <tr>
-          <td id="reimbId">1</td>
-          <td id="submitted">12/12/2021</td>
-          <td id="resolved"> 12/12/2021</td>
-          <td id="status">DECLINED</td>
-          <td id="type">FOODS</td>
-          <td id="description">With co-workers</td>
-          <td id="amount">500</td>
-          <td id="author">1</td>
-          <td id="resolver">1</td>
-        </tr>
-
-        <tr>
-          <td id="reimbId">1</td>
-          <td id="submitted">12/12/2021</td>
-          <td id="resolved"> 12/12/2021</td>
-          <td id="status">APPROVED</td>
-          <td id="type">FOODS</td>
-          <td id="description">With co-workers</td>
-          <td id="amount">500</td>
-          <td id="author">1</td>
-          <td id="resolver">1</td>
         </tr>
        
       </tbody>
@@ -127,13 +93,15 @@ style="cursor:pointer" title="close side menu" id="myOverlay"></div>
 
 <script>
     function myFunction() {
+
       var input, filter, table, tr, td, i, txtValue;
       input = document.getElementById("myInput");
       filter = input.value.toUpperCase();
-      table = document.getElementById("status-table");
+      table = document.getElementById("all-reimbs-table");
       tr = table.getElementsByTagName("tr");
+
       for (i = 0; i < tr.length; i++) {
-        td = tr[i].getElementsByTagName("td")[3];
+        td = tr[i].getElementsByTagName("td")[4];
         if (td) {
           txtValue = td.textContent || td.innerText;
           if (txtValue.toUpperCase().indexOf(filter) > -1) {

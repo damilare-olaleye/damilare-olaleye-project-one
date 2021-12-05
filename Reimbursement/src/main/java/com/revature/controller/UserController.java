@@ -91,7 +91,7 @@ public class UserController implements Controller {
 	public void mapEndPoints(Javalin app) {
 		app.get("/users/{userID}", getUserById); // works
 		app.post("/users", addFinanceManger); // works
-		app.get("/userByUsername", getUserbyUsername); // works
+		app.post("/userByUsername", getUserbyUsername); // works
 		app.put("/user", editProfile); // incomplete
 		app.get("/userProfile", viewUserProfile); // works
 

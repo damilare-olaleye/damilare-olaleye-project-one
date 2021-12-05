@@ -135,9 +135,9 @@ public class UserService implements UserServiceInterface {
 			}
 
 			if (!(password
-					.matches("^(?=.*?[A-Z])(?=(.*[a-z]){1,})(?=(.*[\\d]){1,})(?=(.*[\\W]){1,})(?!.*\\s).{8,}$"))) {
-				throw new InvalidParameterException("Password must contain 8 characters, "
-						+ "one upper case letter, at least one letter, one number, and " + "one special character");
+					.matches("(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"))) {
+				throw new InvalidParameterException("Password must contain at least one number and one uppercase and lowercase letter, "
+						+ "and at least 8 or more characters");
 
 			}
 

@@ -15,7 +15,7 @@ window.addEventListener('load', async () => {
         window.location.href = '/404/404.html';
     }
 
-    populateReimbursementStatus();
+    getAndPopulateReibursementStatus();
 });
 
 let logoutBtn = document.querySelector('#logout');
@@ -36,53 +36,49 @@ logoutBtn.addEventListener('click', async() => {
 
 });
 
-async function populateReimbursementStatus() {
+async function getAndPopulateReibursementStatus() {
 
     let res = await fetch('http://localhost:8080/myReimbursementStatus',{
-        credentials: 'include', 
-        method: 'GET'
-
+        method: 'GET',
+        credentials: 'include'
+       
     });
 
-    let tbodyElement = document.querySelector("#status-table tbody");
-    tbodyElement.innerHTML = '';
-
     let statusArray = await res.json();
+    let tbodyElement = document.querySelector("#status-table tbody");
+  
+    for (let i = 0; i < statusArray.length; i++) { 
 
-    console.log(tbodyElement);
-    console.log(statusArray);
-
-    for (let i = 0; i < statusArray.length; i++) {
-
-        console.log(i);
-
-        let status = statusArray[i];
+        let myStatus = statusArray[i];
 
         let tr = document.createElement('tr');
 
         let tableColOne = document.createElement('td');
-        tableColOne.innerHTML = status.reimbId;
+        tableColOne.innerHTML = myStatus.reimbId;
 
         let tableColTwo = document.createElement('td');
-        tableColOne.innerHTML = status.submitted;
+        tableColTwo.innerHTML = myStatus.submitted;
 
         let tableColThree = document.createElement('td');
-        tableColThree.innerHTML = status.resolved;
+        tableColThree.innerHTML = myStatus.resolved;
 
         let tableColFour = document.createElement('td');
-        tableColFour.innerHTML = status.type;
+        tableColFour.innerHTML = myStatus.status;
 
         let tableColFive = document.createElement('td');
-        tableColFive.innerHTML = status.description;
+        tableColFive.innerHTML = myStatus.type;
 
         let tableColSix = document.createElement('td');
-        tableColSix.innerHTML = status.amount;
+        tableColSix.innerHTML = myStatus.description;
 
         let tableColSeven = document.createElement('td');
-        tableColSeven.innerHTML = status.author;
+        tableColSeven.innerHTML = myStatus.amount;
 
         let tableColEight = document.createElement('td');
-        tableColEight.innerHTML = status.resolver;
+        tableColEight.innerHTML = myStatus.author;
+
+        let tableColNine = document.createElement('td');
+        tableColNine.innerHTML = myStatus.resolver;
 
         tr.appendChild(tableColOne);
         tr.appendChild(tableColTwo);
@@ -92,10 +88,9 @@ async function populateReimbursementStatus() {
         tr.appendChild(tableColSix);
         tr.appendChild(tableColSeven);
         tr.appendChild(tableColEight);
+        tr.appendChild(tableColNine);
 
         tbodyElement.appendChild(tr);
-
-        console.log("I am here");
 
     }
 

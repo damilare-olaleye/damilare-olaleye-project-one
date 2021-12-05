@@ -8,7 +8,7 @@ window.addEventListener('load', async () => {
     if (res.status === 200) {
         let userObj = await res.json();
   
-        if (userObj.userRole === 'Finance Manager') {
+        if (userObj.role === 'Finance Manager') {
             window.location.href = 'finance-manager.html';
         }
     } else if (res.status === 401 || res.status === 404)  {
@@ -46,23 +46,20 @@ window.addEventListener('load', async () => {
     });
 
     let tbodyElement = document.querySelector("#profile-table tbody");
-    tbodyElement.innerHTML = '';
-
-    let data = await res.json();
-
+    let profileData = await res.json();
     let tr = document.createElement('tr');
 
     let firstnameTd = document.createElement('td');
-    firstnameTd.innerHTML = data.firstName;
+    firstnameTd.innerHTML = profileData.firstName;
 
     let lastnameTd = document.createElement('td')
-    lastnameTd.innerHTML = data.lastName;
+    lastnameTd.innerHTML = profileData.lastName;
 
     let emailTd = document.createElement('td');
-    emailTd.innerHTML = data.email;
+    emailTd.innerHTML = profileData.email;
 
     let roleTd = document.createElement('td');
-    roleTd.innerHTML = data.role;
+    roleTd.innerHTML = profileData.role;
 
     tr.appendChild(firstnameTd);
     tr.appendChild(lastnameTd);

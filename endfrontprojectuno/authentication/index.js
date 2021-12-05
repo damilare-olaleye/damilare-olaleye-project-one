@@ -122,7 +122,7 @@ async function signup() {
             setTimeout(() => window.location.reload(), 1000);
         }
         
-        if(res.status === 400 || res.status === 404){
+        else if (res.status === 400 || res.status === 404){
             let signupErrorMessage = document.createElement('p');
             let signupDiv = document.querySelector('#signup-info');
 
@@ -131,16 +131,7 @@ async function signup() {
             signupDiv.appendChild(signupErrorMessage);
 
         }  
-        
-       
-
-        // if (res.status === 200){
-        //     if(data.role === 'Employee') {
-        //         window.location.href = '/employee/home.html';
-        //     } else if (data.role === 'Finance Manager'){
-        //         window.location.href = '/finance-manager/finance-manager.html'; 
-        //     }
-        // }
+ 
     } catch(err){
         console.log(err);
     }
