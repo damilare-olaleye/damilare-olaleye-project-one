@@ -94,7 +94,7 @@ public class ReimbursementDAO implements ReimbursementInterfaceDAO {
 	}
 
 	@Override
-	public void updateReimbursement(int reimbursementId, String status, int resolverId) throws SQLException {
+	public void updateReimbursement(int reimbursementId, String status, int resolver) throws SQLException {
 
 		try (Connection con = JDBCUtil.getConnection()) {
 
@@ -104,7 +104,7 @@ public class ReimbursementDAO implements ReimbursementInterfaceDAO {
 			PreparedStatement pstmt = con.prepareStatement(sql);
 
 			pstmt.setString(1, status);
-			pstmt.setInt(2, resolverId);
+			pstmt.setInt(2, resolver);
 			pstmt.setInt(3, reimbursementId);
 
 			int updateReimbursements = pstmt.executeUpdate();

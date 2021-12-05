@@ -98,13 +98,12 @@ public class ReimbursementController implements Controller {
 		User currentlyLoggedInUser = (User) ctx.req.getSession().getAttribute("currentuser");
 		this.authorizationService.authorizeFinanceManager(currentlyLoggedInUser);
 
-		String reimbursementId = ctx.formParam("rembursement id");
+		String reimbursementId = ctx.formParam("reimbId");
 		String status = ctx.formParam("status");
 
-		Reimbursement reimbursement = this.reimbursementService.updateReimbursement(currentlyLoggedInUser, status,
-				reimbursementId);
+		this.reimbursementService.updateReimbursement(currentlyLoggedInUser, reimbursementId, status);
 
-		ctx.json(reimbursement);
+		ctx.json("Reimbursement have been successfully updated, and sent to Employee!");
 		ctx.status(200);
 
 	};
@@ -194,7 +193,7 @@ public class ReimbursementController implements Controller {
 
 		// FINANCE MANAGER
 		app.get("/allreimbursements", viewAllReimbursements); // works
-		app.patch("/reimbursement/status", updateReimbursement); // works
+		app.post("/updateReimbursementStatus", updateReimbursement); // works
 		app.get("/employeesHistory", viewAllEmployeePastReimHistory); // works
 //		app.get("/viewReimbursemenByResolver", getallReimbursementsByResolver); // incomplete
 	}

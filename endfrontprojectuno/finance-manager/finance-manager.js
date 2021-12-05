@@ -19,6 +19,24 @@ window.addEventListener('load', async () => {
 
   });
 
+  let logoutBtn = document.querySelector('#logout');
+
+  logoutBtn.addEventListener('click', async() => {
+
+    let res = await fetch('http://localhost:8080/logout', {
+      method: 'POST', 
+      credentials: 'include'
+    });
+    
+    if (res.status === 200){
+      window.location.href = '../../authentication/index.html';
+    } else if(res.status === 400 || res.status == 404){
+      window.location.href = '../../404/404.html';
+  
+    }
+  
+  });
+
   async function getAndPopulateAllReimbursements() {
   
     let res = await fetch('http://localhost:8080/allreimbursements',{

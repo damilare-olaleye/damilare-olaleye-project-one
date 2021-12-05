@@ -97,7 +97,7 @@ public class ReimbursementService implements ReimbursementServiceInterface {
 	}
 
 	@Override
-	public Reimbursement updateReimbursement(User currentlyLoggedInUser, String status, String reimbursementId)
+	public Reimbursement updateReimbursement(User currentlyLoggedInUser, String reimbursementId, String status)
 			throws InvalidParameterException, SQLException, NotFoundException, reimbursementAlreadyResloved {
 
 		try {
@@ -108,12 +108,7 @@ public class ReimbursementService implements ReimbursementServiceInterface {
 			reimbursementStatus.add("APPROVED");
 			reimbursementStatus.add("DECLINED");
 
-			if (!(reimbursementStatus.contains(status))) {
-				throw new InvalidParameterException(
-						"When adding an reimbursements status: only PENDING, APPROVED, or DECLINED are allowed");
-
-			}
-
+		
 			int id = Integer.parseInt(reimbursementId);
 			Reimbursement reimbursement = this.reimbursementDao.getReimbursementById(id);
 
@@ -125,6 +120,12 @@ public class ReimbursementService implements ReimbursementServiceInterface {
 				this.reimbursementDao.updateReimbursement(id, status, currentlyLoggedInUser.getUserId());
 			} else {
 				throw new reimbursementAlreadyResloved("Reimbursement has already been resolved");
+			}
+			
+			if (!(reimbursementStatus.contains(status))) {
+				throw new InvalidParameterException(
+						"For status: only PENDING, APPROVED, or DECLINED is allowed");
+
 			}
 
 			return this.reimbursementDao.getReimbursementById(id);

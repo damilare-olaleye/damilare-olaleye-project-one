@@ -5462,3 +5462,276 @@
 05 Dec 2021 - 10:35:43.226 [qtp388043093-30] INFO  com.revature.main.Main - GETrequest received to the /checkloginstatus endpoint
 05 Dec 2021 - 10:35:43.239 [qtp388043093-14] INFO  com.revature.main.Main - GETrequest received to the /allreimbursements endpoint
 05 Dec 2021 - 10:35:43.240 [qtp388043093-14] INFO  com.revature.dao.ReimbursementDAO - getAllReimbursements() invoked
+05 Dec 2021 - 10:37:22.307 [qtp388043093-30] INFO  com.revature.main.Main - GETrequest received to the /checkloginstatus endpoint
+05 Dec 2021 - 10:37:22.323 [qtp388043093-17] INFO  com.revature.main.Main - GETrequest received to the /allreimbursements endpoint
+05 Dec 2021 - 10:37:22.324 [qtp388043093-17] INFO  com.revature.dao.ReimbursementDAO - getAllReimbursements() invoked
+05 Dec 2021 - 10:37:34.769 [qtp388043093-14] INFO  com.revature.main.Main - GETrequest received to the /checkloginstatus endpoint
+05 Dec 2021 - 10:37:34.784 [qtp388043093-17] INFO  com.revature.main.Main - GETrequest received to the /allreimbursements endpoint
+05 Dec 2021 - 10:37:34.784 [qtp388043093-17] INFO  com.revature.dao.ReimbursementDAO - getAllReimbursements() invoked
+05 Dec 2021 - 10:40:12.192 [qtp388043093-30] INFO  com.revature.main.Main - GETrequest received to the /checkloginstatus endpoint
+05 Dec 2021 - 10:40:12.209 [qtp388043093-18] INFO  com.revature.main.Main - GETrequest received to the /allreimbursements endpoint
+05 Dec 2021 - 10:40:12.210 [qtp388043093-18] INFO  com.revature.dao.ReimbursementDAO - getAllReimbursements() invoked
+05 Dec 2021 - 10:40:14.176 [qtp388043093-17] INFO  com.revature.main.Main - POSTrequest received to the /logout endpoint
+05 Dec 2021 - 10:40:14.378 [qtp388043093-18] INFO  com.revature.main.Main - GETrequest received to the /checkloginstatus endpoint
+05 Dec 2021 - 10:40:20.761 [qtp388043093-17] INFO  com.revature.main.Main - POSTrequest received to the /login endpoint
+05 Dec 2021 - 10:40:20.766 [qtp388043093-17] INFO  com.revature.service.UserService - userLogin(username, password)
+05 Dec 2021 - 10:40:20.768 [qtp388043093-17] INFO  com.revature.dao.UserDAO - userLogin(username, password) invoked
+05 Dec 2021 - 10:40:21.047 [qtp388043093-18] INFO  com.revature.main.Main - GETrequest received to the /checkloginstatus endpoint
+05 Dec 2021 - 10:40:23.708 [qtp388043093-17] INFO  com.revature.main.Main - GETrequest received to the /checkloginstatus endpoint
+05 Dec 2021 - 10:40:27.858 [qtp388043093-18] INFO  com.revature.main.Main - POSTrequest received to the /logout endpoint
+05 Dec 2021 - 10:40:28.031 [qtp388043093-17] INFO  com.revature.main.Main - GETrequest received to the /checkloginstatus endpoint
+05 Dec 2021 - 10:40:32.811 [qtp388043093-18] INFO  com.revature.main.Main - POSTrequest received to the /login endpoint
+05 Dec 2021 - 10:40:32.815 [qtp388043093-18] INFO  com.revature.service.UserService - userLogin(username, password)
+05 Dec 2021 - 10:40:32.815 [qtp388043093-18] INFO  com.revature.dao.UserDAO - userLogin(username, password) invoked
+05 Dec 2021 - 10:40:33.072 [qtp388043093-17] INFO  com.revature.main.Main - GETrequest received to the /checkloginstatus endpoint
+05 Dec 2021 - 10:40:33.085 [qtp388043093-18] INFO  com.revature.main.Main - GETrequest received to the /allreimbursements endpoint
+05 Dec 2021 - 10:40:33.085 [qtp388043093-18] INFO  com.revature.dao.ReimbursementDAO - getAllReimbursements() invoked
+05 Dec 2021 - 10:42:25.274 [qtp388043093-28] INFO  com.revature.main.Main - GETrequest received to the /checkloginstatus endpoint
+05 Dec 2021 - 10:42:25.298 [qtp388043093-24] INFO  com.revature.main.Main - GETrequest received to the /allreimbursements endpoint
+05 Dec 2021 - 10:42:25.299 [qtp388043093-24] INFO  com.revature.dao.ReimbursementDAO - getAllReimbursements() invoked
+05 Dec 2021 - 10:42:39.632 [qtp388043093-30] INFO  com.revature.main.Main - GETrequest received to the /checkloginstatus endpoint
+05 Dec 2021 - 10:42:39.650 [qtp388043093-24] INFO  com.revature.main.Main - GETrequest received to the /allreimbursements endpoint
+05 Dec 2021 - 10:42:39.651 [qtp388043093-24] INFO  com.revature.dao.ReimbursementDAO - getAllReimbursements() invoked
+05 Dec 2021 - 10:44:37.500 [qtp388043093-28] INFO  com.revature.main.Main - GETrequest received to the /checkloginstatus endpoint
+05 Dec 2021 - 10:47:25.876 [qtp388043093-18] INFO  com.revature.main.Main - GETrequest received to the /checkloginstatus endpoint
+05 Dec 2021 - 10:52:03.894 [main] INFO  org.eclipse.jetty.util.log - Logging initialized @640ms to org.eclipse.jetty.util.log.Slf4jLog
+05 Dec 2021 - 10:52:16.557 [qtp388043093-16] INFO  com.revature.main.Main - POSTrequest received to the /login endpoint
+05 Dec 2021 - 10:52:16.748 [qtp388043093-16] INFO  com.revature.service.UserService - userLogin(username, password)
+05 Dec 2021 - 10:52:16.749 [qtp388043093-16] INFO  com.revature.dao.UserDAO - userLogin(username, password) invoked
+05 Dec 2021 - 10:52:24.339 [qtp388043093-13] INFO  com.revature.main.Main - PATCHrequest received to the /reimbursement/status endpoint
+05 Dec 2021 - 10:52:28.665 [qtp388043093-17] INFO  com.revature.main.Main - PATCHrequest received to the /reimbursement/status endpoint
+05 Dec 2021 - 10:56:06.285 [main] INFO  org.eclipse.jetty.util.log - Logging initialized @581ms to org.eclipse.jetty.util.log.Slf4jLog
+05 Dec 2021 - 10:56:14.619 [qtp388043093-24] INFO  com.revature.main.Main - POSTrequest received to the /login endpoint
+05 Dec 2021 - 10:56:14.813 [qtp388043093-24] INFO  com.revature.service.UserService - userLogin(username, password)
+05 Dec 2021 - 10:56:14.814 [qtp388043093-24] INFO  com.revature.dao.UserDAO - userLogin(username, password) invoked
+05 Dec 2021 - 10:56:21.520 [qtp388043093-13] INFO  com.revature.main.Main - POSTrequest received to the /reimbursement/status endpoint
+05 Dec 2021 - 10:56:28.041 [qtp388043093-18] INFO  com.revature.main.Main - POSTrequest received to the /reimbursement/status endpoint
+05 Dec 2021 - 10:57:49.507 [main] INFO  org.eclipse.jetty.util.log - Logging initialized @546ms to org.eclipse.jetty.util.log.Slf4jLog
+05 Dec 2021 - 10:57:55.788 [qtp388043093-24] INFO  com.revature.main.Main - POSTrequest received to the /login endpoint
+05 Dec 2021 - 10:57:55.993 [qtp388043093-24] INFO  com.revature.service.UserService - userLogin(username, password)
+05 Dec 2021 - 10:57:55.994 [qtp388043093-24] INFO  com.revature.dao.UserDAO - userLogin(username, password) invoked
+05 Dec 2021 - 10:58:06.940 [qtp388043093-13] INFO  com.revature.main.Main - POSTrequest received to the /reimbursement/status endpoint
+05 Dec 2021 - 11:01:46.797 [qtp388043093-17] INFO  com.revature.main.Main - GETrequest received to the /checkloginstatus endpoint
+05 Dec 2021 - 11:04:25.771 [qtp388043093-17] INFO  com.revature.main.Main - GETrequest received to the /checkloginstatus endpoint
+05 Dec 2021 - 11:04:27.485 [qtp388043093-11] INFO  com.revature.main.Main - POSTrequest received to the /login endpoint
+05 Dec 2021 - 11:04:27.489 [qtp388043093-11] INFO  com.revature.service.UserService - userLogin(username, password)
+05 Dec 2021 - 11:04:27.489 [qtp388043093-11] INFO  com.revature.dao.UserDAO - userLogin(username, password) invoked
+05 Dec 2021 - 11:04:27.930 [qtp388043093-25] INFO  com.revature.main.Main - GETrequest received to the /checkloginstatus endpoint
+05 Dec 2021 - 11:04:27.945 [qtp388043093-16] INFO  com.revature.main.Main - GETrequest received to the /allreimbursements endpoint
+05 Dec 2021 - 11:04:27.946 [qtp388043093-16] INFO  com.revature.dao.ReimbursementDAO - getAllReimbursements() invoked
+05 Dec 2021 - 11:04:29.344 [qtp388043093-25] INFO  com.revature.main.Main - GETrequest received to the /checkloginstatus endpoint
+05 Dec 2021 - 11:04:34.625 [qtp388043093-16] INFO  com.revature.main.Main - POSTrequest received to the /reimbursement/status endpoint
+05 Dec 2021 - 11:04:38.939 [qtp388043093-25] INFO  com.revature.main.Main - GETrequest received to the /checkloginstatus endpoint
+05 Dec 2021 - 11:04:40.919 [qtp388043093-16] INFO  com.revature.main.Main - POSTrequest received to the /login endpoint
+05 Dec 2021 - 11:04:40.926 [qtp388043093-16] INFO  com.revature.service.UserService - userLogin(username, password)
+05 Dec 2021 - 11:04:40.927 [qtp388043093-16] INFO  com.revature.dao.UserDAO - userLogin(username, password) invoked
+05 Dec 2021 - 11:04:41.227 [qtp388043093-25] INFO  com.revature.main.Main - GETrequest received to the /checkloginstatus endpoint
+05 Dec 2021 - 11:04:41.237 [qtp388043093-16] INFO  com.revature.main.Main - GETrequest received to the /allreimbursements endpoint
+05 Dec 2021 - 11:04:41.237 [qtp388043093-16] INFO  com.revature.dao.ReimbursementDAO - getAllReimbursements() invoked
+05 Dec 2021 - 11:04:43.933 [qtp388043093-25] INFO  com.revature.main.Main - GETrequest received to the /checkloginstatus endpoint
+05 Dec 2021 - 11:04:56.400 [qtp388043093-16] INFO  com.revature.main.Main - POSTrequest received to the /reimbursement/status endpoint
+05 Dec 2021 - 11:04:59.833 [qtp388043093-25] INFO  com.revature.main.Main - GETrequest received to the /checkloginstatus endpoint
+05 Dec 2021 - 11:05:34.265 [qtp388043093-12] INFO  com.revature.main.Main - GETrequest received to the /checkloginstatus endpoint
+05 Dec 2021 - 11:05:36.277 [qtp388043093-16] INFO  com.revature.main.Main - POSTrequest received to the /login endpoint
+05 Dec 2021 - 11:05:36.281 [qtp388043093-16] INFO  com.revature.service.UserService - userLogin(username, password)
+05 Dec 2021 - 11:05:36.282 [qtp388043093-16] INFO  com.revature.dao.UserDAO - userLogin(username, password) invoked
+05 Dec 2021 - 11:05:36.592 [qtp388043093-11] INFO  com.revature.main.Main - GETrequest received to the /checkloginstatus endpoint
+05 Dec 2021 - 11:05:36.601 [qtp388043093-16] INFO  com.revature.main.Main - GETrequest received to the /allreimbursements endpoint
+05 Dec 2021 - 11:05:36.602 [qtp388043093-16] INFO  com.revature.dao.ReimbursementDAO - getAllReimbursements() invoked
+05 Dec 2021 - 11:05:38.593 [qtp388043093-11] INFO  com.revature.main.Main - GETrequest received to the /checkloginstatus endpoint
+05 Dec 2021 - 11:05:47.657 [qtp388043093-16] INFO  com.revature.main.Main - POSTrequest received to the /reimbursement/status endpoint
+05 Dec 2021 - 11:06:21.704 [qtp388043093-18] INFO  com.revature.main.Main - GETrequest received to the /checkloginstatus endpoint
+05 Dec 2021 - 11:06:28.532 [qtp388043093-11] INFO  com.revature.main.Main - POSTrequest received to the /reimbursement/status endpoint
+05 Dec 2021 - 11:06:47.101 [qtp388043093-25] INFO  com.revature.main.Main - POSTrequest received to the /reimbursement/status endpoint
+05 Dec 2021 - 11:07:57.814 [main] INFO  org.eclipse.jetty.util.log - Logging initialized @558ms to org.eclipse.jetty.util.log.Slf4jLog
+05 Dec 2021 - 11:08:15.384 [main] INFO  org.eclipse.jetty.util.log - Logging initialized @542ms to org.eclipse.jetty.util.log.Slf4jLog
+05 Dec 2021 - 11:08:26.571 [qtp388043093-24] INFO  com.revature.main.Main - POSTrequest received to the /login endpoint
+05 Dec 2021 - 11:08:26.759 [qtp388043093-24] INFO  com.revature.service.UserService - userLogin(username, password)
+05 Dec 2021 - 11:08:26.760 [qtp388043093-24] INFO  com.revature.dao.UserDAO - userLogin(username, password) invoked
+05 Dec 2021 - 11:08:38.545 [qtp388043093-13] INFO  com.revature.main.Main - POSTrequest received to the /reimbursement/status endpoint
+05 Dec 2021 - 11:09:03.664 [qtp388043093-14] INFO  com.revature.main.Main - POSTrequest received to the /reimbursement/status endpoint
+05 Dec 2021 - 11:09:15.069 [qtp388043093-18] INFO  com.revature.main.Main - POSTrequest received to the /logout endpoint
+05 Dec 2021 - 11:09:15.308 [qtp388043093-17] INFO  com.revature.main.Main - GETrequest received to the /checkloginstatus endpoint
+05 Dec 2021 - 11:09:16.679 [qtp388043093-18] INFO  com.revature.main.Main - POSTrequest received to the /login endpoint
+05 Dec 2021 - 11:09:16.682 [qtp388043093-18] INFO  com.revature.service.UserService - userLogin(username, password)
+05 Dec 2021 - 11:09:16.682 [qtp388043093-18] INFO  com.revature.dao.UserDAO - userLogin(username, password) invoked
+05 Dec 2021 - 11:09:16.970 [qtp388043093-17] INFO  com.revature.main.Main - GETrequest received to the /checkloginstatus endpoint
+05 Dec 2021 - 11:09:16.982 [qtp388043093-18] INFO  com.revature.main.Main - GETrequest received to the /allreimbursements endpoint
+05 Dec 2021 - 11:09:16.982 [qtp388043093-18] INFO  com.revature.dao.ReimbursementDAO - getAllReimbursements() invoked
+05 Dec 2021 - 11:09:24.184 [qtp388043093-17] INFO  com.revature.main.Main - GETrequest received to the /checkloginstatus endpoint
+05 Dec 2021 - 11:09:37.150 [qtp388043093-18] INFO  com.revature.main.Main - POSTrequest received to the /reimbursement/status endpoint
+05 Dec 2021 - 11:09:53.022 [main] INFO  org.eclipse.jetty.util.log - Logging initialized @549ms to org.eclipse.jetty.util.log.Slf4jLog
+05 Dec 2021 - 11:10:20.692 [main] INFO  org.eclipse.jetty.util.log - Logging initialized @538ms to org.eclipse.jetty.util.log.Slf4jLog
+05 Dec 2021 - 11:10:27.039 [qtp388043093-17] INFO  com.revature.main.Main - POSTrequest received to the /login endpoint
+05 Dec 2021 - 11:10:27.252 [qtp388043093-17] INFO  com.revature.service.UserService - userLogin(username, password)
+05 Dec 2021 - 11:10:27.253 [qtp388043093-17] INFO  com.revature.dao.UserDAO - userLogin(username, password) invoked
+05 Dec 2021 - 11:10:35.301 [qtp388043093-13] INFO  com.revature.main.Main - POSTrequest received to the /reimbursement/status endpoint
+05 Dec 2021 - 11:10:43.138 [qtp388043093-15] INFO  com.revature.main.Main - POSTrequest received to the /reimbursement/status endpoint
+05 Dec 2021 - 11:10:47.093 [qtp388043093-18] INFO  com.revature.main.Main - POSTrequest received to the /reimbursement/status endpoint
+05 Dec 2021 - 11:10:51.621 [qtp388043093-15] INFO  com.revature.main.Main - POSTrequest received to the /reimbursement/status endpoint
+05 Dec 2021 - 11:11:03.216 [qtp388043093-14] INFO  com.revature.main.Main - POSTrequest received to the /reimbursement/status endpoint
+05 Dec 2021 - 11:11:07.791 [qtp388043093-15] INFO  com.revature.main.Main - POSTrequest received to the /reimbursement/status endpoint
+05 Dec 2021 - 11:11:20.935 [qtp388043093-18] INFO  com.revature.main.Main - POSTrequest received to the /reimbursement/status endpoint
+05 Dec 2021 - 11:12:16.931 [qtp388043093-11] INFO  com.revature.main.Main - GETrequest received to the /checkloginstatus endpoint
+05 Dec 2021 - 11:12:19.444 [qtp388043093-15] INFO  com.revature.main.Main - GETrequest received to the /checkloginstatus endpoint
+05 Dec 2021 - 11:12:22.132 [qtp388043093-17] INFO  com.revature.main.Main - POSTrequest received to the /login endpoint
+05 Dec 2021 - 11:12:22.136 [qtp388043093-17] INFO  com.revature.service.UserService - userLogin(username, password)
+05 Dec 2021 - 11:12:22.137 [qtp388043093-17] INFO  com.revature.dao.UserDAO - userLogin(username, password) invoked
+05 Dec 2021 - 11:12:22.424 [qtp388043093-15] INFO  com.revature.main.Main - GETrequest received to the /checkloginstatus endpoint
+05 Dec 2021 - 11:12:22.431 [qtp388043093-17] INFO  com.revature.main.Main - GETrequest received to the /allreimbursements endpoint
+05 Dec 2021 - 11:12:22.431 [qtp388043093-17] INFO  com.revature.dao.ReimbursementDAO - getAllReimbursements() invoked
+05 Dec 2021 - 11:12:24.439 [qtp388043093-15] INFO  com.revature.main.Main - GETrequest received to the /checkloginstatus endpoint
+05 Dec 2021 - 11:12:32.206 [qtp388043093-17] INFO  com.revature.main.Main - POSTrequest received to the /reimbursement/status endpoint
+05 Dec 2021 - 11:12:47.073 [qtp388043093-15] INFO  com.revature.main.Main - POSTrequest received to the /reimbursement/status endpoint
+05 Dec 2021 - 11:12:50.824 [qtp388043093-17] INFO  com.revature.main.Main - POSTrequest received to the /reimbursement/status endpoint
+05 Dec 2021 - 11:12:54.480 [qtp388043093-15] INFO  com.revature.main.Main - POSTrequest received to the /reimbursement/status endpoint
+05 Dec 2021 - 11:13:00.011 [qtp388043093-17] INFO  com.revature.main.Main - GETrequest received to the /checkloginstatus endpoint
+05 Dec 2021 - 11:13:02.316 [qtp388043093-15] INFO  com.revature.main.Main - POSTrequest received to the /reimbursement/status endpoint
+05 Dec 2021 - 11:13:08.845 [qtp388043093-17] INFO  com.revature.main.Main - GETrequest received to the /checkloginstatus endpoint
+05 Dec 2021 - 11:13:59.252 [qtp388043093-12] INFO  com.revature.main.Main - GETrequest received to the /checkloginstatus endpoint
+05 Dec 2021 - 11:14:01.751 [qtp388043093-15] INFO  com.revature.main.Main - POSTrequest received to the /reimbursement/status endpoint
+05 Dec 2021 - 11:14:15.338 [qtp388043093-25] INFO  com.revature.main.Main - POSTrequest received to the /reimbursement/status endpoint
+05 Dec 2021 - 11:17:06.724 [main] INFO  org.eclipse.jetty.util.log - Logging initialized @541ms to org.eclipse.jetty.util.log.Slf4jLog
+05 Dec 2021 - 11:17:21.738 [qtp388043093-24] INFO  com.revature.main.Main - POSTrequest received to the /login endpoint
+05 Dec 2021 - 11:17:21.932 [qtp388043093-24] INFO  com.revature.service.UserService - userLogin(username, password)
+05 Dec 2021 - 11:17:21.933 [qtp388043093-24] INFO  com.revature.dao.UserDAO - userLogin(username, password) invoked
+05 Dec 2021 - 11:17:30.835 [qtp388043093-15] INFO  com.revature.main.Main - POSTrequest received to the /reimbursement/status endpoint
+05 Dec 2021 - 11:17:55.407 [qtp388043093-16] INFO  com.revature.main.Main - GETrequest received to the /checkloginstatus endpoint
+05 Dec 2021 - 11:17:58.066 [qtp388043093-13] INFO  com.revature.main.Main - GETrequest received to the /checkloginstatus endpoint
+05 Dec 2021 - 11:17:59.720 [qtp388043093-17] INFO  com.revature.main.Main - POSTrequest received to the /login endpoint
+05 Dec 2021 - 11:17:59.723 [qtp388043093-17] INFO  com.revature.service.UserService - userLogin(username, password)
+05 Dec 2021 - 11:17:59.724 [qtp388043093-17] INFO  com.revature.dao.UserDAO - userLogin(username, password) invoked
+05 Dec 2021 - 11:18:00.032 [qtp388043093-13] INFO  com.revature.main.Main - GETrequest received to the /checkloginstatus endpoint
+05 Dec 2021 - 11:18:00.044 [qtp388043093-17] INFO  com.revature.main.Main - GETrequest received to the /allreimbursements endpoint
+05 Dec 2021 - 11:18:00.045 [qtp388043093-17] INFO  com.revature.dao.ReimbursementDAO - getAllReimbursements() invoked
+05 Dec 2021 - 11:18:10.098 [qtp388043093-13] INFO  com.revature.main.Main - GETrequest received to the /checkloginstatus endpoint
+05 Dec 2021 - 11:19:31.392 [qtp388043093-15] INFO  com.revature.main.Main - POSTrequest received to the /reimbursement/status endpoint
+05 Dec 2021 - 11:22:41.322 [qtp388043093-16] INFO  com.revature.main.Main - GETrequest received to the /checkloginstatus endpoint
+05 Dec 2021 - 11:24:35.502 [main] INFO  org.eclipse.jetty.util.log - Logging initialized @588ms to org.eclipse.jetty.util.log.Slf4jLog
+05 Dec 2021 - 11:24:50.844 [qtp388043093-13] INFO  com.revature.main.Main - POSTrequest received to the /login endpoint
+05 Dec 2021 - 11:24:51.022 [qtp388043093-13] INFO  com.revature.service.UserService - userLogin(username, password)
+05 Dec 2021 - 11:24:51.023 [qtp388043093-13] INFO  com.revature.dao.UserDAO - userLogin(username, password) invoked
+05 Dec 2021 - 11:24:57.939 [qtp388043093-17] INFO  com.revature.main.Main - POSTrequest received to the /updateReimbursementStatus endpoint
+05 Dec 2021 - 11:25:28.361 [qtp388043093-14] INFO  com.revature.main.Main - GETrequest received to the /checkloginstatus endpoint
+05 Dec 2021 - 11:26:05.363 [qtp388043093-11] INFO  com.revature.main.Main - GETrequest received to the /checkloginstatus endpoint
+05 Dec 2021 - 11:26:07.645 [qtp388043093-16] INFO  com.revature.main.Main - POSTrequest received to the /login endpoint
+05 Dec 2021 - 11:26:07.649 [qtp388043093-16] INFO  com.revature.service.UserService - userLogin(username, password)
+05 Dec 2021 - 11:26:07.650 [qtp388043093-16] INFO  com.revature.dao.UserDAO - userLogin(username, password) invoked
+05 Dec 2021 - 11:26:07.874 [qtp388043093-14] INFO  com.revature.main.Main - GETrequest received to the /checkloginstatus endpoint
+05 Dec 2021 - 11:26:07.891 [qtp388043093-16] INFO  com.revature.main.Main - GETrequest received to the /allreimbursements endpoint
+05 Dec 2021 - 11:26:10.359 [qtp388043093-12] INFO  com.revature.main.Main - GETrequest received to the /checkloginstatus endpoint
+05 Dec 2021 - 11:26:16.512 [qtp388043093-16] INFO  com.revature.main.Main - GETrequest received to the /checkloginstatus endpoint
+05 Dec 2021 - 11:26:18.094 [qtp388043093-13] INFO  com.revature.main.Main - POSTrequest received to the /login endpoint
+05 Dec 2021 - 11:26:18.095 [qtp388043093-13] INFO  com.revature.service.UserService - userLogin(username, password)
+05 Dec 2021 - 11:26:18.095 [qtp388043093-13] INFO  com.revature.dao.UserDAO - userLogin(username, password) invoked
+05 Dec 2021 - 11:26:18.508 [qtp388043093-16] INFO  com.revature.main.Main - GETrequest received to the /checkloginstatus endpoint
+05 Dec 2021 - 11:26:18.517 [qtp388043093-13] INFO  com.revature.main.Main - GETrequest received to the /allreimbursements endpoint
+05 Dec 2021 - 11:26:18.517 [qtp388043093-13] INFO  com.revature.dao.ReimbursementDAO - getAllReimbursements() invoked
+05 Dec 2021 - 11:26:39.384 [qtp388043093-16] INFO  com.revature.main.Main - GETrequest received to the /checkloginstatus endpoint
+05 Dec 2021 - 11:26:55.493 [qtp388043093-13] INFO  com.revature.main.Main - POSTrequest received to the /updateReimbursementStatus endpoint
+05 Dec 2021 - 11:27:14.113 [qtp388043093-16] INFO  com.revature.main.Main - GETrequest received to the /checkloginstatus endpoint
+05 Dec 2021 - 11:29:50.367 [qtp388043093-11] INFO  com.revature.main.Main - POSTrequest received to the /updateReimbursementStatus endpoint
+05 Dec 2021 - 11:32:38.557 [qtp388043093-17] INFO  com.revature.main.Main - GETrequest received to the /checkloginstatus endpoint
+05 Dec 2021 - 11:32:44.134 [qtp388043093-18] INFO  com.revature.main.Main - GETrequest received to the /checkloginstatus endpoint
+05 Dec 2021 - 11:32:49.623 [qtp388043093-12] INFO  com.revature.main.Main - POSTrequest received to the /logout endpoint
+05 Dec 2021 - 11:32:49.866 [qtp388043093-18] INFO  com.revature.main.Main - GETrequest received to the /checkloginstatus endpoint
+05 Dec 2021 - 11:32:53.119 [qtp388043093-12] INFO  com.revature.main.Main - POSTrequest received to the /login endpoint
+05 Dec 2021 - 11:32:53.125 [qtp388043093-12] INFO  com.revature.service.UserService - userLogin(username, password)
+05 Dec 2021 - 11:32:53.126 [qtp388043093-12] INFO  com.revature.dao.UserDAO - userLogin(username, password) invoked
+05 Dec 2021 - 11:32:53.463 [qtp388043093-18] INFO  com.revature.main.Main - GETrequest received to the /checkloginstatus endpoint
+05 Dec 2021 - 11:32:53.471 [qtp388043093-12] INFO  com.revature.main.Main - GETrequest received to the /allreimbursements endpoint
+05 Dec 2021 - 11:32:53.475 [qtp388043093-12] INFO  com.revature.dao.ReimbursementDAO - getAllReimbursements() invoked
+05 Dec 2021 - 11:32:55.232 [qtp388043093-18] INFO  com.revature.main.Main - GETrequest received to the /checkloginstatus endpoint
+05 Dec 2021 - 11:33:02.532 [qtp388043093-12] INFO  com.revature.main.Main - POSTrequest received to the /updateReimbursementStatus endpoint
+05 Dec 2021 - 11:33:13.794 [qtp388043093-18] INFO  com.revature.main.Main - POSTrequest received to the /updateReimbursementStatus endpoint
+05 Dec 2021 - 11:33:21.199 [qtp388043093-12] INFO  com.revature.main.Main - GETrequest received to the /checkloginstatus endpoint
+05 Dec 2021 - 11:33:21.211 [qtp388043093-18] INFO  com.revature.main.Main - GETrequest received to the /allreimbursements endpoint
+05 Dec 2021 - 11:33:21.212 [qtp388043093-18] INFO  com.revature.dao.ReimbursementDAO - getAllReimbursements() invoked
+05 Dec 2021 - 11:34:51.793 [qtp388043093-11] INFO  com.revature.main.Main - GETrequest received to the /checkloginstatus endpoint
+05 Dec 2021 - 11:35:06.213 [qtp388043093-14] INFO  com.revature.main.Main - GETrequest received to the /checkloginstatus endpoint
+05 Dec 2021 - 11:35:17.909 [qtp388043093-17] INFO  com.revature.main.Main - POSTrequest received to the /updateReimbursementStatus endpoint
+05 Dec 2021 - 11:54:51.438 [main] INFO  org.eclipse.jetty.util.log - Logging initialized @660ms to org.eclipse.jetty.util.log.Slf4jLog
+05 Dec 2021 - 11:55:00.678 [qtp388043093-14] INFO  com.revature.main.Main - POSTrequest received to the /login endpoint
+05 Dec 2021 - 11:55:00.871 [qtp388043093-14] INFO  com.revature.service.UserService - userLogin(username, password)
+05 Dec 2021 - 11:55:00.871 [qtp388043093-14] INFO  com.revature.dao.UserDAO - userLogin(username, password) invoked
+05 Dec 2021 - 11:56:07.507 [qtp388043093-14] INFO  com.revature.main.Main - POSTrequest received to the /updateReimbursementStatus endpoint
+05 Dec 2021 - 11:56:12.890 [qtp388043093-11] INFO  com.revature.main.Main - POSTrequest received to the /updateReimbursementStatus endpoint
+05 Dec 2021 - 11:56:23.356 [qtp388043093-12] INFO  com.revature.main.Main - POSTrequest received to the /updateReimbursementStatus endpoint
+05 Dec 2021 - 11:56:45.319 [main] INFO  org.eclipse.jetty.util.log - Logging initialized @640ms to org.eclipse.jetty.util.log.Slf4jLog
+05 Dec 2021 - 12:04:24.909 [qtp802581203-18] INFO  com.revature.main.Main - GETrequest received to the /checkloginstatus endpoint
+05 Dec 2021 - 12:04:30.834 [qtp802581203-13] INFO  com.revature.main.Main - GETrequest received to the /checkloginstatus endpoint
+05 Dec 2021 - 12:04:32.344 [qtp802581203-19] INFO  com.revature.main.Main - POSTrequest received to the /login endpoint
+05 Dec 2021 - 12:04:32.427 [qtp802581203-19] INFO  com.revature.service.UserService - userLogin(username, password)
+05 Dec 2021 - 12:04:32.427 [qtp802581203-19] INFO  com.revature.dao.UserDAO - userLogin(username, password) invoked
+05 Dec 2021 - 12:04:33.188 [qtp802581203-16] INFO  com.revature.main.Main - GETrequest received to the /checkloginstatus endpoint
+05 Dec 2021 - 12:04:33.201 [qtp802581203-19] INFO  com.revature.main.Main - GETrequest received to the /allreimbursements endpoint
+05 Dec 2021 - 12:04:33.203 [qtp802581203-19] INFO  com.revature.dao.ReimbursementDAO - getAllReimbursements() invoked
+05 Dec 2021 - 12:04:35.283 [qtp802581203-16] INFO  com.revature.main.Main - GETrequest received to the /checkloginstatus endpoint
+05 Dec 2021 - 12:04:47.914 [qtp802581203-19] INFO  com.revature.main.Main - POSTrequest received to the /updateReimbursementStatus endpoint
+05 Dec 2021 - 12:05:34.201 [qtp802581203-14] INFO  com.revature.main.Main - GETrequest received to the /checkloginstatus endpoint
+05 Dec 2021 - 12:06:15.797 [qtp802581203-15] INFO  com.revature.main.Main - GETrequest received to the /checkloginstatus endpoint
+05 Dec 2021 - 12:06:26.058 [qtp802581203-16] INFO  com.revature.main.Main - POSTrequest received to the /updateReimbursementStatus endpoint
+05 Dec 2021 - 12:07:02.425 [qtp802581203-12] INFO  com.revature.main.Main - GETrequest received to the /checkloginstatus endpoint
+05 Dec 2021 - 12:07:11.545 [qtp802581203-18] INFO  com.revature.main.Main - POSTrequest received to the /updateReimbursementStatus endpoint
+05 Dec 2021 - 12:07:29.499 [qtp802581203-14] INFO  com.revature.main.Main - GETrequest received to the /checkloginstatus endpoint
+05 Dec 2021 - 12:07:41.564 [qtp802581203-18] INFO  com.revature.main.Main - POSTrequest received to the /updateReimbursementStatus endpoint
+05 Dec 2021 - 12:08:00.263 [qtp802581203-14] INFO  com.revature.main.Main - GETrequest received to the /checkloginstatus endpoint
+05 Dec 2021 - 12:08:11.099 [qtp802581203-18] INFO  com.revature.main.Main - POSTrequest received to the /updateReimbursementStatus endpoint
+05 Dec 2021 - 12:10:22.715 [main] INFO  org.eclipse.jetty.util.log - Logging initialized @546ms to org.eclipse.jetty.util.log.Slf4jLog
+05 Dec 2021 - 12:10:31.674 [qtp388043093-13] INFO  com.revature.main.Main - POSTrequest received to the /login endpoint
+05 Dec 2021 - 12:10:31.869 [qtp388043093-13] INFO  com.revature.service.UserService - userLogin(username, password)
+05 Dec 2021 - 12:10:31.869 [qtp388043093-13] INFO  com.revature.dao.UserDAO - userLogin(username, password) invoked
+05 Dec 2021 - 12:10:45.063 [qtp388043093-18] INFO  com.revature.main.Main - POSTrequest received to the /updateReimbursementStatus endpoint
+05 Dec 2021 - 12:10:50.750 [qtp388043093-17] INFO  com.revature.main.Main - POSTrequest received to the /updateReimbursementStatus endpoint
+05 Dec 2021 - 12:10:59.603 [qtp388043093-18] INFO  com.revature.main.Main - POSTrequest received to the /updateReimbursementStatus endpoint
+05 Dec 2021 - 12:11:19.342 [qtp388043093-14] INFO  com.revature.main.Main - POSTrequest received to the /logout endpoint
+05 Dec 2021 - 12:11:19.635 [qtp388043093-18] INFO  com.revature.main.Main - GETrequest received to the /checkloginstatus endpoint
+05 Dec 2021 - 12:11:20.416 [qtp388043093-24] INFO  com.revature.main.Main - POSTrequest received to the /login endpoint
+05 Dec 2021 - 12:11:20.418 [qtp388043093-24] INFO  com.revature.service.UserService - userLogin(username, password)
+05 Dec 2021 - 12:11:20.419 [qtp388043093-24] INFO  com.revature.dao.UserDAO - userLogin(username, password) invoked
+05 Dec 2021 - 12:11:20.710 [qtp388043093-18] INFO  com.revature.main.Main - GETrequest received to the /checkloginstatus endpoint
+05 Dec 2021 - 12:11:20.719 [qtp388043093-24] INFO  com.revature.main.Main - GETrequest received to the /allreimbursements endpoint
+05 Dec 2021 - 12:11:20.720 [qtp388043093-24] INFO  com.revature.dao.ReimbursementDAO - getAllReimbursements() invoked
+05 Dec 2021 - 12:11:22.372 [qtp388043093-18] INFO  com.revature.main.Main - GETrequest received to the /checkloginstatus endpoint
+05 Dec 2021 - 12:11:30.955 [qtp388043093-24] INFO  com.revature.main.Main - POSTrequest received to the /updateReimbursementStatus endpoint
+05 Dec 2021 - 12:11:38.600 [qtp388043093-12] INFO  com.revature.main.Main - POSTrequest received to the /updateReimbursementStatus endpoint
+05 Dec 2021 - 12:12:01.522 [qtp388043093-24] INFO  com.revature.main.Main - POSTrequest received to the /updateReimbursementStatus endpoint
+05 Dec 2021 - 12:13:52.867 [qtp388043093-12] INFO  com.revature.main.Main - GETrequest received to the /checkloginstatus endpoint
+05 Dec 2021 - 12:14:03.174 [qtp388043093-17] INFO  com.revature.main.Main - OPTIONSrequest received to the /updateReimbursementStatus endpoint
+05 Dec 2021 - 12:14:03.190 [qtp388043093-18] INFO  com.revature.main.Main - PATCHrequest received to the /updateReimbursementStatus endpoint
+05 Dec 2021 - 12:14:18.632 [qtp388043093-17] INFO  com.revature.main.Main - GETrequest received to the /checkloginstatus endpoint
+05 Dec 2021 - 12:14:27.651 [qtp388043093-18] INFO  com.revature.main.Main - POSTrequest received to the /updateReimbursementStatus endpoint
+05 Dec 2021 - 12:15:43.585 [qtp388043093-11] INFO  com.revature.main.Main - GETrequest received to the /checkloginstatus endpoint
+05 Dec 2021 - 12:16:05.504 [qtp388043093-13] INFO  com.revature.main.Main - GETrequest received to the /checkloginstatus endpoint
+05 Dec 2021 - 12:16:05.520 [qtp388043093-18] INFO  com.revature.main.Main - GETrequest received to the /allreimbursements endpoint
+05 Dec 2021 - 12:16:05.520 [qtp388043093-18] INFO  com.revature.dao.ReimbursementDAO - getAllReimbursements() invoked
+05 Dec 2021 - 12:16:27.336 [qtp388043093-13] INFO  com.revature.main.Main - GETrequest received to the /checkloginstatus endpoint
+05 Dec 2021 - 12:17:00.104 [qtp388043093-24] INFO  com.revature.main.Main - GETrequest received to the /checkloginstatus endpoint
+05 Dec 2021 - 12:17:06.750 [qtp388043093-18] INFO  com.revature.main.Main - GETrequest received to the /checkloginstatus endpoint
+05 Dec 2021 - 12:17:06.762 [qtp388043093-24] INFO  com.revature.main.Main - GETrequest received to the /allreimbursements endpoint
+05 Dec 2021 - 12:17:06.764 [qtp388043093-24] INFO  com.revature.dao.ReimbursementDAO - getAllReimbursements() invoked
+05 Dec 2021 - 12:17:09.681 [qtp388043093-18] INFO  com.revature.main.Main - GETrequest received to the /checkloginstatus endpoint
+05 Dec 2021 - 12:17:17.074 [qtp388043093-24] INFO  com.revature.main.Main - POSTrequest received to the /updateReimbursementStatus endpoint
+05 Dec 2021 - 12:17:39.360 [qtp388043093-18] INFO  com.revature.main.Main - GETrequest received to the /checkloginstatus endpoint
+05 Dec 2021 - 12:21:37.067 [qtp388043093-12] INFO  com.revature.main.Main - POSTrequest received to the /logout endpoint
+05 Dec 2021 - 12:21:37.346 [qtp388043093-17] INFO  com.revature.main.Main - GETrequest received to the /checkloginstatus endpoint
+05 Dec 2021 - 12:21:41.463 [qtp388043093-24] INFO  com.revature.main.Main - POSTrequest received to the /login endpoint
+05 Dec 2021 - 12:21:41.470 [qtp388043093-24] INFO  com.revature.service.UserService - userLogin(username, password)
+05 Dec 2021 - 12:21:41.470 [qtp388043093-24] INFO  com.revature.dao.UserDAO - userLogin(username, password) invoked
+05 Dec 2021 - 12:21:41.815 [qtp388043093-17] INFO  com.revature.main.Main - GETrequest received to the /checkloginstatus endpoint
+05 Dec 2021 - 12:23:12.567 [qtp388043093-12] INFO  com.revature.main.Main - GETrequest received to the /checkloginstatus endpoint
+05 Dec 2021 - 12:23:15.078 [qtp388043093-15] INFO  com.revature.main.Main - POSTrequest received to the /logout endpoint
+05 Dec 2021 - 12:23:15.276 [qtp388043093-17] INFO  com.revature.main.Main - GETrequest received to the /checkloginstatus endpoint
+05 Dec 2021 - 12:23:17.861 [qtp388043093-15] INFO  com.revature.main.Main - POSTrequest received to the /login endpoint
+05 Dec 2021 - 12:23:17.863 [qtp388043093-15] INFO  com.revature.service.UserService - userLogin(username, password)
+05 Dec 2021 - 12:23:17.864 [qtp388043093-15] INFO  com.revature.dao.UserDAO - userLogin(username, password) invoked
+05 Dec 2021 - 12:23:18.132 [qtp388043093-17] INFO  com.revature.main.Main - GETrequest received to the /checkloginstatus endpoint
+05 Dec 2021 - 12:23:18.139 [qtp388043093-15] INFO  com.revature.main.Main - GETrequest received to the /allreimbursements endpoint
+05 Dec 2021 - 12:23:18.141 [qtp388043093-15] INFO  com.revature.dao.ReimbursementDAO - getAllReimbursements() invoked
+05 Dec 2021 - 12:23:20.911 [qtp388043093-17] INFO  com.revature.main.Main - GETrequest received to the /checkloginstatus endpoint
+05 Dec 2021 - 12:23:24.076 [qtp388043093-15] INFO  com.revature.main.Main - GETrequest received to the /checkloginstatus endpoint
+05 Dec 2021 - 12:23:24.082 [qtp388043093-17] INFO  com.revature.main.Main - GETrequest received to the /allreimbursements endpoint
+05 Dec 2021 - 12:23:24.082 [qtp388043093-17] INFO  com.revature.dao.ReimbursementDAO - getAllReimbursements() invoked
+05 Dec 2021 - 12:23:28.701 [qtp388043093-15] INFO  com.revature.main.Main - GETrequest received to the /checkloginstatus endpoint
+05 Dec 2021 - 12:23:37.581 [qtp388043093-17] INFO  com.revature.main.Main - POSTrequest received to the /updateReimbursementStatus endpoint
+05 Dec 2021 - 12:23:38.947 [qtp388043093-15] INFO  com.revature.main.Main - GETrequest received to the /checkloginstatus endpoint
