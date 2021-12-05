@@ -3,18 +3,35 @@
 <title>profile</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="style.css">
-<link rel = "stylesheet" href = "username.css">
 
+<link rel="stylesheet" href="profile.css">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
-<style>
-html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
-</style>
-<body class="w3-light-grey">
 
+<body >
+
+  <style>
+    table,
+    table th,
+    td {
+      border-collapse: collapse;
+    }
+    th,
+    td {
+      height: 40px;
+      width: 160px;
+      padding: 5px 10px;
+      vertical-align: middle;
+    }
+    th {
+      text-align: right;
+    }
+    td {
+      text-align: center;
+    }
+  </style>
   
 <!-- Top container -->
 <div class="w3-bar w3-top w3-deep-orange w3-large" style="z-index:4">
@@ -29,14 +46,14 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
       <h3> My Profile </h3><br>
     </div>
   </div>
-  <hr>
+<hr>
 
-  <div class="w3-bar-block">
-    <a href="home.html" id = "home-view" class="w3-bar-item w3-button w3-padding"><i class="fa fa-diamond fa-fw"></i>  Submit Request</a>
-    <a href="update-reimbursement.html" id = "pending-staus" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bullseye fa-fw"></i> Update Reimbursement</a>
-    <a href="past-history.html" id= "past-history" class="w3-bar-item w3-button w3-padding"><i class="fa fa-dashboard"></i> Past History</a>
-    <a href="profile.html" id = "home-view" class="w3-bar-item w3-button w3-padding w3-blue"><i class="fa fa-cog fa-fw"></i>  My Profile </a><br><br>
-  </div>
+<div class="w3-bar-block">
+  <a href="finance-manager.html" id = "finance-manager" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bullseye fa-fw"></i> All Reimbursements</a>
+  <a href="update-reimbursement.html" id= "update-reimb" class="w3-bar-item w3-button w3-padding"><i class="fa fa-dashboard"></i> Update Reimbursements</a>
+  <a href="past-history.html" id = "past-history" class="w3-bar-item w3-button w3-padding "><i class="fa fa-users fa-fw"></i>Past History</a> 
+  <a href="profile.html" id = "profile" class="w3-bar-item w3-button w3-padding w3-blue"><i class="fa fa-cog fa-fw"></i>  My Profile </a><br><br>
+</div>
 </nav>
 
 <!-- Overlay effect when opening sidebar on small screens -->
@@ -47,33 +64,55 @@ style="cursor:pointer" title="close side menu" id="myOverlay"></div>
 
 
 <div class="w3-main" style="margin-left:300px;margin-top:43px;">
-
-  <div class="container">
-    <div class="card">
-      <img src="https://lh3.googleusercontent.com/ytP9VP86DItizVX2YNA-xTYzV09IS7rh4WexVp7eilIcfHmm74B7odbcwD5DTXmL0PF42i2wnRKSFPBHlmSjCblWHDCD2oD1oaM1CGFcSd48VBKJfsCi4bS170PKxGwji8CPmehwPw=w200-h247-no" alt="Person" class="card__image">
-      <p class="card__name" id="role">Finance Manager</p>
-    </div>
- 
+  <br>
+  
     <div class="container">
-      <table id= "profile-table" class="table-fill">
-        <thead>
+      <div class="avatar-flip">
 
-            <tr>
-            <td class="text-left">First Name</td>
-            <td class="text-left">Last Name</td>
-            <td class="text-left">Email</td>
-            <td class="text-left">Role</td>
-            </tr>
+        <img src="https://www.puresportsny.com/wp-content/uploads/2015/12/TimDuncan.jpg" 
+        height="150" width="150">
+        <img src="https://i.gifer.com/JU4i.gif" height="150" width="150">
 
-          </thead>
-          <tbody class="table-hover"></tbody>
-     
-      </table>
+      </div>
 
-  </div>
-</nav>
+      <h4>MY PROFILE</h4>
+        <table id= "profile-table" class="table-fill">
+          <thead>
+      
+              <div id="outter" class="col1">
 
-<script src="../employee/profile.js"></script>
+                <tr style="color: blue; font-size: 16px; font-weight: bolder;">
+                  <td>First Name</td>
+                  <td>Last Name</td>
+                  <td>Email</td>
+                  <td>Role</td>
+                </tr>
+
+              </div>
+           
+            </thead>
+
+              <tbody style="color: green; font-size: 20px;"></tbody>
+       
+        </table>
+        <br>
+        <br>
+       <p> Lorem ipsum dolor sit, amet consectetur adipisicing elit. 
+        Maxime ipsa perferendis aliquid unde ipsum molestias at voluptate hic accusamus in. Ullam at soluta consectetur,
+         et porro facilis a natus rerum?</p>
+        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minus asperiores, excepturi repellendus esse, saepe totam dolores consequuntur quam quaerat, commodi nisi! 
+         Dolore quae esse quisquam saepe, ad voluptatem laboriosam assumenda.</p>
+
+    </div>
+    
+</div>
+
+    </div>
+
+    
+  </nav>
+
+  <script src="profile.js"></script>
 
 </body>
 </html>

@@ -3,7 +3,7 @@
 <title>all-reimbursement</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="finance-manager.css">
+<link rel="stylesheet" href="past-history.css">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
@@ -54,12 +54,6 @@ style="cursor:pointer" title="close side menu" id="myOverlay"></div>
 
 <div class="w3-main" style="margin-left:300px;margin-top:43px;">
     <h2>All Reimbursements</h2>
-  
-    
-    <div class="search-table-container" >
-        <input type="text" id="myInput" onkeyup="myFunction()" 
-        placeholder="Search for Type" title="Type in a name">
-    </div>
 
     <br>
     <br>
@@ -89,30 +83,7 @@ style="cursor:pointer" title="close side menu" id="myOverlay"></div>
     </div>
   </nav>
 
-<script src="finance-manager.js"></script>
-
-<script>
-    function myFunction() {
-
-      var input, filter, table, tr, td, i, txtValue;
-      input = document.getElementById("myInput");
-      filter = input.value.toUpperCase();
-      table = document.getElementById("all-reimbs-table");
-      tr = table.getElementsByTagName("tr");
-
-      for (i = 0; i < tr.length; i++) {
-        td = tr[i].getElementsByTagName("td")[4];
-        if (td) {
-          txtValue = td.textContent || td.innerText;
-          if (txtValue.toUpperCase().indexOf(filter) > -1) {
-            tr[i].style.display = "";
-          } else {
-            tr[i].style.display = "none";
-          }
-        }       
-      }
-    }
-    </script>
+<script src="past-history.js"></script>
 
 </body>
 </html>
