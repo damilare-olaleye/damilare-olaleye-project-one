@@ -30,20 +30,22 @@ public class ReimbursementDAO implements ReimbursementInterfaceDAO {
 
 			String sql = "SELECT * FROM reimbursement ORDER BY reimbursement_status";
 
-			PreparedStatement pstmt = con.prepareStatement(sql);
+			try (PreparedStatement pstmt = con.prepareStatement(sql)) {
+				ResultSet rs = pstmt.executeQuery();
 
-			ResultSet rs = pstmt.executeQuery();
+				while (rs.next()) {
 
-			while (rs.next()) {
+					reimbursements.add(new Reimbursement(rs.getInt("reimbursement_id"),
+							rs.getString("reimbursement_submitted"), rs.getString("reimbursement_resolved"),
+							rs.getString("reimbursement_status"), rs.getString("reimbursement_type"),
+							rs.getString("reimbursement_description"), rs.getInt("reimbursement_amount"),
+							rs.getInt("reimbursement_author"), rs.getInt("reimbursement_resolver")));
+				}
 
-				reimbursements.add(new Reimbursement(rs.getInt("reimbursement_id"),
-						rs.getString("reimbursement_submitted"), rs.getString("reimbursement_resolved"),
-						rs.getString("reimbursement_status"), rs.getString("reimbursement_type"),
-						rs.getString("reimbursement_description"), rs.getInt("reimbursement_amount"),
-						rs.getInt("reimbursement_author"), rs.getInt("reimbursement_resolver")));
+				return reimbursements;
+			} catch (SQLException e) {
+				throw new SQLException("No reimbursement is available at this time, please try again!");
 			}
-
-			return reimbursements;
 
 		} catch (SQLException e) {
 			throw new SQLException("No reimbursement is available at this time, please try again!");
@@ -63,30 +65,33 @@ public class ReimbursementDAO implements ReimbursementInterfaceDAO {
 
 			con.setAutoCommit(false);
 
-			PreparedStatement pstmt = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+			try (PreparedStatement pstmt = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
 
-			pstmt.setString(1, type);
-			pstmt.setDouble(2, amount);
-			pstmt.setString(3, description);
-			pstmt.setInt(4, author);
-			pstmt.setBinaryStream(5, receipt);
+				pstmt.setString(1, type);
+				pstmt.setDouble(2, amount);
+				pstmt.setString(3, description);
+				pstmt.setInt(4, author);
+				pstmt.setBinaryStream(5, receipt);
 
-			int numberOfInsertedRecords = pstmt.executeUpdate();
+				int numberOfInsertedRecords = pstmt.executeUpdate();
 
-			if (numberOfInsertedRecords != 1) {
-				throw new SQLException("Issue occurred when adding reimbursement");
+				if (numberOfInsertedRecords != 1) {
+					throw new SQLException("Issue occurred when adding reimbursement");
+				}
+
+				ResultSet rs = pstmt.getGeneratedKeys();
+
+				rs.next();
+				int generatedId = rs.getInt(1);
+
+				con.commit();
+
+				return new Reimbursement(generatedId, rs.getString("reimbursement_submitted"),
+						rs.getString("reimbursement_resolved"), description, type, rs.getString("reimbursement_status"),
+						amount, author, rs.getInt("reimbursement_resolver"));
+			} catch (SQLException e) {
+				throw new SQLException("Cannot complete request this time, please try again later!");
 			}
-
-			ResultSet rs = pstmt.getGeneratedKeys();
-
-			rs.next();
-			int generatedId = rs.getInt(1);
-
-			con.commit();
-
-			return new Reimbursement(generatedId, rs.getString("reimbursement_submitted"),
-					rs.getString("reimbursement_resolved"), description, type, rs.getString("reimbursement_status"),
-					amount, author, rs.getInt("reimbursement_resolver"));
 
 		} catch (SQLException e) {
 			throw new SQLException("Cannot complete request this time, please try again later!");
@@ -102,17 +107,21 @@ public class ReimbursementDAO implements ReimbursementInterfaceDAO {
 					+ "reimbursement_resolved = date_trunc('second',now()::timestamp), reimbursement_resolver = ? "
 					+ "WHERE reimbursement_id = ?;";
 
-			PreparedStatement pstmt = con.prepareStatement(sql);
+			try (PreparedStatement pstmt = con.prepareStatement(sql)) {
 
-			pstmt.setString(1, status);
-			pstmt.setInt(2, resolver);
-			pstmt.setInt(3, reimbursementId);
+				pstmt.setString(1, status);
+				pstmt.setInt(2, resolver);
+				pstmt.setInt(3, reimbursementId);
 
-			int updateReimbursements = pstmt.executeUpdate();
+				int updateReimbursements = pstmt.executeUpdate();
 
-			if (updateReimbursements != 1) {
+				if (updateReimbursements != 1) {
+					throw new SQLException("Cannot complete request this time, please try again later!");
+				}
+			} catch (SQLException e) {
 				throw new SQLException("Cannot complete request this time, please try again later!");
 			}
+
 		} catch (SQLException e) {
 			throw new SQLException("Cannot complete request this time, please try again later!");
 		}
@@ -127,19 +136,23 @@ public class ReimbursementDAO implements ReimbursementInterfaceDAO {
 					+ " reimbursement_description, reimbursement_amount, reimbursement_author,  reimbursement_resolver "
 					+ "   FROM Reimbursement WHERE reimbursement_id = ?";
 
-			PreparedStatement pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, id);
+			try (PreparedStatement pstmt = con.prepareStatement(sql)) {
 
-			ResultSet rs = pstmt.executeQuery();
+				pstmt.setInt(1, id);
 
-			if (rs.next()) {
-				return new Reimbursement(rs.getInt("reimbursement_id"), rs.getString("reimbursement_submitted"),
-						rs.getString("reimbursement_resolved"), rs.getString("reimbursement_status"),
-						rs.getString("reimbursement_type"), rs.getString("reimbursement_description"),
-						rs.getInt("reimbursement_amount"), rs.getInt("reimbursement_author"),
-						rs.getInt("reimbursement_resolver"));
-			} else {
-				return null;
+				ResultSet rs = pstmt.executeQuery();
+
+				if (rs.next()) {
+					return new Reimbursement(rs.getInt("reimbursement_id"), rs.getString("reimbursement_submitted"),
+							rs.getString("reimbursement_resolved"), rs.getString("reimbursement_status"),
+							rs.getString("reimbursement_type"), rs.getString("reimbursement_description"),
+							rs.getInt("reimbursement_amount"), rs.getInt("reimbursement_author"),
+							rs.getInt("reimbursement_resolver"));
+				} else {
+					return null;
+				}
+			} catch (SQLException e) {
+				throw new SQLException("Cannot complete request this time, please try again later");
 			}
 
 		} catch (SQLException e) {
@@ -158,21 +171,25 @@ public class ReimbursementDAO implements ReimbursementInterfaceDAO {
 					+ "reimbursement_receipt, reimbursement_author "
 					+ " FROM reimbursement WHERE reimbursement_resolver = ?";
 
-			PreparedStatement pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, resolverId);
+			try (PreparedStatement pstmt = con.prepareStatement(sql)) {
 
-			ResultSet rs = pstmt.executeQuery();
+				pstmt.setInt(1, resolverId);
 
-			while (rs.next()) {
+				ResultSet rs = pstmt.executeQuery();
 
-				reimbursement.add(new Reimbursement(rs.getInt("reimbursement_id"),
-						rs.getString("reimbursement_submitted"), rs.getString("reimbursement_resolved"),
-						rs.getString("reimbursement_status"), rs.getString("reimbursement_type"),
-						rs.getString("reimbursement_description"), rs.getInt("reimbursement_amount"),
-						rs.getInt("reimbursement_author"), rs.getInt("reimbursement_resolver")));
+				while (rs.next()) {
+
+					reimbursement.add(new Reimbursement(rs.getInt("reimbursement_id"),
+							rs.getString("reimbursement_submitted"), rs.getString("reimbursement_resolved"),
+							rs.getString("reimbursement_status"), rs.getString("reimbursement_type"),
+							rs.getString("reimbursement_description"), rs.getInt("reimbursement_amount"),
+							rs.getInt("reimbursement_author"), rs.getInt("reimbursement_resolver")));
+				}
+
+				return reimbursement;
+			} catch (SQLException e) {
+				throw new SQLException("Cannot complete request this time, please try again later!");
 			}
-
-			return reimbursement;
 
 		} catch (SQLException e) {
 			throw new SQLException("Cannot complete request this time, please try again later!");
@@ -188,22 +205,24 @@ public class ReimbursementDAO implements ReimbursementInterfaceDAO {
 
 			String sql = "SELECT * FROM reimbursement WHERE reimbursement_resolver = ?;";
 
-			PreparedStatement pstmt = con.prepareStatement(sql);
+			try (PreparedStatement pstmt = con.prepareStatement(sql)) {
+				pstmt.setInt(1, resolverId);
 
-			pstmt.setInt(1, resolverId);
+				ResultSet rs = pstmt.executeQuery();
 
-			ResultSet rs = pstmt.executeQuery();
+				while (rs.next()) {
 
-			while (rs.next()) {
+					reimbursement.add(new Reimbursement(rs.getInt("reimbursement_id"),
+							rs.getString("reimbursement_submitted"), rs.getString("reimbursement_resolved"),
+							rs.getString("reimbursement_status"), rs.getString("reimbursement_type"),
+							rs.getString("reimbursement_description"), rs.getInt("reimbursement_amount"),
+							rs.getInt("reimbursement_author"), rs.getInt("reimbursement_resolver")));
+				}
 
-				reimbursement.add(new Reimbursement(rs.getInt("reimbursement_id"),
-						rs.getString("reimbursement_submitted"), rs.getString("reimbursement_resolved"),
-						rs.getString("reimbursement_status"), rs.getString("reimbursement_type"),
-						rs.getString("reimbursement_description"), rs.getInt("reimbursement_amount"),
-						rs.getInt("reimbursement_author"), rs.getInt("reimbursement_resolver")));
+				return reimbursement;
+			} catch (SQLException e) {
+				throw new SQLException("Cannot complete request this time, please try again later");
 			}
-
-			return reimbursement;
 
 		} catch (SQLException e) {
 			throw new SQLException("Cannot complete request this time, please try again later");
@@ -220,19 +239,21 @@ public class ReimbursementDAO implements ReimbursementInterfaceDAO {
 
 			String sql = "SELECT reimbursement_receipt FROM reimbursement WHERE reimbursement_id = ?;";
 
-			PreparedStatement pstmt = con.prepareStatement(sql);
+			try (PreparedStatement pstmt = con.prepareStatement(sql)) {
+				pstmt.setInt(1, id);
 
-			pstmt.setInt(1, id);
+				ResultSet rs = pstmt.executeQuery();
 
-			ResultSet rs = pstmt.executeQuery();
+				if (rs.next()) {
+					InputStream image = rs.getBinaryStream("reimbursement_receipt");
 
-			if (rs.next()) {
-				InputStream image = rs.getBinaryStream("reimbursement_receipt");
+					return image;
+				}
 
-				return image;
+				return null;
+			} catch (SQLException e) {
+				throw new SQLException("Cannot complete request this time, please try again later");
 			}
-
-			return null;
 
 		} catch (SQLException e) {
 			throw new SQLException("Cannot complete request this time, please try again later");
@@ -254,23 +275,25 @@ public class ReimbursementDAO implements ReimbursementInterfaceDAO {
 					+ " reimbursement_amount,reimbursement_author, reimbursement_resolver "
 					+ " FROM reimbursement WHERE reimbursement_author = ? AND reimbursement_status = ?;";
 
-			PreparedStatement pstmt = con.prepareStatement(sql);
+			try (PreparedStatement pstmt = con.prepareStatement(sql)) {
+				pstmt.setInt(1, ReimbursementId);
+				pstmt.setString(2, pending);
 
-			pstmt.setInt(1, ReimbursementId);
-			pstmt.setString(2, pending);
+				ResultSet rs = pstmt.executeQuery();
 
-			ResultSet rs = pstmt.executeQuery();
+				while (rs.next()) {
 
-			while (rs.next()) {
+					reimbursement.add(new Reimbursement(rs.getInt("reimbursement_id"),
+							rs.getString("reimbursement_submitted"), rs.getString("reimbursement_resolved"),
+							rs.getString("reimbursement_status"), rs.getString("reimbursement_type"),
+							rs.getString("reimbursement_description"), rs.getInt("reimbursement_amount"),
+							rs.getInt("reimbursement_author"), rs.getInt("reimbursement_resolver")));
+				}
 
-				reimbursement.add(new Reimbursement(rs.getInt("reimbursement_id"),
-						rs.getString("reimbursement_submitted"), rs.getString("reimbursement_resolved"),
-						rs.getString("reimbursement_status"), rs.getString("reimbursement_type"),
-						rs.getString("reimbursement_description"), rs.getInt("reimbursement_amount"),
-						rs.getInt("reimbursement_author"), rs.getInt("reimbursement_resolver")));
+				return reimbursement;
+			} catch (SQLException e) {
+				throw new SQLException("Cannot complete this task at this time, please try again later!");
 			}
-
-			return reimbursement;
 
 		} catch (SQLException e) {
 			throw new SQLException("Cannot complete this task at this time, please try again later!");
@@ -291,22 +314,24 @@ public class ReimbursementDAO implements ReimbursementInterfaceDAO {
 					+ "reimbursement_description, reimbursement_amount, reimbursement_author, reimbursement_resolver "
 					+ "FROM reimbursement " + "WHERE reimbursement_author = ?;";
 
-			PreparedStatement pstmt = con.prepareStatement(sql);
+			try (PreparedStatement pstmt = con.prepareStatement(sql)) {
+				pstmt.setInt(1, rembAuthor);
 
-			pstmt.setInt(1, rembAuthor);
+				ResultSet rs = pstmt.executeQuery();
 
-			ResultSet rs = pstmt.executeQuery();
+				while (rs.next()) {
 
-			while (rs.next()) {
+					reimbursement.add(new Reimbursement(rs.getInt("reimbursement_id"),
+							rs.getString("reimbursement_submitted"), rs.getString("reimbursement_resolved"),
+							rs.getString("reimbursement_status"), rs.getString("reimbursement_type"),
+							rs.getString("reimbursement_description"), rs.getInt("reimbursement_amount"),
+							rs.getInt("reimbursement_author"), rs.getInt("reimbursement_resolver")));
+				}
 
-				reimbursement.add(new Reimbursement(rs.getInt("reimbursement_id"),
-						rs.getString("reimbursement_submitted"), rs.getString("reimbursement_resolved"),
-						rs.getString("reimbursement_status"), rs.getString("reimbursement_type"),
-						rs.getString("reimbursement_description"), rs.getInt("reimbursement_amount"),
-						rs.getInt("reimbursement_author"), rs.getInt("reimbursement_resolver")));
+				return reimbursement;
+			} catch (SQLException e) {
+				throw new SQLException("No reimbursement is available at this time, please try again!");
 			}
-
-			return reimbursement;
 
 		} catch (SQLException e) {
 			throw new SQLException("Cannot complete the tasks at this time, please try again later");
@@ -322,20 +347,22 @@ public class ReimbursementDAO implements ReimbursementInterfaceDAO {
 
 			String sql = "SELECT * FROM reimbursement WHERE reimbursement_status = ? ORDER BY reimbursement_submitted;";
 
-			PreparedStatement pstmt = con.prepareStatement(sql);
+			try (PreparedStatement pstmt = con.prepareStatement(sql)) {
+				pstmt.setString(1, showStatus);
 
-			pstmt.setString(1, showStatus);
+				ResultSet rs = pstmt.executeQuery();
 
-			ResultSet rs = pstmt.executeQuery();
-
-			if (rs.next()) {
-				return new Reimbursement(rs.getInt("reimbursement_id"), rs.getString("reimbursement_submitted"),
-						rs.getString("reimbursement_resolved"), rs.getString("reimbursement_status"),
-						rs.getString("reimbursement_type"), rs.getString("reimbursement_description"),
-						rs.getInt("reimbursement_amount"), rs.getInt("reimbursement_author"),
-						rs.getInt("reimbursement_resolver"));
-			} else {
-				return null;
+				if (rs.next()) {
+					return new Reimbursement(rs.getInt("reimbursement_id"), rs.getString("reimbursement_submitted"),
+							rs.getString("reimbursement_resolved"), rs.getString("reimbursement_status"),
+							rs.getString("reimbursement_type"), rs.getString("reimbursement_description"),
+							rs.getInt("reimbursement_amount"), rs.getInt("reimbursement_author"),
+							rs.getInt("reimbursement_resolver"));
+				} else {
+					return null;
+				}
+			} catch (SQLException e) {
+				throw new SQLException("No reimbursement is available at this time, please try again!");
 			}
 
 		} catch (SQLException e) {
@@ -355,20 +382,22 @@ public class ReimbursementDAO implements ReimbursementInterfaceDAO {
 
 			String sql = "SELECT * FROM reimbursement ORDER BY reimbursement_submitted;";
 
-			PreparedStatement pstmt = con.prepareStatement(sql);
+			try (PreparedStatement pstmt = con.prepareStatement(sql)) {
+				ResultSet rs = pstmt.executeQuery();
 
-			ResultSet rs = pstmt.executeQuery();
+				while (rs.next()) {
 
-			while (rs.next()) {
+					reimbursements.add(new Reimbursement(rs.getInt("reimbursement_id"),
+							rs.getString("reimbursement_submitted"), rs.getString("reimbursement_resolved"),
+							rs.getString("reimbursement_status"), rs.getString("reimbursement_type"),
+							rs.getString("reimbursement_description"), rs.getInt("reimbursement_amount"),
+							rs.getInt("reimbursement_author"), rs.getInt("reimbursement_resolver")));
+				}
 
-				reimbursements.add(new Reimbursement(rs.getInt("reimbursement_id"),
-						rs.getString("reimbursement_submitted"), rs.getString("reimbursement_resolved"),
-						rs.getString("reimbursement_status"), rs.getString("reimbursement_type"),
-						rs.getString("reimbursement_description"), rs.getInt("reimbursement_amount"),
-						rs.getInt("reimbursement_author"), rs.getInt("reimbursement_resolver")));
+				return reimbursements;
+			} catch (SQLException e) {
+				throw new SQLException("No reimbursement is available at this time, please try again!");
 			}
-
-			return reimbursements;
 
 		} catch (SQLException e) {
 			throw new SQLException("No reimbursement is available at this time, please try again!");
@@ -387,24 +416,26 @@ public class ReimbursementDAO implements ReimbursementInterfaceDAO {
 
 			String sql = "SELECT * FROM reimbursement WHERE reimbursement_resolver = ? AND reimbursement_amount >= ? AND reimbursement_amount <= ?;";
 
-			PreparedStatement pstmt = con.prepareStatement(sql);
+			try (PreparedStatement pstmt = con.prepareStatement(sql)) {
+				pstmt.setInt(1, resolver);
+				pstmt.setInt(2, greaterThan);
+				pstmt.setInt(3, lessThan);
 
-			pstmt.setInt(1, resolver);
-			pstmt.setInt(2, greaterThan);
-			pstmt.setInt(3, lessThan);
+				ResultSet rs = pstmt.executeQuery();
 
-			ResultSet rs = pstmt.executeQuery();
+				while (rs.next()) {
 
-			while (rs.next()) {
+					reimbursements.add(new Reimbursement(rs.getInt("reimbursement_id"),
+							rs.getString("reimbursement_submitted"), rs.getString("reimbursement_resolved"),
+							rs.getString("reimbursement_status"), rs.getString("reimbursement_type"),
+							rs.getString("reimbursement_description"), rs.getInt("reimbursement_amount"),
+							rs.getInt("reimbursement_author"), rs.getInt("reimbursement_resolver")));
+				}
 
-				reimbursements.add(new Reimbursement(rs.getInt("reimbursement_id"),
-						rs.getString("reimbursement_submitted"), rs.getString("reimbursement_resolved"),
-						rs.getString("reimbursement_status"), rs.getString("reimbursement_type"),
-						rs.getString("reimbursement_description"), rs.getInt("reimbursement_amount"),
-						rs.getInt("reimbursement_author"), rs.getInt("reimbursement_resolver")));
+				return reimbursements;
+			} catch (SQLException e) {
+				throw new SQLException("Cannot complete the task at this time, please try again later!");
 			}
-
-			return reimbursements;
 
 		} catch (SQLException e) {
 			throw new SQLException("Cannot complete the task at this time, please try again later!");
@@ -424,24 +455,26 @@ public class ReimbursementDAO implements ReimbursementInterfaceDAO {
 
 			String sql = "SELECT * FROM reimbursement WHERE reimbursement_status = ?;";
 
-			PreparedStatement pstmt = con.prepareStatement(sql);
+			try (PreparedStatement pstmt = con.prepareStatement(sql)) {
+				pstmt.setString(1, pending);
+				pstmt.setString(2, approved);
+				pstmt.setString(3, rejected);
 
-			pstmt.setString(1, pending);
-			pstmt.setString(2, approved);
-			pstmt.setString(3, rejected);
+				ResultSet rs = pstmt.executeQuery();
 
-			ResultSet rs = pstmt.executeQuery();
+				while (rs.next()) {
 
-			while (rs.next()) {
+					reimbursements.add(new Reimbursement(rs.getInt("reimbursement_id"),
+							rs.getString("reimbursement_submitted"), rs.getString("reimbursement_resolved"),
+							rs.getString("reimbursement_status"), rs.getString("reimbursement_type"),
+							rs.getString("reimbursement_description"), rs.getInt("reimbursement_amount"),
+							rs.getInt("reimbursement_author"), rs.getInt("reimbursement_resolver")));
+				}
 
-				reimbursements.add(new Reimbursement(rs.getInt("reimbursement_id"),
-						rs.getString("reimbursement_submitted"), rs.getString("reimbursement_resolved"),
-						rs.getString("reimbursement_status"), rs.getString("reimbursement_type"),
-						rs.getString("reimbursement_description"), rs.getInt("reimbursement_amount"),
-						rs.getInt("reimbursement_author"), rs.getInt("reimbursement_resolver")));
+				return reimbursements;
+			} catch (SQLException e) {
+				throw new SQLException("Cannot complete the task at this time, please try again later!");
 			}
-
-			return reimbursements;
 
 		} catch (SQLException e) {
 			throw new SQLException("Cannot complete the task at this time, please try again later!");
