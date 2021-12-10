@@ -27,7 +27,7 @@
 * Java 8
 * Junit (unit test)
 * Selenium and Cucumber (e2e test)
-* JavaScript, HTMl, and CSS (front-end)
+* JavaScript, HTML, and CSS (front-end)
 * Postgres (database)
 * AWS (RDS and EC2) and Jenkins for Deployment
 
