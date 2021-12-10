@@ -1,6 +1,6 @@
 window.addEventListener('load', async () => {
 
-  let res = await fetch('http://ec2-3-138-126-45.us-east-2.compute.amazonaws.com:8080/checkloginstatus', {
+  let res = await fetch('http://ec2-3-138-126-45.us-east-2.compute.amazonaws.com:8081/checkloginstatus', {
       credentials: 'include',
       method: 'GET'
   });
@@ -21,7 +21,7 @@ let logoutBtn = document.querySelector('#logout');
 
 logoutBtn.addEventListener('click', async() => {
 
-  let res = await fetch('http://ec2-3-138-126-45.us-east-2.compute.amazonaws.com:8080/logout', {
+  let res = await fetch('http://ec2-3-138-126-45.us-east-2.compute.amazonaws.com:8081/logout', {
     method: 'POST', 
     credentials: 'include'
   });
@@ -53,7 +53,7 @@ submitNewReibursementButton.addEventListener('click', async() => {
   formData.append('description', reimbursementDescriptionInput.value);
   formData.append('receipt', recieptFile);
 
-  let res = await fetch('http://ec2-3-138-126-45.us-east-2.compute.amazonaws.com:8080/submitRequest', {
+  let res = await fetch('http://ec2-3-138-126-45.us-east-2.compute.amazonaws.com:8081/submitRequest', {
     method: 'POST', 
     credentials: 'include',
     body: formData
@@ -94,7 +94,7 @@ async function getAndPopulateUserByUsername() {
 
   const searchInput = document.querySelector('#searchUsername');
 
-    let res = await fetch('http://ec2-3-138-126-45.us-east-2.compute.amazonaws.com:8080/userByUsername', {
+    let res = await fetch('http://ec2-3-138-126-45.us-east-2.compute.amazonaws.com:8081/userByUsername', {
       method: 'POST',
       credentials: 'include',
       body:JSON.stringify({

@@ -29,7 +29,7 @@ public class Main {
 		ExceptionMapper mapper = new ExceptionMapper();
 		mapper.mapExceptions(app);
 
-		app.start(8080);
+		app.start(8081);
 
 		Logger logger = LoggerFactory.getLogger(Main.class);
 

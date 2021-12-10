@@ -1,6 +1,6 @@
 window.addEventListener('load', async () => {
 
-    let res = await fetch('http://ec2-3-138-126-45.us-east-2.compute.amazonaws.com:8080/checkloginstatus', {
+    let res = await fetch('http://ec2-3-138-126-45.us-east-2.compute.amazonaws.com:8081/checkloginstatus', {
         credentials: 'include',
         method: 'GET'
     });
@@ -21,7 +21,7 @@ let logoutBtn = document.querySelector('#logout');
 
 logoutBtn.addEventListener('click', async() => {
 
-  let res = await fetch('http://ec2-3-138-126-45.us-east-2.compute.amazonaws.com:8080/logout', {
+  let res = await fetch('http://ec2-3-138-126-45.us-east-2.compute.amazonaws.com:8081/logout', {
     method: 'POST', 
     credentials: 'include'
   });
@@ -47,7 +47,7 @@ updateEmployeeReimbButton.addEventListener('click', async() => {
     formData.append('reimbId', reimbursementIdInput.value);
     formData.append('status', reimbStatusInput.value);
 
-    let res = await fetch('http://ec2-3-138-126-45.us-east-2.compute.amazonaws.com:8080/updateReimbursementStatus', {
+    let res = await fetch('http://ec2-3-138-126-45.us-east-2.compute.amazonaws.com:8081/updateReimbursementStatus', {
         method: 'POST', 
         credentials: 'include',
         body: formData

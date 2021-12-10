@@ -1,6 +1,6 @@
 window.addEventListener('load', async () => {
 
-    let res = await fetch('http://ec2-3-138-126-45.us-east-2.compute.amazonaws.com:8080/checkloginstatus', {
+    let res = await fetch('http://ec2-3-138-126-45.us-east-2.compute.amazonaws.com:8081/checkloginstatus', {
         method: 'GET',
         credentials: 'include'
     });
@@ -33,7 +33,7 @@ async function login() {
     const passwordInput = document.querySelector('#password');
 
     try {
-        let res = await fetch('http://ec2-3-138-126-45.us-east-2.compute.amazonaws.com:8080/login', {
+        let res = await fetch('http://ec2-3-138-126-45.us-east-2.compute.amazonaws.com:8081/login', {
             method: 'POST',
             credentials: 'include',
             body: JSON.stringify({
@@ -91,7 +91,7 @@ async function signup() {
     let roleInput = document.querySelector('#role');
 
     try {
-        let res = await fetch('http://ec2-3-138-126-45.us-east-2.compute.amazonaws.com:8080/signup', {
+        let res = await fetch('http://ec2-3-138-126-45.us-east-2.compute.amazonaws.com:8081/signup', {
             method: 'POST',
             credentials: 'include',
             body: JSON.stringify({

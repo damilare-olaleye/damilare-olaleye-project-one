@@ -1,6 +1,6 @@
 window.addEventListener('load', async () => {
 
-    let res = await fetch('http://ec2-3-138-126-45.us-east-2.compute.amazonaws.com:8080/checkloginstatus', {
+    let res = await fetch('http://ec2-3-138-126-45.us-east-2.compute.amazonaws.com:8081/checkloginstatus', {
         credentials: 'include',
         method: 'GET'
     });
@@ -22,7 +22,7 @@ let logoutBtn = document.querySelector('#logout');
 
 logoutBtn.addEventListener('click', async() => {
 
-  let res = await fetch('http://ec2-3-138-126-45.us-east-2.compute.amazonaws.com:8080/logout', {
+  let res = await fetch('http://ec2-3-138-126-45.us-east-2.compute.amazonaws.com:8081/logout', {
     method: 'POST', 
     credentials: 'include'
   });
@@ -38,7 +38,7 @@ logoutBtn.addEventListener('click', async() => {
 
 async function getAndPopulateReibursementStatus() {
 
-    let res = await fetch('http://ec2-3-138-126-45.us-east-2.compute.amazonaws.com:8080/myReimbursementStatus',{
+    let res = await fetch('http://ec2-3-138-126-45.us-east-2.compute.amazonaws.com:8081/myReimbursementStatus',{
         method: 'GET',
         credentials: 'include'
        
@@ -102,7 +102,7 @@ async function getAndPopulateReibursementStatus() {
           modalContentElement.innerHTML = '';
 
           let imageElement = document.createElement('img');
-          imageElement.setAttribute('src', `http://ec2-3-138-126-45.us-east-2.compute.amazonaws.com:8080/myPastTickets/${myStatus.reimbId}/image`);
+          imageElement.setAttribute('src', `http://ec2-3-138-126-45.us-east-2.compute.amazonaws.com:8081/myPastTickets/${myStatus.reimbId}/image`);
           console.log(imageElement);
           modalContentElement.appendChild(imageElement);
 

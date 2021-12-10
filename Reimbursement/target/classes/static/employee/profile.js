@@ -1,6 +1,6 @@
 window.addEventListener('load', async () => {
 
-    let res = await fetch('http://ec2-3-138-126-45.us-east-2.compute.amazonaws.com:8080/checkloginstatus', {
+    let res = await fetch('http://ec2-3-138-126-45.us-east-2.compute.amazonaws.com:8081/checkloginstatus', {
         credentials: 'include',
         method: 'GET'
     });
@@ -23,7 +23,7 @@ window.addEventListener('load', async () => {
 
   logoutBtn.addEventListener('click', async() => {
 
-    let res = await fetch('http://ec2-3-138-126-45.us-east-2.compute.amazonaws.com:8080/logout', {
+    let res = await fetch('http://ec2-3-138-126-45.us-east-2.compute.amazonaws.com:8081/logout', {
       method: 'POST', 
       credentials: 'include'
     });
@@ -39,7 +39,7 @@ window.addEventListener('load', async () => {
   
   async function populateProfileData() {
 
-    let res = await fetch('http://ec2-3-138-126-45.us-east-2.compute.amazonaws.com:8080/userProfile',{
+    let res = await fetch('http://ec2-3-138-126-45.us-east-2.compute.amazonaws.com:8081/userProfile',{
         credentials: 'include', 
         method: 'GET'
 
