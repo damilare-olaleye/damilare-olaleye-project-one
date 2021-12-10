@@ -7,8 +7,7 @@ public class AuthService {
 
 	public void authorizeEmployeeAndFinanceManger(User user) throws UnauthorizedException {
 
-		if (user == null
-				|| !(user.getRole().equals("Employee") || user.getRole().equals("Finance Manager"))) {
+		if (user == null || !(user.getRole().equals("Employee") || user.getRole().equals("Finance Manager"))) {
 			throw new UnauthorizedException("Sign in as an Employee or Finance Manager to access this resources");
 		}
 	}

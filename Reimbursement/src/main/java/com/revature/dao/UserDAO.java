@@ -20,6 +20,7 @@ public class UserDAO implements UserInterfaceDAO {
 
 	private Logger logger = LoggerFactory.getLogger(UserDAO.class);
 
+	@Override
 	public User getUserById(int id) throws SQLException {
 
 		logger.info("userLogin(username, password) invoked");
@@ -156,6 +157,7 @@ public class UserDAO implements UserInterfaceDAO {
 		}
 	}
 
+	@Override
 	public UserProfile getAllUserbyUsername(String username) throws SQLException {
 
 		logger.info("getalluser(...) invoked");
@@ -185,27 +187,25 @@ public class UserDAO implements UserInterfaceDAO {
 		}
 	}
 
+	@Override
 	public User updateUserProfile(UserDTO dto) throws SQLException {
 
 		logger.info("updateUserProfile(userId, dto) invoked");
 
 		try (Connection con = JDBCUtil.getConnection()) {
 			String sql = "UPDATE users SET employee_username = ?, employee_password = ?, "
-					+ "user_first_name = ?, user_last_name = ?, user_role = ?, user_email = ?"
-					+ "WHERE user_id = ?;";
+					+ "user_first_name = ?, user_last_name = ?, user_role = ?, user_email = ?" + "WHERE user_id = ?;";
 
 			PreparedStatement pstmt = con.prepareStatement(sql);
 
-			pstmt.setInt(1, dto.getUserId()	);
+			pstmt.setInt(1, dto.getUserId());
 			pstmt.setString(2, dto.getUsername());
 			pstmt.setString(3, dto.getPassword());
 			pstmt.setString(4, dto.getFirstName());
 			pstmt.setString(5, dto.getLastName());
 			pstmt.setString(6, dto.getRole());
 			pstmt.setString(7, dto.getEmail());
-				
-			
-			
+
 			int numberOfRecordsUpdated = pstmt.executeUpdate();
 
 			if (numberOfRecordsUpdated != 1) {
@@ -213,22 +213,22 @@ public class UserDAO implements UserInterfaceDAO {
 
 			}
 
-			return new User(dto.getUserId(), dto.getUsername(), dto.getPassword(),  dto.getFirstName(), dto.getLastName(),
-					 dto.getRole(), dto.getEmail());
+			return new User(dto.getUserId(), dto.getUsername(), dto.getPassword(), dto.getFirstName(),
+					dto.getLastName(), dto.getRole(), dto.getEmail());
 
 		} catch (SQLException e) {
 			throw new SQLException("Cannot update user profile at this time");
 		}
 	}
-	
+
+	@Override
 	public UserProfile showUserProfile(int userId) throws SQLException {
 
 		logger.info("updateUserProfile(userId) invoked");
 
 		try (Connection con = JDBCUtil.getConnection()) {
 			String sql = "SELECT employee_password , employee_username, user_first_name, user_last_name, user_role, user_email "
-					+ " FROM users "
-					+ "WHERE user_id = ?;";
+					+ " FROM users " + "WHERE user_id = ?;";
 
 			PreparedStatement pstmt = con.prepareStatement(sql);
 
@@ -237,7 +237,7 @@ public class UserDAO implements UserInterfaceDAO {
 			ResultSet rs = pstmt.executeQuery();
 
 			if (rs.next()) {
-				
+
 				String fName = rs.getString("user_first_name");
 				String lName = rs.getString("user_last_name");
 				String email = rs.getString("user_email");
@@ -252,6 +252,5 @@ public class UserDAO implements UserInterfaceDAO {
 			throw new SQLException("Cannot update user profile at this time");
 		}
 	}
-
 
 }

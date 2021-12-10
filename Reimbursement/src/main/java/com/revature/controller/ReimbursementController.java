@@ -71,7 +71,7 @@ public class ReimbursementController implements Controller {
 		this.reimbursementService.submitReimbursementRequest(currentlyLoggedInUser, reimbursementType, description,
 				amount, mimetype, content);
 
-		ctx.json("Ticket have been successfully submitted!");
+		ctx.json("Reimbursement have been successfully submitted!");
 		ctx.status(201);
 	};
 
@@ -113,7 +113,9 @@ public class ReimbursementController implements Controller {
 		User currentlyLoggedInUser = (User) ctx.req.getSession().getAttribute("currentuser");
 		this.authorizationService.authorizeEmployeeAndFinanceManger(currentlyLoggedInUser);
 
-		InputStream image = this.reimbursementService.getImageFromReimbursementById(currentlyLoggedInUser);
+		String reimbsId = ctx.pathParam("reimbId");
+		
+		InputStream image = this.reimbursementService.getImageFromReimbursementById(currentlyLoggedInUser, reimbsId);
 
 		Tika tika = new Tika();
 		String mimeType = tika.detect(image);
@@ -187,7 +189,7 @@ public class ReimbursementController implements Controller {
 
 		// EMPLOYEE
 		app.post("/submitRequest", submitRequest); // works
-		app.get("/myPastTickets", viewPastTickets); // works
+		app.get("/myPastTickets/{reimbId}/image", viewPastTickets); // works
 		app.get("/myPendingReimbursements", viewPendingReimbursements); // works
 		app.get("/myReimbursementStatus", viewReimbursementStatus); // works
 

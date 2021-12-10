@@ -10,6 +10,7 @@ import com.revature.controller.UserController;
 import com.revature.exceptions.ExceptionMapper;
 
 import io.javalin.Javalin;
+import io.javalin.http.staticfiles.Location;
 
 public class Main {
 
@@ -19,7 +20,8 @@ public class Main {
 
 			config.enableCorsForOrigin("http://localhost:5500", "http://127.0.0.1:5500");
 
-			// config.addStaticFiles("static", Location.CLASSPATH);
+			config.addStaticFiles("static", Location.CLASSPATH);
+			
 		});
 
 		mapControllers(app, new AuthController(), new UserController(), new ReimbursementController());

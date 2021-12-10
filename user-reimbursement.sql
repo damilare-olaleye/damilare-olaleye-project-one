@@ -11,11 +11,14 @@ CREATE TABLE users (
 	user_first_name VARCHAR(255) NOT NULL,
 	user_last_name VARCHAR(255) NOT NULL,
 	user_email VARCHAR(255) UNIQUE NOT NULL,
-	user_role VARCHAR(255)
+	user_role VARCHAR(255) NOT NULL
+--	status SMALLINT NOT NULL DEFAULT '0'
 
 );
 
 SELECT * FROM users;
+
+SELECT substring(employee_username, 1, 2) AS ExtractString FROM users WHERE employee_username = 'json';
 
 SELECT * FROM users WHERE employee_username = 'json1';
 
@@ -56,6 +59,21 @@ CREATE TABLE reimbursement (
 	
 );
 
+SELECT reimb.reimbursement_id, reimb.reimbursement_submitted, reimb.reimbursement_resolved, 
+reimb.reimbursement_status, reimb.reimbursement_type, reimb.reimbursement_description, 
+reimb.reimbursement_amount, reimb.reimbursement_receipt, reimb.reimbursement_author, u.employee_username as u_employee_username
+FROM reimbursement reimb 
+INNER JOIN users u 
+ON reimb.reimbursement_resolver  = u.user_id 
+INNER JOIN users u2 
+ON reimb.reimbursement_author = u2.user_id;
+
+
+
+select * from reimbursement;
+
+SELECT reimbursement_receipt FROM reimbursement WHERE reimbursement_id = '2';
+
 SELECT reimbursement_status, reimbursement_resolver, reimbursement_type 
 					reimbursement_description FROM reimbursement WHERE reimbursement_id = '1';
 				
@@ -78,7 +96,7 @@ SELECT * FROM reimbursement;
 
 /* insert into reimbursement */
 INSERT INTO reimbursement (reimbursement_id, reimbursement_submitted, reimbursement_resolved, reimbursement_status, 
-reimbursement_status_ID, reimbursement_type, reimbursement_description, reimbursement_amount, reimbursement_receipt, 
+reimbursement_status_ID, reimbursement_type, reimbursement_description, reimbursement_amount as money, reimbursement_receipt, 
 reimbursement_author, reimbursement_resolver, reimbursement_resolver_ID, user_id) 
 VALUES (1, '11-26-2021', '11-27-2021', 'Pending', 1, 'TRAVEL', 'Went eating with for team bonding', '$1240',
 		'', 1, 1, 1, 3);
@@ -107,7 +125,16 @@ reimbursement_author, reimbursement_resolver, reimbursement_resolver_ID, user_id
 VALUES (5, '11-28-2021', '11-29-2021', 'Approved', 1, 'TRAVEL', 'Went fishing with families', '$400',
 		'', 1, 1, 1, 1);
 	
+SELECT reimbursement_id, reimbursement_submitted, reimbursement_resolved, reimbursement_status, reimbursement_type, 
+	reimbursement_description, reimbursement_amount::money::numeric::float8, reimbursement_author, reimbursement_resolver 
+	FROM reimbursement 
+	WHERE reimbursement_author = 2;
 
+SELECT reimbursement_id, reimbursement_submitted, reimbursement_resolved,
+reimbursement_status, reimbursement_type, reimbursement_description, 
+reimbursement_amount,reimbursement_author, reimbursement_resolver 
+FROM 
+reimbursement WHERE reimbursement_author = 4 AND reimbursement_status = 'APPROVED';
 
 /* get all reimbursements */
 SELECT *  
@@ -152,6 +179,20 @@ SELECT reimbursement_id, reimbursement_submitted, reimbursement_resolved, reimbu
 	   reimbursement_description, reimbursement_amount, reimbursement_receipt, 
 	   reimbursement_author, reimbursement_resolver, user_id 
 FROM reimbursement;
+
+--UPDATE reimbursement_id, reimbursement_submitted, reimbursement_resolved, 
+--		reimbursement_status, reimbursement_type, reimbursement_description,  
+--		reimbursement_amount, reimbursement_author, reimbursement_resolver
+--SET reimbursement_status = 'PENDING'
+--FROM reimbursement;
+
+UPDATE reimbursement
+SET reimbursement_status = 'PENDING'
+WHERE reimbursement_author = 4;
+
+SELECT * 
+FROM reimbursement
+WHERE reimbursement_author = 4;
 
 /* get image from reimbursement by id */
 SELECT reimbursement_receipt 

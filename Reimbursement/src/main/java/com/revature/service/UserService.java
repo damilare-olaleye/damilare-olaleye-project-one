@@ -53,7 +53,7 @@ public class UserService implements UserServiceInterface {
 		User user = this.userDao.userLogin(username, password);
 
 		if (user == null) {
-			throw new FailedLoginException("Incorrect username or passowrd");
+			throw new FailedLoginException("Incorrect username or password");
 		}
 
 		return user;
@@ -134,10 +134,10 @@ public class UserService implements UserServiceInterface {
 				throw new NotFoundException("email cannot be blank");
 			}
 
-			if (!(password
-					.matches("(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"))) {
-				throw new InvalidParameterException("Password must contain at least one number and one uppercase and lowercase letter, "
-						+ "and at least 8 or more characters");
+			if (!(password.matches("(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"))) {
+				throw new InvalidParameterException(
+						"Password must contain at least one number and one uppercase and lowercase letter, "
+								+ "and at least 8 or more characters");
 
 			}
 
@@ -214,6 +214,7 @@ public class UserService implements UserServiceInterface {
 		}
 	}
 
+	@Override
 	public UserProfile displayUserProfile(User currentlyLoggedInUser)
 			throws NotFoundException, SQLException, InvalidParameterException {
 

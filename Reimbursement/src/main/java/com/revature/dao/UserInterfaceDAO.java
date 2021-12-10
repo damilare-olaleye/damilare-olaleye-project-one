@@ -4,6 +4,7 @@ import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
 import java.sql.SQLException;
 
+import com.revature.dto.UserDTO;
 import com.revature.model.User;
 import com.revature.model.UserProfile;
 
@@ -19,4 +20,10 @@ public interface UserInterfaceDAO {
 			String role) throws SQLException, NoSuchAlgorithmException, InvalidKeySpecException;
 
 	public UserProfile getAllUserbyUsername(String username) throws SQLException;
+
+	User getUserById(int id) throws SQLException;
+
+	User updateUserProfile(UserDTO dto) throws SQLException;
+
+	UserProfile showUserProfile(int userId) throws SQLException;
 }

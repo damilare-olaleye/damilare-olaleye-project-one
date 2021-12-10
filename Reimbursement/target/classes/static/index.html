@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>register</title>
+    <link rel = "stylesheet" href = "style.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!--internal style-->
+    <style>
+        body {
+            background-color: #4f2c1d;
+        }
+    </style>
+
+</head>
+<body>
+    <header class="header">
+        <div id = "login-info" class="container">
+            <div class="login-area">
+                <form>
+                    <div class="username">
+                        <label for="username">Username</label>
+                        <input type="text" id="username">
+                    </div>
+
+                    <div class="password">
+                        <label for="password">Password</label>
+                        <input type="password" id="password">
+                    </div>
+                    <div class="login">
+                        <input id="login" value="Log In">
+                    </div> 
+                  
+                </form>
+            </div>
+            <div id= "login-err-msg" >
+                <p></p>
+            </div>
+        </div>
+
+    </header>
+    <section class="sign-up-area">
+        <div id = "signup-info" class="container">
+        <div class="left-area">
+        </div>
+        <div class="right-area">
+            <form>
+                <h1 class="create">Create an account</h1>
+                <h4>It's quick and easy.</h4>
+                <div class="full-name">
+
+                    <i class="material-icons">account_circle</i>
+                    <input id="firstname" type="text" placeholder="First Name">
+
+                    <i class="material-icons">account_circle</i>
+                    <input id="lastname" type="text" placeholder="Last Name">
+                </div>
+
+                <div class="email">
+                    <i class="material-icons">email</i>
+                    <input id="email" type="text" placeholder="Email">
+                </div>
+
+                <div class="email">
+                    <i class="material-icons">badge</i>
+                    <input id="userName" type="text" placeholder="Username">
+                </div>
+
+                <br>
+                <div class="full-name">
+                    <i class="material-icons">lock</i>
+                    <input id= "passWord" type="password" placeholder="Password">
+        
+                    <i class="material-icons">business_center</i>
+                    <input id= "role" type="role" placeholder="Role">
+                </div>
+             
+                <div class="title-area">
+                    <label for="title">Employees Reimbursement</label>
+                </div>
+                
+                <div class="sign">
+                    <input id = "signup" value="Sign Up">
+                </div>
+          </form>
+        <div id="sign-up-err"></div>
+        <p></p>
+    </div>
+    </section>
+
+    <script src="index.js"></script>
+</body>
+</html>

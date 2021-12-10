@@ -14,6 +14,8 @@ public class Reimbursement {
 	private int author;
 	private int resolver;
 
+	private String username;
+
 	public Reimbursement() {
 	}
 
@@ -29,6 +31,30 @@ public class Reimbursement {
 		this.amount = amount;
 		this.author = author;
 		this.resolver = resolver;
+	}
+
+	public Reimbursement(int reimbId, String submitted, String resolved, String status, String type, String description,
+			double amount, int author, int resolver, String username) {
+		super();
+		this.reimbId = reimbId;
+		this.submitted = submitted;
+		this.resolved = resolved;
+		this.status = status;
+		this.type = type;
+		this.description = description;
+		this.amount = amount;
+		this.author = author;
+		this.username = username;
+		this.resolver = resolver;
+
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 	public int getReimbId() {
@@ -105,7 +131,8 @@ public class Reimbursement {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(amount, author, description, reimbId, resolved, resolver, status, submitted, type);
+		return Objects.hash(amount, author, description, reimbId, resolved, resolver, status, submitted, type,
+				username);
 	}
 
 	@Override
@@ -121,14 +148,15 @@ public class Reimbursement {
 				&& Objects.equals(description, other.description) && reimbId == other.reimbId
 				&& Objects.equals(resolved, other.resolved) && resolver == other.resolver
 				&& Objects.equals(status, other.status) && Objects.equals(submitted, other.submitted)
-				&& Objects.equals(type, other.type);
+				&& Objects.equals(type, other.type) && Objects.equals(username, other.username);
 	}
 
 	@Override
 	public String toString() {
 		return "Reimbursement [reimbId=" + reimbId + ", submitted=" + submitted + ", resolved=" + resolved + ", status="
 				+ status + ", type=" + type + ", description=" + description + ", amount=" + amount + ", author="
-				+ author + ", resolver=" + resolver + "]";
+				+ author + ", resolver=" + resolver + ", username=" + username + "]";
 	}
 
+	
 }

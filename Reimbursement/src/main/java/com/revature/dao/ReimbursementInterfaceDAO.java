@@ -29,4 +29,11 @@ public interface ReimbursementInterfaceDAO {
 
 	Reimbursement getFilteredStatus(String showStatus) throws SQLException;
 
+	List<Reimbursement> getAllReimbursementByEmployee(int resolverId) throws SQLException;
+
+	List<Reimbursement> getAllReimbursementByUserId(int resolver, int greaterThan, int lessThan) throws SQLException;
+
+	List<Reimbursement> getAllReimbursementByReimbId(String pending, String approved, String rejected)
+			throws SQLException;
+
 }

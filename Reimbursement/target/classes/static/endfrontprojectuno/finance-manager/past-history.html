@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<title>past-reimbursement-history</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="past-history.css">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<body>
+
+  <style>
+    .search-table-container {
+      position: absolute;
+      right: 0px;
+      width: 300px;
+      border: 0.5px linen #008cff;
+      padding: 10px;
+  }
+  </style>
+<!-- Top container -->
+<div class="w3-bar w3-top w3-deep-orange w3-large" style="z-index:4">
+  <button class="w3-bar-item w3-button w3-hide-large w3-hover-none w3-hover-text-light-grey" onclick="w3_open();"><i class="fa fa-bars"></i>  Menu</button>
+  <span class="w3-bar-item w3-right"><button id="logout">Logout</button></span>
+</div>
+
+<!-- Sidebar/menu -->
+<nav class="w3-sidebar w3-collapse w3-white w3-animate-left" style="z-index:3;width:300px;" id="mySidebar"><br>
+  <div class="w3-container w3-row">
+    <div class="w3-col s8 w3-bar">
+      <h3> All Reimbursement Dashboard </h3><br>
+    </div>
+  </div>
+
+  <hr>
+  <div class="w3-bar-block">
+    <a href="finance-manager.html" id = "finance-manager" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bullseye fa-fw"></i> All Reimbursements</a>
+    <a href="update-reimbursement.html" id= "update-reimb" class="w3-bar-item w3-button w3-padding"><i class="fa fa-dashboard"></i> Update Reimbursements</a>
+    <a href="past-history.html" id = "past-history" class="w3-bar-item w3-button w3-padding w3-blue"><i class="fa fa-users fa-fw"></i>Past History</a> 
+    <a href="profile.html" id = "profile" class="w3-bar-item w3-button w3-padding"><i class="fa fa-cog fa-fw"></i>  My Profile </a><br><br>
+  </div>
+</nav>
+
+<!-- Overlay effect when opening sidebar on small screens -->
+<div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" 
+style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+
+<div class="w3-main" style="margin-left:300px;margin-top:43px;">
+    <h2>Past Reimbursements History</h2>
+  
+    
+    <div class="search-table-container" >
+        <input type="text" id="myInput" onkeyup="myFunction()" 
+        placeholder="Search for Status" title="Type in a name">
+    </div>
+
+    <br>
+    <br>
+    <div class="table-wrapper">
+      <table class="fl-table" id="all-reimbs-table">
+
+        <thead>
+        <tr class="all-reimb-table">
+          <th>ID</th>
+                <th>Submitted</th>
+                <th>Resolved</th>
+                <th>Status</th>
+                <th>Type</th>
+                <th>Description</th>
+                <th>Amount</th>
+                <th>Author</th>
+                <th>Resolver</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr>
+        </tr>
+       
+      </tbody>
+      </table>
+    </div>
+  </nav>
+
+<script src="past-history.js"></script>
+
+<script>
+    function myFunction() {
+
+      var input, filter, table, tr, td, i, txtValue;
+      input = document.getElementById("myInput");
+      filter = input.value.toUpperCase();
+      table = document.getElementById("all-reimbs-table");
+      tr = table.getElementsByTagName("tr");
+
+      for (i = 0; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName("td")[3];
+        if (td) {
+          txtValue = td.textContent || td.innerText;
+          if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            tr[i].style.display = "";
+          } else {
+            tr[i].style.display = "none";
+          }
+        }       
+      }
+    }
+    </script>
+
+</body>
+</html>

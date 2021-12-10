@@ -23,10 +23,14 @@ public interface UserServiceInterface {
 	public User userSignup(String username, String password, String firstName, String lastName, String email,
 			String role) throws SQLException, NoSuchAlgorithmException, InvalidKeySpecException,
 			InvalidParameterException, NotFoundException, FailedAuthenticationException;
-	
-	public UserProfile displayUserbyUsername(String username) throws NotFoundException, SQLException, InvalidParameterException;
 
-	public User updateUserProfile(User currentlyLoggedInUser, String username, String password,
-			String firstName, String lastName, String role, String email)
+	public UserProfile displayUserbyUsername(String username)
+			throws NotFoundException, SQLException, InvalidParameterException;
+
+	public User updateUserProfile(User currentlyLoggedInUser, String username, String password, String firstName,
+			String lastName, String role, String email)
 			throws InvalidParameterException, SQLException, NotFoundException;
+
+	UserProfile displayUserProfile(User currentlyLoggedInUser)
+			throws NotFoundException, SQLException, InvalidParameterException;
 }

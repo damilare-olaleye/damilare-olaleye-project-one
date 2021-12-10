@@ -28,7 +28,7 @@ public interface ReimbursementServiceInterface {
 	public Reimbursement updateReimbursement(User currentlyLoggedInUser, String reimbursementId, String status)
 			throws InvalidParameterException, SQLException, NotFoundException, reimbursementAlreadyResloved;
 
-	public InputStream getImageFromReimbursementById(User currentlyLoggedInUser)
+	public InputStream getImageFromReimbursementById(User currentlyLoggedInUser, String reimburseId)
 			throws UnauthorizedException, SQLException, ImageNotFoundException, InvalidParameterException;
 
 	public List<Reimbursement> getPendingRequestById(User currentlyLoggedInUser, String pending)
@@ -44,6 +44,4 @@ public interface ReimbursementServiceInterface {
 	List<Reimbursement> getEmployeeReimbPastHistoy(User currentlyLoggedInUser)
 			throws SQLException, InvalidParameterException, NotFoundException, UnauthorizedException;
 
-//	List<Reimbursement> getAllReimbursementByUserId(User currentlyLoggedInUser, String userId, Context ctx)
-//			throws SQLException, InvalidParameterException;
 }

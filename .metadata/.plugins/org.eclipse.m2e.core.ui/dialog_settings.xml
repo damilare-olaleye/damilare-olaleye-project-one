@@ -48,6 +48,8 @@
 		<list key="name">
 		</list>
 		<list key="artifactId">
+			<item value="end-to-end-project-uno"/>
+			<item value="checkstyle-config"/>
 			<item value="Reimbursement"/>
 		</list>
 		<list key="projectNameTemplate">

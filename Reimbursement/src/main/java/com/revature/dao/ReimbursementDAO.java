@@ -59,7 +59,7 @@ public class ReimbursementDAO implements ReimbursementInterfaceDAO {
 		try (Connection con = JDBCUtil.getConnection()) {
 			String sql = "INSERT INTO reimbursement "
 					+ "(reimbursement_type, reimbursement_amount, reimbursement_description, reimbursement_submitted, reimbursement_author, reimbursement_receipt) "
-					+ "VALUES (?,?,?,now(),?,?);";
+					+ "VALUES (?,?,?,date_trunc('second',now()::timestamp),?,?);";
 
 			con.setAutoCommit(false);
 
@@ -99,7 +99,8 @@ public class ReimbursementDAO implements ReimbursementInterfaceDAO {
 		try (Connection con = JDBCUtil.getConnection()) {
 
 			String sql = "UPDATE reimbursement SET reimbursement_status = ?, "
-					+ "reimbursement_resolved = now(), reimbursement_resolver = ? " + "WHERE reimbursement_id = ?;";
+					+ "reimbursement_resolved = date_trunc('second',now()::timestamp), reimbursement_resolver = ? "
+					+ "WHERE reimbursement_id = ?;";
 
 			PreparedStatement pstmt = con.prepareStatement(sql);
 
@@ -178,6 +179,7 @@ public class ReimbursementDAO implements ReimbursementInterfaceDAO {
 		}
 	}
 
+	@Override
 	public List<Reimbursement> getAllReimbursementByEmployee(int resolverId) throws SQLException {
 
 		try (Connection con = JDBCUtil.getConnection()) {
@@ -203,7 +205,7 @@ public class ReimbursementDAO implements ReimbursementInterfaceDAO {
 
 			return reimbursement;
 
-		}catch (SQLException e) {
+		} catch (SQLException e) {
 			throw new SQLException("Cannot complete request this time, please try again later");
 		}
 
@@ -239,10 +241,10 @@ public class ReimbursementDAO implements ReimbursementInterfaceDAO {
 	}
 
 	@Override
-	public List <Reimbursement> getPendingRequestById(int ReimbursementId, String pending) throws SQLException {
+	public List<Reimbursement> getPendingRequestById(int ReimbursementId, String pending) throws SQLException {
 
 		logger.info("getPendingRequestById(int ReimbursementId, pending)");
-		
+
 		List<Reimbursement> reimbursement = new ArrayList<>();
 
 		try (Connection con = JDBCUtil.getConnection()) {
@@ -267,19 +269,19 @@ public class ReimbursementDAO implements ReimbursementInterfaceDAO {
 						rs.getString("reimbursement_description"), rs.getInt("reimbursement_amount"),
 						rs.getInt("reimbursement_author"), rs.getInt("reimbursement_resolver")));
 			}
-			
+
 			return reimbursement;
 
-		} catch(SQLException e) {
+		} catch (SQLException e) {
 			throw new SQLException("Cannot complete this task at this time, please try again later!");
 		}
 	}
 
 	@Override
-	public List <Reimbursement> getReimbursementStatusById(int rembAuthor) throws SQLException {
+	public List<Reimbursement> getReimbursementStatusById(int rembAuthor) throws SQLException {
 
 		logger.info("getReimbursementStatusById(reimbId)");
-		
+
 		List<Reimbursement> reimbursement = new ArrayList<>();
 
 		try (Connection con = JDBCUtil.getConnection()) {
@@ -287,13 +289,12 @@ public class ReimbursementDAO implements ReimbursementInterfaceDAO {
 			String sql = "SELECT reimbursement_id, reimbursement_submitted, "
 					+ "reimbursement_resolved, reimbursement_status, reimbursement_type, "
 					+ "reimbursement_description, reimbursement_amount, reimbursement_author, reimbursement_resolver "
-					+ "FROM reimbursement "
-					+ "WHERE reimbursement_author = ?;";
+					+ "FROM reimbursement " + "WHERE reimbursement_author = ?;";
 
 			PreparedStatement pstmt = con.prepareStatement(sql);
-			
+
 			pstmt.setInt(1, rembAuthor);
-			
+
 			ResultSet rs = pstmt.executeQuery();
 
 			while (rs.next()) {
@@ -304,11 +305,11 @@ public class ReimbursementDAO implements ReimbursementInterfaceDAO {
 						rs.getString("reimbursement_description"), rs.getInt("reimbursement_amount"),
 						rs.getInt("reimbursement_author"), rs.getInt("reimbursement_resolver")));
 			}
-			
+
 			return reimbursement;
 
-		} catch(SQLException e) {
-			throw new SQLException ("Cannot complete the tasks at this time, please try again later");
+		} catch (SQLException e) {
+			throw new SQLException("Cannot complete the tasks at this time, please try again later");
 		}
 	}
 
@@ -374,6 +375,7 @@ public class ReimbursementDAO implements ReimbursementInterfaceDAO {
 		}
 	}
 
+	@Override
 	public List<Reimbursement> getAllReimbursementByUserId(int resolver, int greaterThan, int lessThan)
 			throws SQLException {
 
@@ -410,12 +412,14 @@ public class ReimbursementDAO implements ReimbursementInterfaceDAO {
 
 	}
 
-	public List<Reimbursement> getAllReimbursementByReimbId(String pending, String approved, String rejected) throws SQLException {
-		
+	@Override
+	public List<Reimbursement> getAllReimbursementByReimbId(String pending, String approved, String rejected)
+			throws SQLException {
+
 		logger.info("getAllReimbursementByReimbId(int id...)");
-		
+
 		List<Reimbursement> reimbursements = new ArrayList<Reimbursement>();
-		
+
 		try (Connection con = JDBCUtil.getConnection()) {
 
 			String sql = "SELECT * FROM reimbursement WHERE reimbursement_status = ?;";
