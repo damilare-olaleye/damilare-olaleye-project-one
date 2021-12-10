@@ -114,7 +114,7 @@ public class ReimbursementService implements ReimbursementServiceInterface {
 			}
 
 			if (!(reimbursementStatus.contains(status))) {
-				throw new InvalidParameterException("For status: only PENDING, APPROVED, or DECLINED is allowed");
+				throw new InvalidParameterException("Only APPROVED, or DECLINED, PENDING is allowed");
 
 			}
 
