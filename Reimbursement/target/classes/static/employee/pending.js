@@ -102,19 +102,4 @@ async function getAndPopulatePendingReimbursement() {
 
     }
 
-    if(res.status === 400 || res.status == 404){
-      
-      let statusErrorMessage = document.createElement('p');
-      let statusDiv = document.querySelector('#err-msg');
-
-       statusDiv.innerHTML = '';
-       statusErrorMessage.innerHTML = myPendingArray.message;
-       statusErrorMessage.style.color = 'red';
-       statusErrorMessage.style.fontSize = '22px';
-       statusDiv.appendChild(statusErrorMessage);
-
-    } else if (res.status === 500){
-      window.location.href = '../../404/404.html';
-  }
-
 }
