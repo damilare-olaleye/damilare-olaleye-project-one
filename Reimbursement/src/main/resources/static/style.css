@@ -129,6 +129,14 @@ body{
     padding: 8px;
     margin-bottom: 22xp;
 }
+
+.role-name input{
+    margin-top: 12px;
+    width: 333px;
+    padding: 8px;
+    margin-bottom: 22xp;
+}
+
 .email{
     padding-top: 8px;
 }
@@ -136,6 +144,17 @@ body{
     width: 333px;
     padding: 8px;
 }
+
+.uname {
+    padding-top: 8px;
+    margin-top: 12px;
+}
+
+.uname input{
+    width: 145px;
+    padding: 8px;
+}
+
 .password{
     padding-top: 8px;
 }
