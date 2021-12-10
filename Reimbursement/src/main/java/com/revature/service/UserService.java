@@ -168,10 +168,10 @@ public class UserService implements UserServiceInterface {
 
 		try {
 
-			if (username.matches(("(?=^.{3,20}$)^[a-zA-Z][a-zA-Z0-9]*[._-]?[a-zA-Z0-9]+$"))) {
-
-				this.userDao.getAllUserbyUsername(username);
-			}
+//			if (username.matches(("(?=^.{3,20}$)^[a-zA-Z][a-zA-Z0-9]*[._-]?[a-zA-Z0-9]+$"))) {
+//
+//				this.userDao.getAllUserbyUsername(username);
+//			}
 
 			UserProfile user = this.userDao.getAllUserbyUsername(username);
 
