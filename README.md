@@ -15,6 +15,7 @@
 * An Employee can view their pending reimbursement requests
 * An Employee can view their resolved reimbursement requests
 * An Employee can logout
+* An Employee can create a new account (sign up)
 
 ## Finance Manager User Stories
 * A Finance Manager can login
@@ -22,6 +23,7 @@
 * A Finance Manager can approve/deny pending reimbursement requests
 * A Finance Manager can view all pending requests from all employees
 * A Finance Manager can logout
+* A Finance Manager can create a new account (sign up)
 
 ## Technologies Used
 * Java 8
