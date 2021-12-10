@@ -5,7 +5,7 @@ on: [push, pull_request]
 
 jobs:
   build_and_test:
-    name: project0
+    name: employeeReimbursement
     runs-on: macos-latest
 
     steps:
