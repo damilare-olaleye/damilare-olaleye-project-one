@@ -43,8 +43,6 @@ public class ReimbursementDAO implements ReimbursementInterfaceDAO {
 				}
 
 				return reimbursements;
-			} catch (SQLException e) {
-				throw new SQLException("No reimbursement is available at this time, please try again!");
 			}
 
 		} catch (SQLException e) {
@@ -89,8 +87,6 @@ public class ReimbursementDAO implements ReimbursementInterfaceDAO {
 				return new Reimbursement(generatedId, rs.getString("reimbursement_submitted"),
 						rs.getString("reimbursement_resolved"), description, type, rs.getString("reimbursement_status"),
 						amount, author, rs.getInt("reimbursement_resolver"));
-			} catch (SQLException e) {
-				throw new SQLException("Cannot complete request this time, please try again later!");
 			}
 
 		} catch (SQLException e) {
@@ -118,8 +114,6 @@ public class ReimbursementDAO implements ReimbursementInterfaceDAO {
 				if (updateReimbursements != 1) {
 					throw new SQLException("Cannot complete request this time, please try again later!");
 				}
-			} catch (SQLException e) {
-				throw new SQLException("Cannot complete request this time, please try again later!");
 			}
 
 		} catch (SQLException e) {
@@ -151,8 +145,6 @@ public class ReimbursementDAO implements ReimbursementInterfaceDAO {
 				} else {
 					return null;
 				}
-			} catch (SQLException e) {
-				throw new SQLException("Cannot complete request this time, please try again later");
 			}
 
 		} catch (SQLException e) {
@@ -187,8 +179,6 @@ public class ReimbursementDAO implements ReimbursementInterfaceDAO {
 				}
 
 				return reimbursement;
-			} catch (SQLException e) {
-				throw new SQLException("Cannot complete request this time, please try again later!");
 			}
 
 		} catch (SQLException e) {
@@ -220,8 +210,6 @@ public class ReimbursementDAO implements ReimbursementInterfaceDAO {
 				}
 
 				return reimbursement;
-			} catch (SQLException e) {
-				throw new SQLException("Cannot complete request this time, please try again later");
 			}
 
 		} catch (SQLException e) {
@@ -251,8 +239,6 @@ public class ReimbursementDAO implements ReimbursementInterfaceDAO {
 				}
 
 				return null;
-			} catch (SQLException e) {
-				throw new SQLException("Cannot complete request this time, please try again later");
 			}
 
 		} catch (SQLException e) {
@@ -291,8 +277,6 @@ public class ReimbursementDAO implements ReimbursementInterfaceDAO {
 				}
 
 				return reimbursement;
-			} catch (SQLException e) {
-				throw new SQLException("Cannot complete this task at this time, please try again later!");
 			}
 
 		} catch (SQLException e) {
@@ -329,10 +313,7 @@ public class ReimbursementDAO implements ReimbursementInterfaceDAO {
 				}
 
 				return reimbursement;
-			} catch (SQLException e) {
-				throw new SQLException("No reimbursement is available at this time, please try again!");
 			}
-
 		} catch (SQLException e) {
 			throw new SQLException("Cannot complete the tasks at this time, please try again later");
 		}
@@ -361,8 +342,6 @@ public class ReimbursementDAO implements ReimbursementInterfaceDAO {
 				} else {
 					return null;
 				}
-			} catch (SQLException e) {
-				throw new SQLException("No reimbursement is available at this time, please try again!");
 			}
 
 		} catch (SQLException e) {
@@ -395,8 +374,6 @@ public class ReimbursementDAO implements ReimbursementInterfaceDAO {
 				}
 
 				return reimbursements;
-			} catch (SQLException e) {
-				throw new SQLException("No reimbursement is available at this time, please try again!");
 			}
 
 		} catch (SQLException e) {
@@ -433,8 +410,6 @@ public class ReimbursementDAO implements ReimbursementInterfaceDAO {
 				}
 
 				return reimbursements;
-			} catch (SQLException e) {
-				throw new SQLException("Cannot complete the task at this time, please try again later!");
 			}
 
 		} catch (SQLException e) {
@@ -472,8 +447,6 @@ public class ReimbursementDAO implements ReimbursementInterfaceDAO {
 				}
 
 				return reimbursements;
-			} catch (SQLException e) {
-				throw new SQLException("Cannot complete the task at this time, please try again later!");
 			}
 
 		} catch (SQLException e) {

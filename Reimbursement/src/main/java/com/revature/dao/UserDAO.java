@@ -41,8 +41,6 @@ public class UserDAO implements UserInterfaceDAO {
 				} else {
 					return null;
 				}
-			} catch (SQLException e) {
-				throw new SQLException("Cannot get user by id, please try again later");
 			}
 
 		} catch (SQLException e) {
@@ -81,8 +79,6 @@ public class UserDAO implements UserInterfaceDAO {
 				} else {
 					return null;
 				}
-			} catch (SQLException e) {
-				throw new SQLException("Cannot get user by id, please try again later");
 			}
 
 		} catch (SQLException e) {
@@ -112,11 +108,7 @@ public class UserDAO implements UserInterfaceDAO {
 					return;
 				}
 
-			} catch (SQLException e) {
-				throw new SQLException("Cannot delete user, please try again later");
-
 			}
-
 		} catch (SQLException e) {
 			throw new SQLException("Cannot delete user, please try again later");
 		}
@@ -163,10 +155,7 @@ public class UserDAO implements UserInterfaceDAO {
 				} else {
 					return null;
 				}
-			} catch (SQLException e) {
-				throw new SQLException("user already exists");
 			}
-
 		} catch (SQLException e) {
 			throw new SQLException("user already exists");
 		}
@@ -196,8 +185,6 @@ public class UserDAO implements UserInterfaceDAO {
 				} else {
 					return null;
 				}
-			} catch (SQLException e) {
-				throw new SQLException("cannot find user with the username");
 			}
 
 		} catch (SQLException e) {
@@ -233,10 +220,7 @@ public class UserDAO implements UserInterfaceDAO {
 				return new User(dto.getUserId(), dto.getUsername(), dto.getPassword(), dto.getFirstName(),
 						dto.getLastName(), dto.getRole(), dto.getEmail());
 
-			} catch (SQLException e) {
-				throw new SQLException("Cannot update user profile at this time");
 			}
-
 		} catch (SQLException e) {
 			throw new SQLException("Cannot update user profile at this time");
 		}
@@ -268,9 +252,6 @@ public class UserDAO implements UserInterfaceDAO {
 				} else {
 					return null;
 				}
-			} catch (SQLException e) {
-				throw new SQLException("Cannot update user profile at this time");
-
 			}
 
 		} catch (SQLException e) {
