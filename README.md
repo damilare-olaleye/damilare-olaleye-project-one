@@ -9,7 +9,6 @@
 
 ## Employee User Stories
 * An Employee can login
-* A Manager can view the Employee Homepage
 * An Employee can submit a reimbursement request
 * An Employee can upload an image of his/her receipt as part of the reimbursement request
 * An Employee can view their pending reimbursement requests
