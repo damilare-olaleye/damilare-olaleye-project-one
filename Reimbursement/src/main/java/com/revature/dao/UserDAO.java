@@ -27,20 +27,19 @@ public class UserDAO implements UserInterfaceDAO {
 
 		try (Connection con = JDBCUtil.getConnection()) {
 
-			String sqlUserByIdSQL = "SELECT * FROM users WHERE user_id = ?;";
+			String sql = "SELECT * FROM users WHERE user_id = ?;";
 
-			try (PreparedStatement pstmtGetUserById = con.prepareStatement(sqlUserByIdSQL)) {
-				pstmtGetUserById.setInt(1, id);
+			PreparedStatement pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, id);
 
-				ResultSet rs = pstmtGetUserById.executeQuery();
+			ResultSet rs = pstmt.executeQuery();
 
-				if (rs.next()) {
-					return new User(rs.getInt("user_id"), rs.getString("employee_username"),
-							rs.getString("employee_password"), rs.getString("user_first_name"),
-							rs.getString("user_last_name"), rs.getString("user_email"), rs.getString("user_role"));
-				} else {
-					return null;
-				}
+			if (rs.next()) {
+				return new User(rs.getInt("user_id"), rs.getString("employee_username"),
+						rs.getString("employee_password"), rs.getString("user_first_name"),
+						rs.getString("user_last_name"), rs.getString("user_email"), rs.getString("user_role"));
+			} else {
+				return null;
 			}
 
 		} catch (SQLException e) {
@@ -56,31 +55,29 @@ public class UserDAO implements UserInterfaceDAO {
 		logger.info("userLogin(username, password) invoked");
 
 		try (Connection con = JDBCUtil.getConnection()) {
-			String userLoginSQL = "SELECT * FROM users WHERE employee_username = ? "
+			String sql = "SELECT * FROM users WHERE employee_username = ? "
 					+ "AND employee_password = crypt(?, employee_password);";
 
-			try (PreparedStatement pstmtUserLogin = con.prepareStatement(userLoginSQL)) {
-				pstmtUserLogin.setString(1, username);
-				pstmtUserLogin.setString(2, password);
+			PreparedStatement pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, username);
+			pstmt.setString(2, password);
 
-				ResultSet rs = pstmtUserLogin.executeQuery();
+			ResultSet rs = pstmt.executeQuery();
 
-				if (rs.next()) {
-					int id = rs.getInt("user_id");
-					String userName = rs.getString("employee_username");
-					String pass = "######################";
-					String firstName = rs.getString("user_first_name");
-					String lastName = rs.getString("user_last_name");
-					String email = rs.getString("user_email");
-					String userRole = rs.getString("user_role");
+			if (rs.next()) {
+				int id = rs.getInt("user_id");
+				String userName = rs.getString("employee_username");
+				String pass = "######################";
+				String firstName = rs.getString("user_first_name");
+				String lastName = rs.getString("user_last_name");
+				String email = rs.getString("user_email");
+				String userRole = rs.getString("user_role");
 
-					return new User(id, userName, pass, firstName, lastName, email, userRole);
+				return new User(id, userName, pass, firstName, lastName, email, userRole);
 
-				} else {
-					return null;
-				}
+			} else {
+				return null;
 			}
-
 		} catch (SQLException e) {
 			throw new SQLException("Cannot get user by id, please try again later");
 		}
@@ -96,19 +93,18 @@ public class UserDAO implements UserInterfaceDAO {
 		try (Connection con = JDBCUtil.getConnection()) {
 			String sql = "DELETE FROM users WHERE employee_username = ? AND  employee_password =?";
 
-			try (PreparedStatement pstmtDeleteUser = con.prepareStatement(sql)) {
-				pstmtDeleteUser.setString(1, username);
-				pstmtDeleteUser.setString(2, password);
+			PreparedStatement pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, username);
+			pstmt.setString(2, password);
 
-				int numberOfRecordDeleted = pstmtDeleteUser.executeUpdate();
+			int numberOfRecordDeleted = pstmt.executeUpdate();
 
-				if (numberOfRecordDeleted != 1) {
-					throw new SQLException("Unable to delete client recored with id of " + username);
-				} else {
-					return;
-				}
-
+			if (numberOfRecordDeleted != 1) {
+				throw new SQLException("Unable to delete client recored with id of " + username);
+			} else {
+				return;
 			}
+
 		} catch (SQLException e) {
 			throw new SQLException("Cannot delete user, please try again later");
 		}
@@ -122,39 +118,39 @@ public class UserDAO implements UserInterfaceDAO {
 		logger.info("userSignup(...) invoked");
 
 		try (Connection con = JDBCUtil.getConnection()) {
-			String userSignupSQL = "INSERT INTO users (employee_username, employee_password, user_first_name, user_last_name, user_email, user_role) "
+			String sql = "INSERT INTO users (employee_username, employee_password, user_first_name, user_last_name, user_email, user_role) "
 					+ "VALUES (?,crypt(?, gen_salt('bf')),?,?,?,?)";
 
-			try (PreparedStatement pstmtUserSignUp = con.prepareStatement(userSignupSQL, Statement.RETURN_GENERATED_KEYS)) {
-				pstmtUserSignUp.setString(1, username);
-				pstmtUserSignUp.setString(2, password);
-				pstmtUserSignUp.setString(3, firstName);
-				pstmtUserSignUp.setString(4, lastName);
-				pstmtUserSignUp.setString(5, email);
-				pstmtUserSignUp.setString(6, role);
+			PreparedStatement pstmt = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 
-				int numberOfRecordsInserted = pstmtUserSignUp.executeUpdate();
+			pstmt.setString(1, username);
+			pstmt.setString(2, password);
+			pstmt.setString(3, firstName);
+			pstmt.setString(4, lastName);
+			pstmt.setString(5, email);
+			pstmt.setString(6, role);
 
-				if (numberOfRecordsInserted != 1) {
-					throw new SQLException("Cannot add new user");
-				}
+			int numberOfRecordsInserted = pstmt.executeUpdate();
 
-				ResultSet rs = pstmtUserSignUp.getGeneratedKeys();
+			if (numberOfRecordsInserted != 1) {
+				throw new SQLException("Cannot add new user");
+			}
 
-				if (rs.next()) {
-					int id = rs.getInt("user_id");
-					String userName = rs.getString("employee_username");
-					String pass = "######################";
-					String fName = rs.getString("user_first_name");
-					String lName = rs.getString("user_last_name");
-					String userEmail = rs.getString("user_email");
-					String userRole = rs.getString("user_role");
+			ResultSet rs = pstmt.getGeneratedKeys();
 
-					return new User(id, userName, pass, fName, lName, userEmail, userRole);
+			if (rs.next()) {
+				int id = rs.getInt("user_id");
+				String userName = rs.getString("employee_username");
+				String pass = "######################";
+				String fName = rs.getString("user_first_name");
+				String lName = rs.getString("user_last_name");
+				String userEmail = rs.getString("user_email");
+				String userRole = rs.getString("user_role");
 
-				} else {
-					return null;
-				}
+				return new User(id, userName, pass, fName, lName, userEmail, userRole);
+
+			} else {
+				return null;
 			}
 		} catch (SQLException e) {
 			throw new SQLException("user already exists");
@@ -167,26 +163,25 @@ public class UserDAO implements UserInterfaceDAO {
 		logger.info("getalluser(...) invoked");
 
 		try (Connection con = JDBCUtil.getConnection()) {
-			String getAllUserUsernameSQL = "SELECT * FROM users WHERE employee_username = ?";
+			String sql = "SELECT * FROM users WHERE employee_username = ?";
 
-			try (PreparedStatement pstmtGetUserUsername = con.prepareStatement(getAllUserUsernameSQL)) {
-				pstmtGetUserUsername.setString(1, username);
+			PreparedStatement pstmt = con.prepareStatement(sql);
 
-				ResultSet rs = pstmtGetUserUsername.executeQuery();
+			pstmt.setString(1, username);
 
-				if (rs.next()) {
-					String fName = rs.getString("user_first_name");
-					String lName = rs.getString("user_last_name");
-					String email = rs.getString("user_email");
-					String userRole = rs.getString("user_role");
+			ResultSet rs = pstmt.executeQuery();
 
-					return new UserProfile(fName, lName, email, userRole);
+			if (rs.next()) {
+				String fName = rs.getString("user_first_name");
+				String lName = rs.getString("user_last_name");
+				String email = rs.getString("user_email");
+				String userRole = rs.getString("user_role");
 
-				} else {
-					return null;
-				}
+				return new UserProfile(fName, lName, email, userRole);
+
+			} else {
+				return null;
 			}
-
 		} catch (SQLException e) {
 			throw new SQLException("cannot find user with the username");
 		}
@@ -198,29 +193,29 @@ public class UserDAO implements UserInterfaceDAO {
 		logger.info("updateUserProfile(userId, dto) invoked");
 
 		try (Connection con = JDBCUtil.getConnection()) {
-			String updateUserProfileSQL = "UPDATE users SET employee_username = ?, employee_password = ?, "
+			String sql = "UPDATE users SET employee_username = ?, employee_password = ?, "
 					+ "user_first_name = ?, user_last_name = ?, user_role = ?, user_email = ?" + "WHERE user_id = ?;";
 
-			try (PreparedStatement pstmtUpdateUserProfile = con.prepareStatement(updateUserProfileSQL)) {
-				pstmtUpdateUserProfile.setInt(1, dto.getUserId());
-				pstmtUpdateUserProfile.setString(2, dto.getUsername());
-				pstmtUpdateUserProfile.setString(3, dto.getPassword());
-				pstmtUpdateUserProfile.setString(4, dto.getFirstName());
-				pstmtUpdateUserProfile.setString(5, dto.getLastName());
-				pstmtUpdateUserProfile.setString(6, dto.getRole());
-				pstmtUpdateUserProfile.setString(7, dto.getEmail());
+			PreparedStatement pstmt = con.prepareStatement(sql);
 
-				int numberOfRecordsUpdated = pstmtUpdateUserProfile.executeUpdate();
+			pstmt.setInt(1, dto.getUserId());
+			pstmt.setString(2, dto.getUsername());
+			pstmt.setString(3, dto.getPassword());
+			pstmt.setString(4, dto.getFirstName());
+			pstmt.setString(5, dto.getLastName());
+			pstmt.setString(6, dto.getRole());
+			pstmt.setString(7, dto.getEmail());
 
-				if (numberOfRecordsUpdated != 1) {
-					throw new SQLException("Unable to update your profile, please try again later!");
+			int numberOfRecordsUpdated = pstmt.executeUpdate();
 
-				}
-
-				return new User(dto.getUserId(), dto.getUsername(), dto.getPassword(), dto.getFirstName(),
-						dto.getLastName(), dto.getRole(), dto.getEmail());
+			if (numberOfRecordsUpdated != 1) {
+				throw new SQLException("Unable to update your profile, please try again later!");
 
 			}
+
+			return new User(dto.getUserId(), dto.getUsername(), dto.getPassword(), dto.getFirstName(),
+					dto.getLastName(), dto.getRole(), dto.getEmail());
+
 		} catch (SQLException e) {
 			throw new SQLException("Cannot update user profile at this time");
 		}
@@ -232,28 +227,27 @@ public class UserDAO implements UserInterfaceDAO {
 		logger.info("updateUserProfile(userId) invoked");
 
 		try (Connection con = JDBCUtil.getConnection()) {
-			String showUserProfileSQL = "SELECT employee_password , employee_username, user_first_name, user_last_name, user_role, user_email "
+			String sql = "SELECT employee_password , employee_username, user_first_name, user_last_name, user_role, user_email "
 					+ " FROM users " + "WHERE user_id = ?;";
 
-			try (PreparedStatement pstmtShowUserProfile = con.prepareStatement(showUserProfileSQL)) {
-				pstmtShowUserProfile.setInt(1, userId);
+			PreparedStatement pstmt = con.prepareStatement(sql);
 
-				ResultSet rs = pstmtShowUserProfile.executeQuery();
+			pstmt.setInt(1, userId);
 
-				if (rs.next()) {
+			ResultSet rs = pstmt.executeQuery();
 
-					String fName = rs.getString("user_first_name");
-					String lName = rs.getString("user_last_name");
-					String email = rs.getString("user_email");
-					String userRole = rs.getString("user_role");
+			if (rs.next()) {
 
-					return new UserProfile(fName, lName, email, userRole);
+				String fName = rs.getString("user_first_name");
+				String lName = rs.getString("user_last_name");
+				String email = rs.getString("user_email");
+				String userRole = rs.getString("user_role");
 
-				} else {
-					return null;
-				}
+				return new UserProfile(fName, lName, email, userRole);
+
+			} else {
+				return null;
 			}
-
 		} catch (SQLException e) {
 			throw new SQLException("Cannot update user profile at this time");
 		}
