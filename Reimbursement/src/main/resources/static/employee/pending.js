@@ -108,7 +108,7 @@ async function getAndPopulatePendingReimbursement() {
       let statusDiv = document.querySelector('#err-msg');
 
        statusDiv.innerHTML = '';
-       statusErrorMessage.innerHTML = statusArray.message;
+       statusErrorMessage.innerHTML = myPendingArray.message;
        statusErrorMessage.style.color = 'red';
        statusErrorMessage.style.fontSize = '22px';
        statusDiv.appendChild(statusErrorMessage);
