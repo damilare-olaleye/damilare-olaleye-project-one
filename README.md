@@ -30,6 +30,7 @@
 * JavaScript, HTML, and CSS (front-end)
 * Postgres (database)
 * AWS (RDS and EC2) and Jenkins for Deployment
+* SonarCloud
 
 ## How to run the project:
 http://ec2-3-138-126-45.us-east-2.compute.amazonaws.com:8081/
