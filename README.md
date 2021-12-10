@@ -40,3 +40,4 @@ http://ec2-3-138-126-45.us-east-2.compute.amazonaws.com:8081/
 * Default password for Finance Manger: disIsMyPassword13
 * Default username for Employee: bWhite
 * Default password for Employee: disIsMyPassword13
+* You can also create a new account
