@@ -28,9 +28,9 @@ public class ReimbursementDAO implements ReimbursementInterfaceDAO {
 
 		try (Connection con = JDBCUtil.getConnection()) {
 
-			String sql = "SELECT * FROM reimbursement ORDER BY reimbursement_status";
+			String sqlAllReimbursement = "SELECT * FROM reimbursement ORDER BY reimbursement_status";
 
-			PreparedStatement pstmt = con.prepareStatement(sql);
+			PreparedStatement pstmt = con.prepareStatement(sqlAllReimbursement);
 			ResultSet rs = pstmt.executeQuery();
 
 			while (rs.next()) {
