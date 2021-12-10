@@ -39,7 +39,7 @@ window.addEventListener('load', async () => {
 
 async function getAndPopulatePendingReimbursement() {
   
-  let res = await fetch('http://ec2-3-138-126-45.us-east-2.compute.amazonaws.com:8081/myPendingReimbursements',{
+  let res = await fetch('http://ec2-3-138-126-45.us-east-2.compute.amazonaws.com:8081/myReimbursementStatus',{
     method: 'GET',
     credentials: 'include'
    
