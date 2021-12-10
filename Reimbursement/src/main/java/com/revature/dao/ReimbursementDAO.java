@@ -28,10 +28,10 @@ public class ReimbursementDAO implements ReimbursementInterfaceDAO {
 
 		try (Connection con = JDBCUtil.getConnection()) {
 
-			String sql = "SELECT * FROM reimbursement ORDER BY reimbursement_status";
+			String getAllReimbSQL = "SELECT * FROM reimbursement ORDER BY reimbursement_status";
 
-			try (PreparedStatement pstmt = con.prepareStatement(sql)) {
-				ResultSet rs = pstmt.executeQuery();
+			try (PreparedStatement pstmtAllReimb = con.prepareStatement(getAllReimbSQL)) {
+				ResultSet rs = pstmtAllReimb.executeQuery();
 
 				while (rs.next()) {
 
@@ -57,27 +57,28 @@ public class ReimbursementDAO implements ReimbursementInterfaceDAO {
 		logger.info("submitRequest(...) invoked");
 
 		try (Connection con = JDBCUtil.getConnection()) {
-			String sql = "INSERT INTO reimbursement "
+			String submitRequestSQL = "INSERT INTO reimbursement "
 					+ "(reimbursement_type, reimbursement_amount, reimbursement_description, reimbursement_submitted, reimbursement_author, reimbursement_receipt) "
 					+ "VALUES (?,?,?,date_trunc('second',now()::timestamp),?,?);";
 
 			con.setAutoCommit(false);
 
-			try (PreparedStatement pstmt = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+			try (PreparedStatement pstmtSubmitRequest = con.prepareStatement(submitRequestSQL,
+					Statement.RETURN_GENERATED_KEYS)) {
 
-				pstmt.setString(1, type);
-				pstmt.setDouble(2, amount);
-				pstmt.setString(3, description);
-				pstmt.setInt(4, author);
-				pstmt.setBinaryStream(5, receipt);
+				pstmtSubmitRequest.setString(1, type);
+				pstmtSubmitRequest.setDouble(2, amount);
+				pstmtSubmitRequest.setString(3, description);
+				pstmtSubmitRequest.setInt(4, author);
+				pstmtSubmitRequest.setBinaryStream(5, receipt);
 
-				int numberOfInsertedRecords = pstmt.executeUpdate();
+				int numberOfInsertedRecords = pstmtSubmitRequest.executeUpdate();
 
 				if (numberOfInsertedRecords != 1) {
 					throw new SQLException("Issue occurred when adding reimbursement");
 				}
 
-				ResultSet rs = pstmt.getGeneratedKeys();
+				ResultSet rs = pstmtSubmitRequest.getGeneratedKeys();
 
 				rs.next();
 				int generatedId = rs.getInt(1);
@@ -99,17 +100,17 @@ public class ReimbursementDAO implements ReimbursementInterfaceDAO {
 
 		try (Connection con = JDBCUtil.getConnection()) {
 
-			String sql = "UPDATE reimbursement SET reimbursement_status = ?, "
+			String updateReimbSQL = "UPDATE reimbursement SET reimbursement_status = ?, "
 					+ "reimbursement_resolved = date_trunc('second',now()::timestamp), reimbursement_resolver = ? "
 					+ "WHERE reimbursement_id = ?;";
 
-			try (PreparedStatement pstmt = con.prepareStatement(sql)) {
+			try (PreparedStatement pstmtUpdateReimbu = con.prepareStatement(updateReimbSQL)) {
 
-				pstmt.setString(1, status);
-				pstmt.setInt(2, resolver);
-				pstmt.setInt(3, reimbursementId);
+				pstmtUpdateReimbu.setString(1, status);
+				pstmtUpdateReimbu.setInt(2, resolver);
+				pstmtUpdateReimbu.setInt(3, reimbursementId);
 
-				int updateReimbursements = pstmt.executeUpdate();
+				int updateReimbursements = pstmtUpdateReimbu.executeUpdate();
 
 				if (updateReimbursements != 1) {
 					throw new SQLException("Cannot complete request this time, please try again later!");
@@ -126,15 +127,15 @@ public class ReimbursementDAO implements ReimbursementInterfaceDAO {
 
 		try (Connection con = JDBCUtil.getConnection()) {
 
-			String sql = "SELECT reimbursement_id, reimbursement_submitted, reimbursement_resolved, reimbursement_status, reimbursement_type, "
+			String getReimbByIdSQL = "SELECT reimbursement_id, reimbursement_submitted, reimbursement_resolved, reimbursement_status, reimbursement_type, "
 					+ " reimbursement_description, reimbursement_amount, reimbursement_author,  reimbursement_resolver "
 					+ "   FROM Reimbursement WHERE reimbursement_id = ?";
 
-			try (PreparedStatement pstmt = con.prepareStatement(sql)) {
+			try (PreparedStatement pstmtGetReimbById = con.prepareStatement(getReimbByIdSQL)) {
 
-				pstmt.setInt(1, id);
+				pstmtGetReimbById.setInt(1, id);
 
-				ResultSet rs = pstmt.executeQuery();
+				ResultSet rs = pstmtGetReimbById.executeQuery();
 
 				if (rs.next()) {
 					return new Reimbursement(rs.getInt("reimbursement_id"), rs.getString("reimbursement_submitted"),
@@ -158,16 +159,16 @@ public class ReimbursementDAO implements ReimbursementInterfaceDAO {
 		try (Connection con = JDBCUtil.getConnection()) {
 			List<Reimbursement> reimbursement = new ArrayList<>();
 
-			String sql = "SELECT reimbursement_id, reimbursement_submitted, reimbursement_resolved, reimbursement_status, "
+			String getReimbByResolverSQL = "SELECT reimbursement_id, reimbursement_submitted, reimbursement_resolved, reimbursement_status, "
 					+ "reimbursement_type, reimbursement_description, reimbursement_amount, "
 					+ "reimbursement_receipt, reimbursement_author "
 					+ " FROM reimbursement WHERE reimbursement_resolver = ?";
 
-			try (PreparedStatement pstmt = con.prepareStatement(sql)) {
+			try (PreparedStatement pstmtgetReimbByResolver = con.prepareStatement(getReimbByResolverSQL)) {
 
-				pstmt.setInt(1, resolverId);
+				pstmtgetReimbByResolver.setInt(1, resolverId);
 
-				ResultSet rs = pstmt.executeQuery();
+				ResultSet rs = pstmtgetReimbByResolver.executeQuery();
 
 				while (rs.next()) {
 
@@ -193,12 +194,12 @@ public class ReimbursementDAO implements ReimbursementInterfaceDAO {
 
 			List<Reimbursement> reimbursement = new ArrayList<>();
 
-			String sql = "SELECT * FROM reimbursement WHERE reimbursement_resolver = ?;";
+			String getAllReimbByEmpSQL = "SELECT * FROM reimbursement WHERE reimbursement_resolver = ?;";
 
-			try (PreparedStatement pstmt = con.prepareStatement(sql)) {
-				pstmt.setInt(1, resolverId);
+			try (PreparedStatement pstmtGetAllReimbByEmp = con.prepareStatement(getAllReimbByEmpSQL)) {
+				pstmtGetAllReimbByEmp.setInt(1, resolverId);
 
-				ResultSet rs = pstmt.executeQuery();
+				ResultSet rs = pstmtGetAllReimbByEmp.executeQuery();
 
 				while (rs.next()) {
 
@@ -225,12 +226,12 @@ public class ReimbursementDAO implements ReimbursementInterfaceDAO {
 
 		try (Connection con = JDBCUtil.getConnection()) {
 
-			String sql = "SELECT reimbursement_receipt FROM reimbursement WHERE reimbursement_id = ?;";
+			String getPastTicktSQL = "SELECT reimbursement_receipt FROM reimbursement WHERE reimbursement_id = ?;";
 
-			try (PreparedStatement pstmt = con.prepareStatement(sql)) {
-				pstmt.setInt(1, id);
+			try (PreparedStatement pstmtGetPastTickById = con.prepareStatement(getPastTicktSQL)) {
+				pstmtGetPastTickById.setInt(1, id);
 
-				ResultSet rs = pstmt.executeQuery();
+				ResultSet rs = pstmtGetPastTickById.executeQuery();
 
 				if (rs.next()) {
 					InputStream image = rs.getBinaryStream("reimbursement_receipt");
@@ -256,16 +257,16 @@ public class ReimbursementDAO implements ReimbursementInterfaceDAO {
 
 		try (Connection con = JDBCUtil.getConnection()) {
 
-			String sql = "SELECT reimbursement_id, reimbursement_submitted, reimbursement_resolved, "
+			String getPendingReqSQL = "SELECT reimbursement_id, reimbursement_submitted, reimbursement_resolved, "
 					+ "reimbursement_status, reimbursement_type, reimbursement_description,  "
 					+ " reimbursement_amount,reimbursement_author, reimbursement_resolver "
 					+ " FROM reimbursement WHERE reimbursement_author = ? AND reimbursement_status = ?;";
 
-			try (PreparedStatement pstmt = con.prepareStatement(sql)) {
-				pstmt.setInt(1, ReimbursementId);
-				pstmt.setString(2, pending);
+			try (PreparedStatement pstmtGetPendingReqId = con.prepareStatement(getPendingReqSQL)) {
+				pstmtGetPendingReqId.setInt(1, ReimbursementId);
+				pstmtGetPendingReqId.setString(2, pending);
 
-				ResultSet rs = pstmt.executeQuery();
+				ResultSet rs = pstmtGetPendingReqId.executeQuery();
 
 				while (rs.next()) {
 
@@ -293,15 +294,15 @@ public class ReimbursementDAO implements ReimbursementInterfaceDAO {
 
 		try (Connection con = JDBCUtil.getConnection()) {
 
-			String sql = "SELECT reimbursement_id, reimbursement_submitted, "
+			String getReimbStatusIdSQL = "SELECT reimbursement_id, reimbursement_submitted, "
 					+ "reimbursement_resolved, reimbursement_status, reimbursement_type, "
 					+ "reimbursement_description, reimbursement_amount, reimbursement_author, reimbursement_resolver "
 					+ "FROM reimbursement " + "WHERE reimbursement_author = ?;";
 
-			try (PreparedStatement pstmt = con.prepareStatement(sql)) {
-				pstmt.setInt(1, rembAuthor);
+			try (PreparedStatement pstmtGetReimbStatusId = con.prepareStatement(getReimbStatusIdSQL)) {
+				pstmtGetReimbStatusId.setInt(1, rembAuthor);
 
-				ResultSet rs = pstmt.executeQuery();
+				ResultSet rs = pstmtGetReimbStatusId.executeQuery();
 
 				while (rs.next()) {
 
@@ -326,12 +327,12 @@ public class ReimbursementDAO implements ReimbursementInterfaceDAO {
 
 		try (Connection con = JDBCUtil.getConnection()) {
 
-			String sql = "SELECT * FROM reimbursement WHERE reimbursement_status = ? ORDER BY reimbursement_submitted;";
+			String getFilteSQL = "SELECT * FROM reimbursement WHERE reimbursement_status = ? ORDER BY reimbursement_submitted;";
 
-			try (PreparedStatement pstmt = con.prepareStatement(sql)) {
-				pstmt.setString(1, showStatus);
+			try (PreparedStatement pstmtGetFilteredStatus = con.prepareStatement(getFilteSQL)) {
+				pstmtGetFilteredStatus.setString(1, showStatus);
 
-				ResultSet rs = pstmt.executeQuery();
+				ResultSet rs = pstmtGetFilteredStatus.executeQuery();
 
 				if (rs.next()) {
 					return new Reimbursement(rs.getInt("reimbursement_id"), rs.getString("reimbursement_submitted"),
@@ -359,10 +360,10 @@ public class ReimbursementDAO implements ReimbursementInterfaceDAO {
 
 		try (Connection con = JDBCUtil.getConnection()) {
 
-			String sql = "SELECT * FROM reimbursement ORDER BY reimbursement_submitted;";
+			String getEmpReimbHistorySQL = "SELECT * FROM reimbursement ORDER BY reimbursement_submitted;";
 
-			try (PreparedStatement pstmt = con.prepareStatement(sql)) {
-				ResultSet rs = pstmt.executeQuery();
+			try (PreparedStatement pstmtGetEmpPastHist = con.prepareStatement(getEmpReimbHistorySQL)) {
+				ResultSet rs = pstmtGetEmpPastHist.executeQuery();
 
 				while (rs.next()) {
 
@@ -391,14 +392,14 @@ public class ReimbursementDAO implements ReimbursementInterfaceDAO {
 
 		try (Connection con = JDBCUtil.getConnection()) {
 
-			String sql = "SELECT * FROM reimbursement WHERE reimbursement_resolver = ? AND reimbursement_amount >= ? AND reimbursement_amount <= ?;";
+			String getAllReimbUserId = "SELECT * FROM reimbursement WHERE reimbursement_resolver = ? AND reimbursement_amount >= ? AND reimbursement_amount <= ?;";
 
-			try (PreparedStatement pstmt = con.prepareStatement(sql)) {
-				pstmt.setInt(1, resolver);
-				pstmt.setInt(2, greaterThan);
-				pstmt.setInt(3, lessThan);
+			try (PreparedStatement pstmtGetReimbByUserId = con.prepareStatement(getAllReimbUserId)) {
+				pstmtGetReimbByUserId.setInt(1, resolver);
+				pstmtGetReimbByUserId.setInt(2, greaterThan);
+				pstmtGetReimbByUserId.setInt(3, lessThan);
 
-				ResultSet rs = pstmt.executeQuery();
+				ResultSet rs = pstmtGetReimbByUserId.executeQuery();
 
 				while (rs.next()) {
 
@@ -428,14 +429,14 @@ public class ReimbursementDAO implements ReimbursementInterfaceDAO {
 
 		try (Connection con = JDBCUtil.getConnection()) {
 
-			String sql = "SELECT * FROM reimbursement WHERE reimbursement_status = ?;";
+			String getAllReimburSQL = "SELECT * FROM reimbursement WHERE reimbursement_status = ?;";
 
-			try (PreparedStatement pstmt = con.prepareStatement(sql)) {
-				pstmt.setString(1, pending);
-				pstmt.setString(2, approved);
-				pstmt.setString(3, rejected);
+			try (PreparedStatement pstmtGetAllReimbByReimbId = con.prepareStatement(getAllReimburSQL)) {
+				pstmtGetAllReimbByReimbId.setString(1, pending);
+				pstmtGetAllReimbByReimbId.setString(2, approved);
+				pstmtGetAllReimbByReimbId.setString(3, rejected);
 
-				ResultSet rs = pstmt.executeQuery();
+				ResultSet rs = pstmtGetAllReimbByReimbId.executeQuery();
 
 				while (rs.next()) {
 
