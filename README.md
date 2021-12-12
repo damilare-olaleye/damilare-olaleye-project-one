@@ -9,12 +9,12 @@
 
 ## Employee User Stories
 * An Employee can login
-* A Manager can view the Employee Homepage
 * An Employee can submit a reimbursement request
 * An Employee can upload an image of his/her receipt as part of the reimbursement request
 * An Employee can view their pending reimbursement requests
 * An Employee can view their resolved reimbursement requests
 * An Employee can logout
+* An Employee can create a new account (sign up)
 
 ## Finance Manager User Stories
 * A Finance Manager can login
@@ -22,6 +22,7 @@
 * A Finance Manager can approve/deny pending reimbursement requests
 * A Finance Manager can view all pending requests from all employees
 * A Finance Manager can logout
+* A Finance Manager can create a new account (sign up)
 
 ## Technologies Used
 * Java 8
@@ -30,7 +31,12 @@
 * JavaScript, HTML, and CSS (front-end)
 * Postgres (database)
 * AWS (RDS and EC2) and Jenkins for Deployment
-* SonarCloud
+* SonarCloud for code analysis
 
 ## How to run the project:
 http://ec2-3-138-126-45.us-east-2.compute.amazonaws.com:8081/
+* Default username for Finance Manger: aWenger
+* Default password for Finance Manger: disIsMyPassword13
+* Default username for Employee: bWhite
+* Default password for Employee: disIsMyPassword13
+* You can also create a new account
