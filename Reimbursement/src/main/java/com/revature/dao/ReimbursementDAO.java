@@ -28,18 +28,32 @@ public class ReimbursementDAO implements ReimbursementInterfaceDAO {
 
 		try (Connection con = JDBCUtil.getConnection()) {
 
-			String sqlAllReimbursement = "SELECT * FROM reimbursement ORDER BY reimbursement_status";
+			String sqlAllReimbursement = "SELECT reimb.reimbursement_id, reimb.reimbursement_amount, "
+					+ "	reimb.reimbursement_submitted, "
+					+ "	reimb.reimbursement_resolved, reimb.reimbursement_description, reimb.reimbursement_receipt, "
+					+ "	reimb.reimbursement_status, reimb.reimbursement_type, a.employee_username as a_user_username, "
+					+ "	r.employee_username  as r_user_username " + "	FROM reimbursement reimb "
+					+ "	INNER JOIN users a " + "	ON reimb.reimbursement_author = a.user_id " + "	LEFT JOIN users r "
+					+ "	ON reimb.reimbursement_resolver = r.user_id;";
 
 			PreparedStatement pstmt = con.prepareStatement(sqlAllReimbursement);
 			ResultSet rs = pstmt.executeQuery();
 
 			while (rs.next()) {
 
-				reimbursements.add(new Reimbursement(rs.getInt("reimbursement_id"),
-						rs.getString("reimbursement_submitted"), rs.getString("reimbursement_resolved"),
-						rs.getString("reimbursement_status"), rs.getString("reimbursement_type"),
-						rs.getString("reimbursement_description"), rs.getInt("reimbursement_amount"),
-						rs.getInt("reimbursement_author"), rs.getInt("reimbursement_resolver")));
+				int id = rs.getInt("reimbursement_id");
+				double amount = rs.getDouble("reimbursement_amount");
+				String submitted = rs.getString("reimbursement_submitted");
+				String resolved = rs.getString("reimbursement_resolved");
+				String description = rs.getString("reimbursement_description");
+				String status = rs.getString("reimbursement_status");
+				String type = rs.getString("reimbursement_type");
+				String username = rs.getString("a_user_username");
+
+				Reimbursement reimbursement = new Reimbursement(id, amount, submitted, resolved, description, status,
+						type, username);
+
+				reimbursements.add(reimbursement);
 			}
 
 			return reimbursements;
@@ -281,14 +295,16 @@ public class ReimbursementDAO implements ReimbursementInterfaceDAO {
 
 		logger.info("getReimbursementStatusById(reimbId)");
 
-		List<Reimbursement> reimbursement = new ArrayList<>();
+		List<Reimbursement> reimbursements = new ArrayList<>();
 
 		Connection con = JDBCUtil.getConnection();
 
-		String sql = "SELECT reimbursement_id, reimbursement_submitted, "
-				+ "reimbursement_resolved, reimbursement_status, reimbursement_type, "
-				+ "reimbursement_description, reimbursement_amount, reimbursement_author, reimbursement_resolver "
-				+ "FROM reimbursement " + "WHERE reimbursement_author = ?;";
+		String sql = "SELECT reimb.reimbursement_id, " + "reimb.reimbursement_submitted, "
+				+ "	reimb.reimbursement_resolved, reimb.reimbursement_type, reimb.reimbursement_status, "
+				+ "	reimb.reimbursement_receipt, reimb.reimbursement_description, reimb.reimbursement_amount,"
+				+ " reimbursement_resolver , r.employee_username as r_user_username " + " FROM reimbursement reimb "
+				+ " LEFT JOIN users r " + "	ON reimb.reimbursement_resolver = r.user_id "
+				+ "	WHERE reimbursement_author = ?;";
 
 		try (PreparedStatement pstmt = con.prepareStatement(sql)) {
 			pstmt.setInt(1, rembAuthor);
@@ -297,14 +313,24 @@ public class ReimbursementDAO implements ReimbursementInterfaceDAO {
 
 			while (rs.next()) {
 
-				reimbursement.add(new Reimbursement(rs.getInt("reimbursement_id"),
-						rs.getString("reimbursement_submitted"), rs.getString("reimbursement_resolved"),
-						rs.getString("reimbursement_status"), rs.getString("reimbursement_type"),
-						rs.getString("reimbursement_description"), rs.getInt("reimbursement_amount"),
-						rs.getInt("reimbursement_author"), rs.getInt("reimbursement_resolver")));
+				int id = rs.getInt("reimbursement_id");
+				String submitted = rs.getString("reimbursement_submitted");
+				String resolved = rs.getString("reimbursement_resolved");
+				String type = rs.getString("reimbursement_type");
+				String status = rs.getString("reimbursement_status");
+				String description = rs.getString("reimbursement_description");
+				double amount = rs.getDouble("reimbursement_amount");
+				int resolver = rs.getInt("reimbursement_resolver");
+				String username = rs.getString("r_user_username");
+
+				Reimbursement reimbursement = new Reimbursement(id, submitted, resolved, type, status, description,
+						amount, resolver, username);
+
+				reimbursements.add(reimbursement);
+
 			}
 
-			return reimbursement;
+			return reimbursements;
 
 		} catch (SQLException e) {
 			throw new SQLException("Cannot complete the tasks at this time, please try again later");

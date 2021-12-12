@@ -7,6 +7,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -158,32 +160,37 @@ public class UserDAO implements UserInterfaceDAO {
 	}
 
 	@Override
-	public UserProfile getAllUserbyUsername(String username) throws SQLException {
+	public List<UserProfile> getAllUserbyNames(String firstname) throws SQLException {
 
 		logger.info("getalluser(...) invoked");
 
 		try (Connection con = JDBCUtil.getConnection()) {
-			String sql = "SELECT * FROM users WHERE employee_username = ?";
+			String sql = "SELECT * FROM users WHERE user_first_name LIKE ?;";
 
+			List<UserProfile> userBynames = new ArrayList<>();
+			
 			PreparedStatement pstmt = con.prepareStatement(sql);
 
-			pstmt.setString(1, username);
+			pstmt.setString(1, firstname);
 
 			ResultSet rs = pstmt.executeQuery();
 
-			if (rs.next()) {
+			while (rs.next()) {
 				String fName = rs.getString("user_first_name");
 				String lName = rs.getString("user_last_name");
 				String email = rs.getString("user_email");
 				String userRole = rs.getString("user_role");
 
-				return new UserProfile(fName, lName, email, userRole);
+				UserProfile userByNames = new UserProfile(fName, lName, email, userRole);
+				
+				userBynames.add(userByNames);
 
-			} else {
-				return null;
-			}
+			} 
+			
+			return userBynames;
+			
 		} catch (SQLException e) {
-			throw new SQLException("cannot find user with the username");
+			throw new SQLException("cannot find user");
 		}
 	}
 

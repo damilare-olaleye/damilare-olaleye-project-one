@@ -4,6 +4,7 @@ import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
 import java.sql.SQLException;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.security.auth.login.FailedLoginException;
@@ -161,19 +162,14 @@ public class UserService implements UserServiceInterface {
 	}
 
 	@Override
-	public UserProfile displayUserbyUsername(String username)
+	public List<UserProfile> displayUserbyNames(String names)
 			throws NotFoundException, SQLException, InvalidParameterException {
 
-		logger.info("displayAllUserbyUsername (username...) invoked");
+		logger.info("displayUserbyNames (names...) invoked");
 
 		try {
 
-//			if (username.matches(("(?=^.{3,20}$)^[a-zA-Z][a-zA-Z0-9]*[._-]?[a-zA-Z0-9]+$"))) {
-//
-//				this.userDao.getAllUserbyUsername(username);
-//			}
-
-			UserProfile user = this.userDao.getAllUserbyUsername(username);
+			List<UserProfile> user = this.userDao.getAllUserbyNames("%" + names + "%");
 
 			if (user == null) {
 				throw new NotFoundException("Cannot find user");

@@ -33,20 +33,33 @@ public class Reimbursement {
 		this.resolver = resolver;
 	}
 
-	public Reimbursement(int reimbId, String submitted, String resolved, String status, String type, String description,
-			double amount, int author, int resolver, String username) {
+	public Reimbursement(int reimbId, double amount, String submitted, String resolved, String description,
+			String status, String type, String username) {
+		super();
+		this.reimbId = reimbId;
+		this.amount = amount;
+		this.submitted = submitted;
+		this.resolved = resolved;
+		this.description = description;
+		this.status = status;
+		this.type = type;
+		this.username = username;
+	}
+	
+
+	public Reimbursement(int reimbId, String submitted, String resolved, String type, 
+			String status, String description,
+			double amount, int resolver,  String username) {
 		super();
 		this.reimbId = reimbId;
 		this.submitted = submitted;
 		this.resolved = resolved;
-		this.status = status;
 		this.type = type;
+		this.status = status;
 		this.description = description;
 		this.amount = amount;
-		this.author = author;
-		this.username = username;
 		this.resolver = resolver;
-
+		this.username = username;
 	}
 
 	public String getUsername() {
