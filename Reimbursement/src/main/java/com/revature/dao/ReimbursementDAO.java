@@ -29,12 +29,12 @@ public class ReimbursementDAO implements ReimbursementInterfaceDAO {
 		try (Connection con = JDBCUtil.getConnection()) {
 
 			String sqlAllReimbursement = "SELECT reimb.reimbursement_id, reimb.reimbursement_amount, "
-					+ "	reimb.reimbursement_submitted, "
+					+ "reimb.reimbursement_submitted,"
 					+ "	reimb.reimbursement_resolved, reimb.reimbursement_description, reimb.reimbursement_receipt, "
-					+ "	reimb.reimbursement_status, reimb.reimbursement_type, a.employee_username as a_user_username, "
-					+ "	r.employee_username  as r_user_username " + "	FROM reimbursement reimb "
-					+ "	INNER JOIN users a " + "	ON reimb.reimbursement_author = a.user_id " + "	LEFT JOIN users r "
-					+ "	ON reimb.reimbursement_resolver = r.user_id;";
+					+ "reimb.reimbursement_status, reimb.reimbursement_type, a.employee_username as a_user_username, "
+					+ "r.employee_username  as r_user_username " + "FROM reimbursement reimb "
+					+ "INNER JOIN users a " + "ON reimb.reimbursement_author = a.user_id " + "	LEFT JOIN users r "
+					+ "ON reimb.reimbursement_resolver = r.user_id;";
 
 			PreparedStatement pstmt = con.prepareStatement(sqlAllReimbursement);
 
@@ -56,7 +56,7 @@ public class ReimbursementDAO implements ReimbursementInterfaceDAO {
 					reimbursements.add(reimbursement);
 				}
 
-			}catch (SQLException e) {
+			} catch (SQLException e) {
 				throw new SQLException("Cannot complete request this time");
 			}
 
@@ -80,30 +80,31 @@ public class ReimbursementDAO implements ReimbursementInterfaceDAO {
 
 			con.setAutoCommit(false);
 
-			PreparedStatement pstmt = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+			try (PreparedStatement pstmt = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);) {
+				pstmt.setString(1, type);
+				pstmt.setDouble(2, amount);
+				pstmt.setString(3, description);
+				pstmt.setInt(4, author);
+				pstmt.setBinaryStream(5, receipt);
 
-			pstmt.setString(1, type);
-			pstmt.setDouble(2, amount);
-			pstmt.setString(3, description);
-			pstmt.setInt(4, author);
-			pstmt.setBinaryStream(5, receipt);
+				int numberOfInsertedRecords = pstmt.executeUpdate();
 
-			int numberOfInsertedRecords = pstmt.executeUpdate();
+				if (numberOfInsertedRecords != 1) {
+					throw new SQLException("Issue occurred when adding reimbursement");
+				}
 
-			if (numberOfInsertedRecords != 1) {
-				throw new SQLException("Issue occurred when adding reimbursement");
-			}
+				try (ResultSet rs = pstmt.getGeneratedKeys();) {
+					rs.next();
+					int generatedId = rs.getInt(1);
 
-			try (ResultSet rs = pstmt.getGeneratedKeys();) {
-				rs.next();
-				int generatedId = rs.getInt(1);
+					con.commit();
 
-				con.commit();
+					return new Reimbursement(generatedId, rs.getString("reimbursement_submitted"),
+							rs.getString("reimbursement_resolved"), description, type,
+							rs.getString("reimbursement_status"), amount, author, rs.getInt("reimbursement_resolver"));
+				}
 
-				return new Reimbursement(generatedId, rs.getString("reimbursement_submitted"),
-						rs.getString("reimbursement_resolved"), description, type, rs.getString("reimbursement_status"),
-						amount, author, rs.getInt("reimbursement_resolver"));
-			}catch (SQLException e) {
+			} catch (SQLException e) {
 				throw new SQLException("Cannot submit req at this time");
 			}
 

@@ -15,6 +15,7 @@ public class UserController implements Controller {
 
 	private AuthService authorizationService;
 	private UserService userService;
+	public static final String CURRENT_USER = "currentuser";
 
 	public UserController() {
 		this.authorizationService = new AuthService();
@@ -23,14 +24,14 @@ public class UserController implements Controller {
 
 	// Logged in as financial manager or employee
 	private Handler getUserById = (ctx) -> {
-		User user = (User) ctx.req.getSession().getAttribute("currentuser");
+		User user = (User) ctx.req.getSession().getAttribute(CURRENT_USER);
 		this.authorizationService.authorizeEmployeeAndFinanceManger(user);
 
 	};
 
 	// Logged in only as financial manager
 	private Handler addFinanceManger = (ctx) -> {
-		User user = (User) ctx.req.getSession().getAttribute("currentuser");
+		User user = (User) ctx.req.getSession().getAttribute(CURRENT_USER);
 		this.authorizationService.authorizeFinanceManager(user);
 
 	};
@@ -40,7 +41,7 @@ public class UserController implements Controller {
 
 		UserDTO userDTO = ctx.bodyAsClass(UserDTO.class);
 
-		User currentlyLoggedInUser = (User) ctx.req.getSession().getAttribute("currentuser");
+		User currentlyLoggedInUser = (User) ctx.req.getSession().getAttribute(CURRENT_USER);
 		this.authorizationService.authorizeEmployeeAndFinanceManger(currentlyLoggedInUser);
 
 		List<UserProfile> user = this.userService.displayUserbyNames(userDTO.getFirstName());
@@ -56,7 +57,7 @@ public class UserController implements Controller {
 
 	private Handler editProfile = (ctx) -> {
 
-		User currentlyLoggedInUser = (User) ctx.req.getSession().getAttribute("currentuser");
+		User currentlyLoggedInUser = (User) ctx.req.getSession().getAttribute(CURRENT_USER);
 		this.authorizationService.authorizeEmployeeAndFinanceManger(currentlyLoggedInUser);
 
 		String password = ctx.formParam("password");
@@ -75,7 +76,7 @@ public class UserController implements Controller {
 	
 	private Handler viewUserProfile = (ctx) -> {
 		
-		User currentlyLoggedInUser = (User) ctx.req.getSession().getAttribute("currentuser");
+		User currentlyLoggedInUser = (User) ctx.req.getSession().getAttribute(CURRENT_USER);
 		this.authorizationService.authorizeEmployeeAndFinanceManger(currentlyLoggedInUser);
 		
 		UserProfile user = this.userService.displayUserProfile(currentlyLoggedInUser);

@@ -20,6 +20,7 @@ public class ReimbursementController implements Controller {
 
 	private AuthService authorizationService;
 	private ReimbursementService reimbursementService;
+	public static final String CURRENT_USER = "currentuser";
 
 	ReimbursementDAO remibursementDao = new ReimbursementDAO();
 
@@ -31,7 +32,7 @@ public class ReimbursementController implements Controller {
 
 	private Handler submitRequest = (ctx) -> {
 
-		User currentlyLoggedInUser = (User) ctx.req.getSession().getAttribute("currentuser");
+		User currentlyLoggedInUser = (User) ctx.req.getSession().getAttribute(CURRENT_USER);
 		this.authorizationService.authorizeEmployee(currentlyLoggedInUser);
 
 		String reimbursementType = ctx.formParam("type");
@@ -77,7 +78,7 @@ public class ReimbursementController implements Controller {
 
 	private Handler viewAllReimbursements = (ctx) -> {
 
-		User currentlyLoggedInUser = (User) ctx.req.getSession().getAttribute("currentuser");
+		User currentlyLoggedInUser = (User) ctx.req.getSession().getAttribute(CURRENT_USER);
 		this.authorizationService.authorizeFinanceManager(currentlyLoggedInUser);
 
 		List<Reimbursement> reimbursements = this.reimbursementService.getAllReimbursement(currentlyLoggedInUser);
@@ -95,7 +96,7 @@ public class ReimbursementController implements Controller {
 
 	private Handler updateReimbursement = (ctx) -> {
 
-		User currentlyLoggedInUser = (User) ctx.req.getSession().getAttribute("currentuser");
+		User currentlyLoggedInUser = (User) ctx.req.getSession().getAttribute(CURRENT_USER);
 		this.authorizationService.authorizeFinanceManager(currentlyLoggedInUser);
 
 		String reimbursementId = ctx.formParam("reimbId");
@@ -110,11 +111,11 @@ public class ReimbursementController implements Controller {
 
 	private Handler viewPastTickets = (ctx) -> {
 
-		User currentlyLoggedInUser = (User) ctx.req.getSession().getAttribute("currentuser");
+		User currentlyLoggedInUser = (User) ctx.req.getSession().getAttribute(CURRENT_USER);
 		this.authorizationService.authorizeEmployeeAndFinanceManger(currentlyLoggedInUser);
 
 		String reimbsId = ctx.pathParam("reimbId");
-		
+
 		InputStream image = this.reimbursementService.getImageFromReimbursementById(currentlyLoggedInUser, reimbsId);
 
 		Tika tika = new Tika();
@@ -127,7 +128,7 @@ public class ReimbursementController implements Controller {
 
 	private Handler viewPendingReimbursements = (ctx) -> {
 
-		User currentlyLoggedInUser = (User) ctx.req.getSession().getAttribute("currentuser");
+		User currentlyLoggedInUser = (User) ctx.req.getSession().getAttribute(CURRENT_USER);
 		this.authorizationService.authorizeEmployee(currentlyLoggedInUser);
 
 		String reimbursementStatus = ctx.formParam("Status");
@@ -142,7 +143,7 @@ public class ReimbursementController implements Controller {
 
 	private Handler viewReimbursementStatus = (ctx) -> {
 
-		User currentlyLoggedInUser = (User) ctx.req.getSession().getAttribute("currentuser");
+		User currentlyLoggedInUser = (User) ctx.req.getSession().getAttribute(CURRENT_USER);
 		this.authorizationService.authorizeEmployee(currentlyLoggedInUser);
 
 		List<Reimbursement> reimbursement = this.reimbursementService.getReimbursementStatus(currentlyLoggedInUser);
@@ -153,7 +154,7 @@ public class ReimbursementController implements Controller {
 
 	private Handler viewAllEmployeePastReimHistory = (ctx) -> {
 
-		User currentlyLoggedInUser = (User) ctx.req.getSession().getAttribute("currentuser");
+		User currentlyLoggedInUser = (User) ctx.req.getSession().getAttribute(CURRENT_USER);
 		this.authorizationService.authorizeFinanceManager(currentlyLoggedInUser);
 
 		List<Reimbursement> reimbursements = this.reimbursementService
