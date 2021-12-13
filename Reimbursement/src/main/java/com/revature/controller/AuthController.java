@@ -40,6 +40,7 @@ public class AuthController implements Controller {
 		HttpServletRequest req = ctx.req;
 
 		HttpSession session = req.getSession();
+		
 		session.setAttribute("currentuser", user);
 
 		ctx.json(user);
