@@ -37,22 +37,13 @@ window.addEventListener('load', async () => {
   
   });
 
-function displayHide() {
-  let x = document.getElementById("#searchResults");
-  if(x.style.display === "none"){
-    x.style.display = "block";
-  } else {
-    x.style.display = "none";
-  }
-}
-
 
 let findNamesButton = document.querySelector('#findnames');
 findNamesButton.addEventListener('click', getAndPopulateUserByNames);
 
 async function getAndPopulateUserByNames() {
 
-  const searchInput = document.querySelector('#findNames');
+  const searchInput = document.querySelector('#findAllNames');
 
     let res = await fetch('http://ec2-3-138-126-45.us-east-2.compute.amazonaws.com:8081/searchUsers', {
       method: 'POST',
@@ -92,8 +83,6 @@ async function getAndPopulateUserByNames() {
       tr.appendChild(tableColFour);
   
       tbodyElement.appendChild(tr);
-  
-      // setTimeout(() => window.location.reload(), 7000);
 
     } else if(res.status === 400 || res.status === 404){
     

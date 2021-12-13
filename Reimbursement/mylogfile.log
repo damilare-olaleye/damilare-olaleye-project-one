@@ -10565,3 +10565,12 @@
 12 Dec 2021 - 21:47:42.711 [qtp2095303566-17] INFO  com.revature.dao.ReimbursementDAO - getPendingRequestById(int ReimbursementId, pending)
 12 Dec 2021 - 21:47:46.389 [qtp2095303566-25] INFO  com.revature.main.Main - GETrequest received to the /myReimbursementStatus endpoint
 12 Dec 2021 - 21:47:46.997 [qtp2095303566-25] INFO  com.revature.dao.ReimbursementDAO - getReimbursementStatusById(reimbId)
+12 Dec 2021 - 22:01:28.811 [qtp2095303566-11] INFO  com.revature.main.Main - POSTrequest received to the /searchUsers endpoint
+12 Dec 2021 - 22:01:28.817 [qtp2095303566-11] INFO  com.revature.service.UserService - displayUserbyNames (names...) invoked
+12 Dec 2021 - 22:01:28.817 [qtp2095303566-11] INFO  com.revature.dao.UserDAO - getalluser(...) invoked
+12 Dec 2021 - 22:01:32.478 [qtp2095303566-24] INFO  com.revature.main.Main - POSTrequest received to the /searchUsers endpoint
+12 Dec 2021 - 22:01:32.492 [qtp2095303566-24] INFO  com.revature.service.UserService - displayUserbyNames (names...) invoked
+12 Dec 2021 - 22:01:32.494 [qtp2095303566-24] INFO  com.revature.dao.UserDAO - getalluser(...) invoked
+12 Dec 2021 - 22:01:38.411 [qtp2095303566-18] INFO  com.revature.main.Main - POSTrequest received to the /searchUsers endpoint
+12 Dec 2021 - 22:01:38.420 [qtp2095303566-18] INFO  com.revature.service.UserService - displayUserbyNames (names...) invoked
+12 Dec 2021 - 22:01:38.421 [qtp2095303566-18] INFO  com.revature.dao.UserDAO - getalluser(...) invoked
