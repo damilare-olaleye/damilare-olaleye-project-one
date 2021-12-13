@@ -87,65 +87,6 @@ submitNewReibursementButton.addEventListener('click', async() => {
 
 });
 
-// let findNamesButton = document.querySelector('#findUsername');
-// findNamesButton.addEventListener('click', getAndPopulateUserByNames);
-
-// async function getAndPopulateUserByNames() {
-
-//   const searchInput = document.querySelector('#searchNames');
-
-//     let res = await fetch('http://ec2-3-138-126-45.us-east-2.compute.amazonaws.com:8081/searchUsers', {
-//       method: 'POST',
-//       credentials: 'include',
-//       body:JSON.stringify({
-//         username: searchInput.value
-//       })
-//     });
-
-//     console.log(res);
-
-//     if(res.status === 200 || res.status === 201){
-//       let usernameTable = await res.json();
-//       let tbodyElement = document.querySelector("#username-table");
-  
-//       console.log(usernameTable);
-//       console.log(tbodyElement);
-  
-//       let tr = document.createElement('tr');
-  
-//       let tableColOne = document.createElement('td');
-//       tableColOne.innerHTML = usernameTable.firstName;
-  
-//       let tableColTwo = document.createElement('td');
-//       tableColTwo.innerHTML = usernameTable.lastName;
-  
-//       let tableColThree = document.createElement('td');
-//       tableColThree.innerHTML = usernameTable.email;
-  
-//       let tableColFour = document.createElement('td');
-//       tableColFour.innerHTML = usernameTable.role;
-  
-//       tr.appendChild(tableColOne);
-//       tr.appendChild(tableColTwo);
-//       tr.appendChild(tableColThree);
-//       tr.appendChild(tableColFour);
-  
-//       tbodyElement.appendChild(tr);
-  
-//       setTimeout(() => window.location.reload(), 7000);
-
-//     } else if(res.status === 400 || res.status === 404){
-    
-//       let submitSearchErrMsg = document.createElement('p');
-//       let SubmitSearchDiv = document.querySelector('#submit-search-err');
-  
-//       SubmitSearchDiv.innerHTML = '';
-//       SubmitSearchDiv.innerHTML = data;
-//       submitSearchErrMsg.style.color = 'red';
-
-//     } 
-// }
-
 // Get the Sidebar
 var mySidebar = document.getElementById("#mySidebar");
 
