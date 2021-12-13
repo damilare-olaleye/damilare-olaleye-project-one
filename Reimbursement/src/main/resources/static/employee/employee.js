@@ -81,10 +81,8 @@ submitNewReibursementButton.addEventListener('click', async() => {
     submitErrorDiv.innerHTML = data;
     submitErrorMessage.style.color = 'red';
 
-  } else {
-    window.location.href = '/404/404.html';
   }
-
+  
 });
 
 // Get the Sidebar
