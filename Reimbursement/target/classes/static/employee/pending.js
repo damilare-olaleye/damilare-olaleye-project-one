@@ -48,9 +48,6 @@ async function getAndPopulatePendingReimbursement() {
     let pendingArray = await res.json();
     let tbodyElement = document.querySelector("#pending-table tbody");
 
-    console.log(pendingArray);
-    console.log(tbodyElement);
-
     for (let i = 0; i < pendingArray.length; i++) {
 
         let myPendingArray = pendingArray[i];

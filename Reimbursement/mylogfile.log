@@ -10622,3 +10622,138 @@
 12 Dec 2021 - 22:14:09.683 [main] INFO  com.revature.service.UserService - userLogin(username, password)
 12 Dec 2021 - 22:14:09.683 [main] INFO  com.revature.service.UserService - userSignUp (username...) invoked
 12 Dec 2021 - 22:14:09.684 [main] INFO  com.revature.service.UserService - userSignUp (username...) invoked
+12 Dec 2021 - 22:26:55.561 [main] INFO  com.revature.service.UserService - userLogin(username, password)
+12 Dec 2021 - 22:26:55.565 [main] INFO  com.revature.service.UserService - userSignUp (username...) invoked
+12 Dec 2021 - 22:26:55.566 [main] INFO  com.revature.service.UserService - userSignUp (username...) invoked
+12 Dec 2021 - 22:26:55.567 [main] INFO  com.revature.service.UserService - userLogin(username, password)
+12 Dec 2021 - 22:26:55.567 [main] INFO  com.revature.service.UserService - userSignUp (username...) invoked
+12 Dec 2021 - 22:26:55.567 [main] INFO  com.revature.service.UserService - userSignUp (username...) invoked
+12 Dec 2021 - 22:26:55.568 [main] INFO  com.revature.service.UserService - userSignUp (username...) invoked
+12 Dec 2021 - 22:26:55.569 [main] INFO  com.revature.service.UserService - userSignUp (username...) invoked
+12 Dec 2021 - 22:26:55.569 [main] INFO  com.revature.service.UserService - displayAllUserbyUsername (username...) invoked
+12 Dec 2021 - 22:26:55.573 [main] INFO  com.revature.service.UserService - displayAllUserbyUsername (username...) invoked
+12 Dec 2021 - 22:26:55.573 [main] INFO  com.revature.service.UserService - userLogin(username, password)
+12 Dec 2021 - 22:26:55.573 [main] INFO  com.revature.service.UserService - userLogin(username, password)
+12 Dec 2021 - 22:26:55.574 [main] INFO  com.revature.service.UserService - userSignUp (username...) invoked
+12 Dec 2021 - 22:26:55.575 [main] INFO  com.revature.service.UserService - userSignUp (username...) invoked
+12 Dec 2021 - 22:26:55.576 [main] INFO  com.revature.service.UserService - userLogin(username, password)
+12 Dec 2021 - 22:26:55.577 [main] INFO  com.revature.service.UserService - userLogin(username, password)
+12 Dec 2021 - 22:26:55.577 [main] INFO  com.revature.service.UserService - userSignUp (username...) invoked
+12 Dec 2021 - 22:26:55.579 [main] INFO  com.revature.service.UserService - userSignUp (username...) invoked
+12 Dec 2021 - 22:26:55.580 [main] INFO  com.revature.service.UserService - userSignUp (username...) invoked
+12 Dec 2021 - 22:26:55.580 [main] INFO  com.revature.service.UserService - userSignUp (username...) invoked
+12 Dec 2021 - 22:26:55.581 [main] INFO  com.revature.service.UserService - userSignUp (username...) invoked
+12 Dec 2021 - 22:26:55.582 [main] INFO  com.revature.service.UserService - userSignUp (username...) invoked
+12 Dec 2021 - 22:26:55.582 [main] INFO  com.revature.service.UserService - userSignUp (username...) invoked
+12 Dec 2021 - 22:26:55.583 [main] INFO  com.revature.service.UserService - displayAllUserbyUsername (username...) invoked
+12 Dec 2021 - 22:31:18.409 [qtp2095303566-32] INFO  com.revature.main.Main - POSTrequest received to the /login endpoint
+12 Dec 2021 - 22:31:18.431 [qtp2095303566-32] INFO  com.revature.service.UserService - userLogin(username, password)
+12 Dec 2021 - 22:31:18.432 [qtp2095303566-32] INFO  com.revature.dao.UserDAO - userLogin(username, password) invoked
+12 Dec 2021 - 22:31:29.518 [qtp2095303566-25] INFO  com.revature.main.Main - POSTrequest received to the /login endpoint
+12 Dec 2021 - 22:31:29.526 [qtp2095303566-25] INFO  com.revature.service.UserService - userLogin(username, password)
+12 Dec 2021 - 22:31:29.526 [qtp2095303566-25] INFO  com.revature.dao.UserDAO - userLogin(username, password) invoked
+12 Dec 2021 - 22:31:46.996 [qtp2095303566-24] INFO  com.revature.main.Main - POSTrequest received to the /login endpoint
+12 Dec 2021 - 22:31:47.009 [qtp2095303566-24] INFO  com.revature.service.UserService - userLogin(username, password)
+12 Dec 2021 - 22:31:47.010 [qtp2095303566-24] INFO  com.revature.dao.UserDAO - userLogin(username, password) invoked
+12 Dec 2021 - 22:32:21.345 [qtp2095303566-33] INFO  com.revature.main.Main - POSTrequest received to the /searchUsers endpoint
+12 Dec 2021 - 22:32:21.351 [qtp2095303566-33] INFO  com.revature.service.UserService - displayUserbyNames (names...) invoked
+12 Dec 2021 - 22:32:21.351 [qtp2095303566-33] INFO  com.revature.dao.UserDAO - getalluser(...) invoked
+12 Dec 2021 - 22:34:29.381 [qtp2095303566-35] INFO  com.revature.main.Main - POSTrequest received to the /login endpoint
+12 Dec 2021 - 22:34:29.389 [qtp2095303566-35] INFO  com.revature.service.UserService - userLogin(username, password)
+12 Dec 2021 - 22:34:29.390 [qtp2095303566-35] INFO  com.revature.dao.UserDAO - userLogin(username, password) invoked
+12 Dec 2021 - 22:41:17.045 [main] INFO  com.revature.service.UserService - userSignUp (username...) invoked
+12 Dec 2021 - 22:41:17.048 [main] INFO  com.revature.service.UserService - userSignUp (username...) invoked
+12 Dec 2021 - 22:41:17.062 [main] INFO  com.revature.service.UserService - userLogin(username, password)
+12 Dec 2021 - 22:41:17.063 [main] INFO  com.revature.service.UserService - userSignUp (username...) invoked
+12 Dec 2021 - 22:41:17.064 [main] INFO  com.revature.service.UserService - userSignUp (username...) invoked
+12 Dec 2021 - 22:41:17.065 [main] INFO  com.revature.service.UserService - userLogin(username, password)
+12 Dec 2021 - 22:41:17.066 [main] INFO  com.revature.service.UserService - userLogin(username, password)
+12 Dec 2021 - 22:41:17.066 [main] INFO  com.revature.service.UserService - userSignUp (username...) invoked
+12 Dec 2021 - 22:41:17.067 [main] INFO  com.revature.service.UserService - userSignUp (username...) invoked
+12 Dec 2021 - 22:41:17.067 [main] INFO  com.revature.service.UserService - userSignUp (username...) invoked
+12 Dec 2021 - 22:41:17.068 [main] INFO  com.revature.service.UserService - userSignUp (username...) invoked
+12 Dec 2021 - 22:41:17.068 [main] INFO  com.revature.service.UserService - userSignUp (username...) invoked
+12 Dec 2021 - 22:41:17.070 [main] INFO  com.revature.service.UserService - displayAllUserbyUsername (username...) invoked
+12 Dec 2021 - 22:41:17.072 [main] INFO  com.revature.service.UserService - userLogin(username, password)
+12 Dec 2021 - 22:41:17.073 [main] INFO  com.revature.service.UserService - userLogin(username, password)
+12 Dec 2021 - 22:41:17.075 [main] INFO  com.revature.service.UserService - userSignUp (username...) invoked
+12 Dec 2021 - 22:41:17.075 [main] INFO  com.revature.service.UserService - userSignUp (username...) invoked
+12 Dec 2021 - 22:41:17.077 [main] INFO  com.revature.service.UserService - userLogin(username, password)
+12 Dec 2021 - 22:41:17.077 [main] INFO  com.revature.service.UserService - userSignUp (username...) invoked
+12 Dec 2021 - 22:41:17.078 [main] INFO  com.revature.service.UserService - userSignUp (username...) invoked
+12 Dec 2021 - 22:41:17.079 [main] INFO  com.revature.service.UserService - userSignUp (username...) invoked
+12 Dec 2021 - 22:41:17.080 [main] INFO  com.revature.service.UserService - userSignUp (username...) invoked
+12 Dec 2021 - 22:41:17.081 [main] INFO  com.revature.service.UserService - displayAllUserbyUsername (username...) invoked
+12 Dec 2021 - 22:41:17.081 [main] INFO  com.revature.service.UserService - displayAllUserbyUsername (username...) invoked
+12 Dec 2021 - 22:43:39.912 [main] INFO  com.revature.service.UserService - userLogin(username, password)
+12 Dec 2021 - 22:43:39.916 [main] INFO  com.revature.service.UserService - userSignUp (username...) invoked
+12 Dec 2021 - 22:43:39.917 [main] INFO  com.revature.service.UserService - userSignUp (username...) invoked
+12 Dec 2021 - 22:43:39.918 [main] INFO  com.revature.service.UserService - displayAllUserbyUsername (username...) invoked
+12 Dec 2021 - 22:43:39.919 [main] INFO  com.revature.service.UserService - userSignUp (username...) invoked
+12 Dec 2021 - 22:43:39.919 [main] INFO  com.revature.service.UserService - userLogin(username, password)
+12 Dec 2021 - 22:43:39.921 [main] INFO  com.revature.service.UserService - userLogin(username, password)
+12 Dec 2021 - 22:43:39.921 [main] INFO  com.revature.service.UserService - userSignUp (username...) invoked
+12 Dec 2021 - 22:43:39.922 [main] INFO  com.revature.service.UserService - userSignUp (username...) invoked
+12 Dec 2021 - 22:43:39.922 [main] INFO  com.revature.service.UserService - userSignUp (username...) invoked
+12 Dec 2021 - 22:43:39.923 [main] INFO  com.revature.service.UserService - userSignUp (username...) invoked
+12 Dec 2021 - 22:43:39.923 [main] INFO  com.revature.service.UserService - userSignUp (username...) invoked
+12 Dec 2021 - 22:43:39.924 [main] INFO  com.revature.service.UserService - userSignUp (username...) invoked
+12 Dec 2021 - 22:43:39.925 [main] INFO  com.revature.service.UserService - userLogin(username, password)
+12 Dec 2021 - 22:43:39.926 [main] INFO  com.revature.service.UserService - userSignUp (username...) invoked
+12 Dec 2021 - 22:43:39.927 [main] INFO  com.revature.service.UserService - userSignUp (username...) invoked
+12 Dec 2021 - 22:43:39.927 [main] INFO  com.revature.service.UserService - userSignUp (username...) invoked
+12 Dec 2021 - 22:43:39.928 [main] INFO  com.revature.service.UserService - userSignUp (username...) invoked
+12 Dec 2021 - 22:43:39.929 [main] INFO  com.revature.service.UserService - displayAllUserbyUsername (username...) invoked
+12 Dec 2021 - 22:43:39.932 [main] INFO  com.revature.service.UserService - displayAllUserbyUsername (username...) invoked
+12 Dec 2021 - 22:43:39.934 [main] INFO  com.revature.service.UserService - userSignUp (username...) invoked
+12 Dec 2021 - 22:43:39.934 [main] INFO  com.revature.service.UserService - userSignUp (username...) invoked
+12 Dec 2021 - 22:43:39.935 [main] INFO  com.revature.service.UserService - userLogin(username, password)
+12 Dec 2021 - 22:43:39.935 [main] INFO  com.revature.service.UserService - userLogin(username, password)
+12 Dec 2021 - 22:45:59.062 [main] INFO  com.revature.service.UserService - userLogin(username, password)
+12 Dec 2021 - 22:45:59.066 [main] INFO  com.revature.service.UserService - userSignUp (username...) invoked
+12 Dec 2021 - 22:45:59.067 [main] INFO  com.revature.service.UserService - userSignUp (username...) invoked
+12 Dec 2021 - 22:45:59.068 [main] INFO  com.revature.service.UserService - userLogin(username, password)
+12 Dec 2021 - 22:45:59.068 [main] INFO  com.revature.service.UserService - userSignUp (username...) invoked
+12 Dec 2021 - 22:45:59.069 [main] INFO  com.revature.service.UserService - userSignUp (username...) invoked
+12 Dec 2021 - 22:45:59.069 [main] INFO  com.revature.service.UserService - userSignUp (username...) invoked
+12 Dec 2021 - 22:45:59.070 [main] INFO  com.revature.service.UserService - userSignUp (username...) invoked
+12 Dec 2021 - 22:45:59.070 [main] INFO  com.revature.service.UserService - displayAllUserbyUsername (username...) invoked
+12 Dec 2021 - 22:45:59.073 [main] INFO  com.revature.service.UserService - displayAllUserbyUsername (username...) invoked
+12 Dec 2021 - 22:45:59.074 [main] INFO  com.revature.service.UserService - userSignUp (username...) invoked
+12 Dec 2021 - 22:45:59.075 [main] INFO  com.revature.service.UserService - userSignUp (username...) invoked
+12 Dec 2021 - 22:45:59.076 [main] INFO  com.revature.service.UserService - userLogin(username, password)
+12 Dec 2021 - 22:45:59.076 [main] INFO  com.revature.service.UserService - userLogin(username, password)
+12 Dec 2021 - 22:45:59.077 [main] INFO  com.revature.service.UserService - userLogin(username, password)
+12 Dec 2021 - 22:45:59.078 [main] INFO  com.revature.service.UserService - userLogin(username, password)
+12 Dec 2021 - 22:45:59.078 [main] INFO  com.revature.service.UserService - userSignUp (username...) invoked
+12 Dec 2021 - 22:45:59.080 [main] INFO  com.revature.service.UserService - userSignUp (username...) invoked
+12 Dec 2021 - 22:45:59.081 [main] INFO  com.revature.service.UserService - userSignUp (username...) invoked
+12 Dec 2021 - 22:45:59.081 [main] INFO  com.revature.service.UserService - userSignUp (username...) invoked
+12 Dec 2021 - 22:45:59.082 [main] INFO  com.revature.service.UserService - userSignUp (username...) invoked
+12 Dec 2021 - 22:45:59.083 [main] INFO  com.revature.service.UserService - userSignUp (username...) invoked
+12 Dec 2021 - 22:45:59.084 [main] INFO  com.revature.service.UserService - userSignUp (username...) invoked
+12 Dec 2021 - 22:45:59.085 [main] INFO  com.revature.service.UserService - displayAllUserbyUsername (username...) invoked
+12 Dec 2021 - 22:49:15.108 [main] INFO  com.revature.service.UserService - userSignUp (username...) invoked
+12 Dec 2021 - 22:49:15.116 [main] INFO  com.revature.service.UserService - userSignUp (username...) invoked
+12 Dec 2021 - 22:49:15.122 [main] INFO  com.revature.service.UserService - userLogin(username, password)
+12 Dec 2021 - 22:49:15.123 [main] INFO  com.revature.service.UserService - userLogin(username, password)
+12 Dec 2021 - 22:49:15.131 [main] INFO  com.revature.service.UserService - userLogin(username, password)
+12 Dec 2021 - 22:49:15.133 [main] INFO  com.revature.service.UserService - userSignUp (username...) invoked
+12 Dec 2021 - 22:49:15.134 [main] INFO  com.revature.service.UserService - userSignUp (username...) invoked
+12 Dec 2021 - 22:49:15.134 [main] INFO  com.revature.service.UserService - userSignUp (username...) invoked
+12 Dec 2021 - 22:49:15.135 [main] INFO  com.revature.service.UserService - userSignUp (username...) invoked
+12 Dec 2021 - 22:49:15.137 [main] INFO  com.revature.service.UserService - displayAllUserbyUsername (username...) invoked
+12 Dec 2021 - 22:49:15.138 [main] INFO  com.revature.service.UserService - displayAllUserbyUsername (username...) invoked
+12 Dec 2021 - 22:49:15.138 [main] INFO  com.revature.service.UserService - userLogin(username, password)
+12 Dec 2021 - 22:49:15.139 [main] INFO  com.revature.service.UserService - userLogin(username, password)
+12 Dec 2021 - 22:49:15.139 [main] INFO  com.revature.service.UserService - userSignUp (username...) invoked
+12 Dec 2021 - 22:49:15.140 [main] INFO  com.revature.service.UserService - userSignUp (username...) invoked
+12 Dec 2021 - 22:49:15.141 [main] INFO  com.revature.service.UserService - userSignUp (username...) invoked
+12 Dec 2021 - 22:49:15.141 [main] INFO  com.revature.service.UserService - userSignUp (username...) invoked
+12 Dec 2021 - 22:49:15.142 [main] INFO  com.revature.service.UserService - userSignUp (username...) invoked
+12 Dec 2021 - 22:49:15.143 [main] INFO  com.revature.service.UserService - userSignUp (username...) invoked
+12 Dec 2021 - 22:49:15.143 [main] INFO  com.revature.service.UserService - userSignUp (username...) invoked
+12 Dec 2021 - 22:49:15.144 [main] INFO  com.revature.service.UserService - displayAllUserbyUsername (username...) invoked
+12 Dec 2021 - 22:49:15.146 [main] INFO  com.revature.service.UserService - userLogin(username, password)
+12 Dec 2021 - 22:49:15.147 [main] INFO  com.revature.service.UserService - userSignUp (username...) invoked
+12 Dec 2021 - 22:49:15.147 [main] INFO  com.revature.service.UserService - userSignUp (username...) invoked

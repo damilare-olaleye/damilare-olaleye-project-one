@@ -53,47 +53,34 @@ async function getAndPopulateUserByNames() {
       })
     });
 
-    console.log(res);
-
-    if(res.status === 200 || res.status === 201){
       let usernameTable = await res.json();
       let tbodyElement = document.querySelector("#names-table");
-  
-      console.log(usernameTable);
-      console.log(tbodyElement);
-  
-      let tr = document.createElement('tr');
 
-      let tableColOne = document.createElement('td');
-      tableColOne.innerHTML = usernameTable.firstName;
-  
-      let tableColTwo = document.createElement('td');
-      tableColTwo.innerHTML = usernameTable.lastName;
-  
-      let tableColThree = document.createElement('td');
-      tableColThree.innerHTML = usernameTable.email;
-  
-      let tableColFour = document.createElement('td');
-      tableColFour.innerHTML = usernameTable.role;
-  
-      
-      tr.appendChild(tableColOne);
-      tr.appendChild(tableColTwo);
-      tr.appendChild(tableColThree);
-      tr.appendChild(tableColFour);
-  
-      tbodyElement.appendChild(tr);
+      for(let i = 0; i < usernameTable.length; i++){
 
-    } else if(res.status === 400 || res.status === 404){
+        tbodyElement.innerHTML = '';
+        
+        let usernameTableArray = usernameTable[i];
+
+        let tr = document.createElement('tr');
+
+        let tableColOne = document.createElement('td');
+        tableColOne.innerHTML = usernameTableArray.firstName;
     
-      let submitSearchErrMsg = document.createElement('p');
-      let SubmitSearchDiv = document.querySelector('#submit-search-err');
+        let tableColTwo = document.createElement('td');
+        tableColTwo.innerHTML = usernameTableArray.lastName;
+    
+        let tableColThree = document.createElement('td');
+        tableColThree.innerHTML = usernameTableArray.email;
   
-      SubmitSearchDiv.innerHTML = '';
-      SubmitSearchDiv.innerHTML = data;
-      submitSearchErrMsg.style.color = 'red';
-
-    }  else {
-        window.location.href = '/404/404.html';
+        let tableColFour = document.createElement('td');
+        tableColFour.innerHTML = usernameTableArray.role;
+    
+        tr.appendChild(tableColOne);
+        tr.appendChild(tableColTwo);
+        tr.appendChild(tableColThree);
+        tr.appendChild(tableColFour);
+    
+        tbodyElement.appendChild(tr);
       }
 }
