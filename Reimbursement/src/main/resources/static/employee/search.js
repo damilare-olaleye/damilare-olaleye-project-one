@@ -59,7 +59,7 @@ async function getAndPopulateUserByNames() {
       for(let i = 0; i < usernameTable.length; i++){
 
         tbodyElement.innerHTML = '';
-        
+      
         let usernameTableArray = usernameTable[i];
 
         let tr = document.createElement('tr');
