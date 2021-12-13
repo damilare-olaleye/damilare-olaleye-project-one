@@ -15,6 +15,7 @@
 * An Employee can view their resolved reimbursement requests
 * An Employee can logout
 * An Employee can create a new account (sign up)
+* An Employee can search for other employees or finance manager 
 
 ## Finance Manager User Stories
 * A Finance Manager can login
