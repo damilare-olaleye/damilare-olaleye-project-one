@@ -93,7 +93,7 @@ async function getAndPopulateUserByUsername() {
   
       tbodyElement.appendChild(tr);
   
-      setTimeout(() => window.location.reload(), 7000);
+      // setTimeout(() => window.location.reload(), 7000);
 
     } else if(res.status === 400 || res.status === 404){
     

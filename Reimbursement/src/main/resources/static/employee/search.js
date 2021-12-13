@@ -15,7 +15,7 @@ window.addEventListener('load', async () => {
         window.location.href = '/404/404.html';
     }
   
-    getAndPopulateUserByUsername()
+    getAndPopulateUserByNames()
 
   });
   
@@ -47,18 +47,18 @@ function displayHide() {
 }
 
 
-let findUsernameButton = document.querySelector('#findUsername');
-findUsernameButton.addEventListener('click', getAndPopulateUserByUsername);
+let findNamesButton = document.querySelector('#findnames');
+findNamesButton.addEventListener('click', getAndPopulateUserByNames);
 
-async function getAndPopulateUserByUsername() {
+async function getAndPopulateUserByNames() {
 
-  const searchInput = document.querySelector('#searchUsername');
+  const searchInput = document.querySelector('#findNames');
 
     let res = await fetch('http://ec2-3-138-126-45.us-east-2.compute.amazonaws.com:8081/searchUsers', {
       method: 'POST',
       credentials: 'include',
       body:JSON.stringify({
-        username: searchInput.value
+        firstName: searchInput.value
       })
     });
 
@@ -66,7 +66,7 @@ async function getAndPopulateUserByUsername() {
 
     if(res.status === 200 || res.status === 201){
       let usernameTable = await res.json();
-      let tbodyElement = document.querySelector("#username-table");
+      let tbodyElement = document.querySelector("#names-table");
   
       console.log(usernameTable);
       console.log(tbodyElement);
@@ -93,7 +93,7 @@ async function getAndPopulateUserByUsername() {
   
       tbodyElement.appendChild(tr);
   
-      setTimeout(() => window.location.reload(), 7000);
+      // setTimeout(() => window.location.reload(), 7000);
 
     } else if(res.status === 400 || res.status === 404){
     

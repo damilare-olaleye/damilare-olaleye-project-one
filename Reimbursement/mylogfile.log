@@ -10485,3 +10485,83 @@
 12 Dec 2021 - 14:39:05.417 [main] INFO  com.revature.service.UserService - userSignUp (username...) invoked
 12 Dec 2021 - 14:39:05.418 [main] INFO  com.revature.service.UserService - userSignUp (username...) invoked
 12 Dec 2021 - 14:39:05.418 [main] INFO  com.revature.service.UserService - userLogin(username, password)
+12 Dec 2021 - 14:44:15.856 [main] INFO  com.revature.service.UserService - userLogin(username, password)
+12 Dec 2021 - 14:44:15.860 [main] INFO  com.revature.service.UserService - userSignUp (username...) invoked
+12 Dec 2021 - 14:44:15.861 [main] INFO  com.revature.service.UserService - userSignUp (username...) invoked
+12 Dec 2021 - 14:44:15.861 [main] INFO  com.revature.service.UserService - userSignUp (username...) invoked
+12 Dec 2021 - 14:44:15.862 [main] INFO  com.revature.service.UserService - userSignUp (username...) invoked
+12 Dec 2021 - 14:44:15.863 [main] INFO  com.revature.service.UserService - userLogin(username, password)
+12 Dec 2021 - 14:44:15.863 [main] INFO  com.revature.service.UserService - userLogin(username, password)
+12 Dec 2021 - 14:44:15.864 [main] INFO  com.revature.service.UserService - userSignUp (username...) invoked
+12 Dec 2021 - 14:44:15.865 [main] INFO  com.revature.service.UserService - userSignUp (username...) invoked
+12 Dec 2021 - 14:44:15.865 [main] INFO  com.revature.service.UserService - userSignUp (username...) invoked
+12 Dec 2021 - 14:44:15.866 [main] INFO  com.revature.service.UserService - userSignUp (username...) invoked
+12 Dec 2021 - 14:44:15.866 [main] INFO  com.revature.service.UserService - userSignUp (username...) invoked
+12 Dec 2021 - 14:44:15.868 [main] INFO  com.revature.service.UserService - displayAllUserbyUsername (username...) invoked
+12 Dec 2021 - 14:44:15.870 [main] INFO  com.revature.service.UserService - userSignUp (username...) invoked
+12 Dec 2021 - 14:44:15.872 [main] INFO  com.revature.service.UserService - userSignUp (username...) invoked
+12 Dec 2021 - 14:44:15.875 [main] INFO  com.revature.service.UserService - userLogin(username, password)
+12 Dec 2021 - 14:44:15.875 [main] INFO  com.revature.service.UserService - userLogin(username, password)
+12 Dec 2021 - 14:44:15.875 [main] INFO  com.revature.service.UserService - userLogin(username, password)
+12 Dec 2021 - 14:44:15.876 [main] INFO  com.revature.service.UserService - userSignUp (username...) invoked
+12 Dec 2021 - 14:44:15.877 [main] INFO  com.revature.service.UserService - userSignUp (username...) invoked
+12 Dec 2021 - 14:44:15.877 [main] INFO  com.revature.service.UserService - userSignUp (username...) invoked
+12 Dec 2021 - 14:44:15.880 [main] INFO  com.revature.service.UserService - userSignUp (username...) invoked
+12 Dec 2021 - 14:44:15.880 [main] INFO  com.revature.service.UserService - displayAllUserbyUsername (username...) invoked
+12 Dec 2021 - 14:44:15.881 [main] INFO  com.revature.service.UserService - displayAllUserbyUsername (username...) invoked
+12 Dec 2021 - 21:16:28.626 [qtp2095303566-18] INFO  com.revature.main.Main - POSTrequest received to the /searchUsers endpoint
+12 Dec 2021 - 21:16:28.651 [qtp2095303566-18] INFO  com.revature.service.UserService - displayUserbyNames (names...) invoked
+12 Dec 2021 - 21:16:28.652 [qtp2095303566-18] INFO  com.revature.dao.UserDAO - getalluser(...) invoked
+12 Dec 2021 - 21:18:23.558 [qtp2095303566-29] INFO  com.revature.main.Main - POSTrequest received to the /searchUsers endpoint
+12 Dec 2021 - 21:18:23.571 [qtp2095303566-29] INFO  com.revature.service.UserService - displayUserbyNames (names...) invoked
+12 Dec 2021 - 21:18:23.572 [qtp2095303566-29] INFO  com.revature.dao.UserDAO - getalluser(...) invoked
+12 Dec 2021 - 21:18:30.166 [qtp2095303566-12] INFO  com.revature.main.Main - POSTrequest received to the /searchUsers endpoint
+12 Dec 2021 - 21:18:30.168 [qtp2095303566-12] INFO  com.revature.service.UserService - displayUserbyNames (names...) invoked
+12 Dec 2021 - 21:18:30.169 [qtp2095303566-12] INFO  com.revature.dao.UserDAO - getalluser(...) invoked
+12 Dec 2021 - 21:21:33.925 [main] INFO  org.eclipse.jetty.util.log - Logging initialized @662ms to org.eclipse.jetty.util.log.Slf4jLog
+12 Dec 2021 - 21:21:42.918 [qtp2095303566-16] INFO  com.revature.main.Main - POSTrequest received to the /login endpoint
+12 Dec 2021 - 21:21:43.136 [qtp2095303566-16] INFO  com.revature.service.UserService - userLogin(username, password)
+12 Dec 2021 - 21:21:43.137 [qtp2095303566-16] INFO  com.revature.dao.UserDAO - userLogin(username, password) invoked
+12 Dec 2021 - 21:21:48.194 [qtp2095303566-13] INFO  com.revature.main.Main - POSTrequest received to the /searchUsers endpoint
+12 Dec 2021 - 21:21:48.225 [qtp2095303566-13] INFO  com.revature.service.UserService - displayUserbyNames (names...) invoked
+12 Dec 2021 - 21:21:48.226 [qtp2095303566-13] INFO  com.revature.dao.UserDAO - getalluser(...) invoked
+12 Dec 2021 - 21:21:50.486 [qtp2095303566-17] INFO  com.revature.main.Main - POSTrequest received to the /searchUsers endpoint
+12 Dec 2021 - 21:21:50.488 [qtp2095303566-17] INFO  com.revature.service.UserService - displayUserbyNames (names...) invoked
+12 Dec 2021 - 21:21:50.488 [qtp2095303566-17] INFO  com.revature.dao.UserDAO - getalluser(...) invoked
+12 Dec 2021 - 21:35:29.584 [main] INFO  org.eclipse.jetty.util.log - Logging initialized @779ms to org.eclipse.jetty.util.log.Slf4jLog
+12 Dec 2021 - 21:36:42.336 [qtp2095303566-24] INFO  com.revature.main.Main - POSTrequest received to the /login endpoint
+12 Dec 2021 - 21:36:42.573 [qtp2095303566-24] INFO  com.revature.service.UserService - userLogin(username, password)
+12 Dec 2021 - 21:36:42.574 [qtp2095303566-24] INFO  com.revature.dao.UserDAO - userLogin(username, password) invoked
+12 Dec 2021 - 21:36:46.166 [qtp2095303566-13] INFO  com.revature.main.Main - POSTrequest received to the /searchUsers endpoint
+12 Dec 2021 - 21:36:46.206 [qtp2095303566-13] INFO  com.revature.service.UserService - displayUserbyNames (names...) invoked
+12 Dec 2021 - 21:36:46.206 [qtp2095303566-13] INFO  com.revature.dao.UserDAO - getalluser(...) invoked
+12 Dec 2021 - 21:37:07.317 [qtp2095303566-16] INFO  com.revature.main.Main - POSTrequest received to the /searchUsers endpoint
+12 Dec 2021 - 21:37:07.330 [qtp2095303566-16] INFO  com.revature.service.UserService - displayUserbyNames (names...) invoked
+12 Dec 2021 - 21:37:07.331 [qtp2095303566-16] INFO  com.revature.dao.UserDAO - getalluser(...) invoked
+12 Dec 2021 - 21:37:08.874 [qtp2095303566-17] INFO  com.revature.main.Main - POSTrequest received to the /searchUsers endpoint
+12 Dec 2021 - 21:37:08.875 [qtp2095303566-17] INFO  com.revature.service.UserService - displayUserbyNames (names...) invoked
+12 Dec 2021 - 21:37:08.875 [qtp2095303566-17] INFO  com.revature.dao.UserDAO - getalluser(...) invoked
+12 Dec 2021 - 21:38:39.403 [main] INFO  org.eclipse.jetty.util.log - Logging initialized @814ms to org.eclipse.jetty.util.log.Slf4jLog
+12 Dec 2021 - 21:38:46.014 [qtp2095303566-16] INFO  com.revature.main.Main - POSTrequest received to the /login endpoint
+12 Dec 2021 - 21:38:46.230 [qtp2095303566-16] INFO  com.revature.service.UserService - userLogin(username, password)
+12 Dec 2021 - 21:38:46.230 [qtp2095303566-16] INFO  com.revature.dao.UserDAO - userLogin(username, password) invoked
+12 Dec 2021 - 21:38:51.007 [qtp2095303566-13] INFO  com.revature.main.Main - POSTrequest received to the /searchUsers endpoint
+12 Dec 2021 - 21:38:51.042 [qtp2095303566-13] INFO  com.revature.service.UserService - displayUserbyNames (names...) invoked
+12 Dec 2021 - 21:38:51.042 [qtp2095303566-13] INFO  com.revature.dao.UserDAO - getalluser(...) invoked
+12 Dec 2021 - 21:44:50.667 [qtp2095303566-11] INFO  com.revature.main.Main - GETrequest received to the /myReimbursementStatus endpoint
+12 Dec 2021 - 21:44:53.019 [qtp2095303566-24] INFO  com.revature.main.Main - GETrequest received to the /myReimbursementStatus endpoint
+12 Dec 2021 - 21:44:55.051 [qtp2095303566-25] INFO  com.revature.main.Main - GETrequest received to the /myReimbursementStatus endpoint
+12 Dec 2021 - 21:44:58.856 [qtp2095303566-24] INFO  com.revature.main.Main - POSTrequest received to the /submitRequest endpoint
+12 Dec 2021 - 21:44:59.231 [qtp2095303566-24] INFO  com.revature.dao.ReimbursementDAO - submitRequest(...) invoked
+12 Dec 2021 - 21:45:04.206 [qtp2095303566-25] INFO  com.revature.main.Main - POSTrequest received to the /submitRequest endpoint
+12 Dec 2021 - 21:45:04.252 [qtp2095303566-25] INFO  com.revature.dao.ReimbursementDAO - submitRequest(...) invoked
+12 Dec 2021 - 21:45:15.440 [qtp2095303566-24] INFO  com.revature.main.Main - GETrequest received to the /myReimbursementStatus endpoint
+12 Dec 2021 - 21:45:21.729 [qtp2095303566-25] INFO  com.revature.main.Main - GETrequest received to the /myPendingReimbursements endpoint
+12 Dec 2021 - 21:46:11.453 [qtp2095303566-17] INFO  com.revature.main.Main - GETrequest received to the /myPendingReimbursements endpoint
+12 Dec 2021 - 21:46:39.837 [qtp2095303566-24] INFO  com.revature.main.Main - GETrequest received to the /myReimbursementStatus endpoint
+12 Dec 2021 - 21:47:38.127 [qtp2095303566-25] INFO  com.revature.main.Main - POSTrequest received to the /submitRequest endpoint
+12 Dec 2021 - 21:47:38.189 [qtp2095303566-25] INFO  com.revature.dao.ReimbursementDAO - submitRequest(...) invoked
+12 Dec 2021 - 21:47:42.057 [qtp2095303566-17] INFO  com.revature.main.Main - GETrequest received to the /myPendingReimbursements endpoint
+12 Dec 2021 - 21:47:42.711 [qtp2095303566-17] INFO  com.revature.dao.ReimbursementDAO - getPendingRequestById(int ReimbursementId, pending)
+12 Dec 2021 - 21:47:46.389 [qtp2095303566-25] INFO  com.revature.main.Main - GETrequest received to the /myReimbursementStatus endpoint
+12 Dec 2021 - 21:47:46.997 [qtp2095303566-25] INFO  com.revature.dao.ReimbursementDAO - getReimbursementStatusById(reimbId)
