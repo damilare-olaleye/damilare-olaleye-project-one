@@ -59,7 +59,6 @@ submitNewReibursementButton.addEventListener('click', async() => {
     body: formData
   });
 
-
   let data = await res.text();
 
   if(res.status === 201 || res.status === 200) {
