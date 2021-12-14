@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="22" failures="0" name="com.revature.service.UserServiceTest" time="0.856" errors="0" skipped="0">
+<testsuite tests="22" failures="0" name="com.revature.service.UserServiceTest" time="0.884" errors="0" skipped="0">
   <properties>
     <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
     <property name="sun.boot.library.path" value="/Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home/jre/lib"/>
@@ -64,26 +64,26 @@
     <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="sun.cpu.isalist" value=""/>
   </properties>
-  <testcase classname="com.revature.service.UserServiceTest" name="com.revature.service.UserServiceTest.testUserLoginFailedLoginInvalidParameterNegativeBothBlankInputs" time="0.847"/>
-  <testcase classname="com.revature.service.UserServiceTest" name="com.revature.service.UserServiceTest.testUserSignupInvalidParameterExceptionEverythingElseValid" time="0"/>
+  <testcase classname="com.revature.service.UserServiceTest" name="com.revature.service.UserServiceTest.testUserLoginFailedLoginInvalidParameterNegativeBothBlankInputs" time="0.87"/>
+  <testcase classname="com.revature.service.UserServiceTest" name="com.revature.service.UserServiceTest.testUserSignupInvalidParameterExceptionEverythingElseValid" time="0.001"/>
   <testcase classname="com.revature.service.UserServiceTest" name="com.revature.service.UserServiceTest.testUserSignupInvalidParameterExceptionUsernamePasswordFirstName" time="0"/>
-  <testcase classname="com.revature.service.UserServiceTest" name="com.revature.service.UserServiceTest.testUserLoginFailedLoginException" time="0"/>
-  <testcase classname="com.revature.service.UserServiceTest" name="com.revature.service.UserServiceTest.testUserSignupInvalidParameterException" time="0"/>
-  <testcase classname="com.revature.service.UserServiceTest" name="com.revature.service.UserServiceTest.testUserSignupNotFoundException" time="0"/>
-  <testcase classname="com.revature.service.UserServiceTest" name="com.revature.service.UserServiceTest.testUserSignupNotFoundExceptionWrongRole" time="0"/>
-  <testcase classname="com.revature.service.UserServiceTest" name="com.revature.service.UserServiceTest.testUserSignupNotFoundExceptionRoleBlank" time="0"/>
-  <testcase classname="com.revature.service.UserServiceTest" name="com.revature.service.UserServiceTest.testPositiveDisplayUserProfile" time="0"/>
-  <testcase classname="com.revature.service.UserServiceTest" name="com.revature.service.UserServiceTest.testNegativeDisplayUserProfile" time="0"/>
-  <testcase classname="com.revature.service.UserServiceTest" name="com.revature.service.UserServiceTest.testUserSignupPositive" time="0.001"/>
-  <testcase classname="com.revature.service.UserServiceTest" name="com.revature.service.UserServiceTest.testUserLoginPositive" time="0"/>
-  <testcase classname="com.revature.service.UserServiceTest" name="com.revature.service.UserServiceTest.testUserLoginFailedLoginNotFoundException" time="0.001"/>
   <testcase classname="com.revature.service.UserServiceTest" name="com.revature.service.UserServiceTest.testUserLoginFailedLoginInvalidParameterNegativeUsername" time="0"/>
-  <testcase classname="com.revature.service.UserServiceTest" name="com.revature.service.UserServiceTest.testUserSignupInvalidParameterExceptionEverythingBlank" time="0.001"/>
-  <testcase classname="com.revature.service.UserServiceTest" name="com.revature.service.UserServiceTest.testUserSignupInvalidParameterExceptionUsernamePassword" time="0.002"/>
+  <testcase classname="com.revature.service.UserServiceTest" name="com.revature.service.UserServiceTest.testUserLoginFailedLoginNotFoundException" time="0"/>
+  <testcase classname="com.revature.service.UserServiceTest" name="com.revature.service.UserServiceTest.testUserSignupInvalidParameterExceptionEverythingBlank" time="0"/>
+  <testcase classname="com.revature.service.UserServiceTest" name="com.revature.service.UserServiceTest.testUserSignupInvalidParameterExceptionUsernamePassword" time="0"/>
   <testcase classname="com.revature.service.UserServiceTest" name="com.revature.service.UserServiceTest.testUserSignupInvalidParameterExceptionFirstNameLastName" time="0"/>
   <testcase classname="com.revature.service.UserServiceTest" name="com.revature.service.UserServiceTest.testUserSignupInvalidParameterExceptionLastNameEmail" time="0"/>
-  <testcase classname="com.revature.service.UserServiceTest" name="com.revature.service.UserServiceTest.testUserSignupInvalidParameterExceptionOnlyEmail" time="0.002"/>
-  <testcase classname="com.revature.service.UserServiceTest" name="com.revature.service.UserServiceTest.testUserSignupInvalidParameterExceptionWrongRole" time="0.001"/>
+  <testcase classname="com.revature.service.UserServiceTest" name="com.revature.service.UserServiceTest.testUserSignupInvalidParameterExceptionOnlyEmail" time="0"/>
+  <testcase classname="com.revature.service.UserServiceTest" name="com.revature.service.UserServiceTest.testUserSignupInvalidParameterExceptionWrongRole" time="0"/>
   <testcase classname="com.revature.service.UserServiceTest" name="com.revature.service.UserServiceTest.testUserSignupNotFoundExceptionBlankEverythingElse" time="0"/>
   <testcase classname="com.revature.service.UserServiceTest" name="com.revature.service.UserServiceTest.testNegativeDisplayUserProfileNegativeNumber" time="0.001"/>
+  <testcase classname="com.revature.service.UserServiceTest" name="com.revature.service.UserServiceTest.testUserLoginPositive" time="0.003"/>
+  <testcase classname="com.revature.service.UserServiceTest" name="com.revature.service.UserServiceTest.testUserSignupPositive" time="0.005"/>
+  <testcase classname="com.revature.service.UserServiceTest" name="com.revature.service.UserServiceTest.testUserLoginFailedLoginException" time="0"/>
+  <testcase classname="com.revature.service.UserServiceTest" name="com.revature.service.UserServiceTest.testUserSignupInvalidParameterException" time="0"/>
+  <testcase classname="com.revature.service.UserServiceTest" name="com.revature.service.UserServiceTest.testUserSignupNotFoundException" time="0.002"/>
+  <testcase classname="com.revature.service.UserServiceTest" name="com.revature.service.UserServiceTest.testUserSignupNotFoundExceptionWrongRole" time="0"/>
+  <testcase classname="com.revature.service.UserServiceTest" name="com.revature.service.UserServiceTest.testUserSignupNotFoundExceptionRoleBlank" time="0"/>
+  <testcase classname="com.revature.service.UserServiceTest" name="com.revature.service.UserServiceTest.testPositiveDisplayUserProfile" time="0.001"/>
+  <testcase classname="com.revature.service.UserServiceTest" name="com.revature.service.UserServiceTest.testNegativeDisplayUserProfile" time="0.001"/>
 </testsuite>

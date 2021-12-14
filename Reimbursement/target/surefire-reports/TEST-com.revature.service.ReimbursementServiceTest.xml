@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="12" failures="0" name="com.revature.service.ReimbursementServiceTest" time="0.136" errors="0" skipped="0">
+<testsuite tests="12" failures="0" name="com.revature.service.ReimbursementServiceTest" time="0.152" errors="0" skipped="0">
   <properties>
     <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
     <property name="sun.boot.library.path" value="/Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home/jre/lib"/>
@@ -64,16 +64,16 @@
     <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="sun.cpu.isalist" value=""/>
   </properties>
-  <testcase classname="com.revature.service.ReimbursementServiceTest" name="com.revature.service.ReimbursementServiceTest.testGetAllEmployeeReimbPastHistorySQLExceptionNegativeTest" time="0.131"/>
-  <testcase classname="com.revature.service.ReimbursementServiceTest" name="com.revature.service.ReimbursementServiceTest.testGetAllReimbursementPositve" time="0"/>
-  <testcase classname="com.revature.service.ReimbursementServiceTest" name="com.revature.service.ReimbursementServiceTest.testUpdateReimbursementPositve" time="0.001"/>
-  <testcase classname="com.revature.service.ReimbursementServiceTest" name="com.revature.service.ReimbursementServiceTest.testGetReimbursementByStatusPositive" time="0"/>
-  <testcase classname="com.revature.service.ReimbursementServiceTest" name="com.revature.service.ReimbursementServiceTest.testGetPendingRequestByIdPositive" time="0.001"/>
-  <testcase classname="com.revature.service.ReimbursementServiceTest" name="com.revature.service.ReimbursementServiceTest.testGetAllReimbursementSQLExceptionNegative" time="0.002"/>
-  <testcase classname="com.revature.service.ReimbursementServiceTest" name="com.revature.service.ReimbursementServiceTest.testGetAllReimbursementNumberFormatException" time="0"/>
+  <testcase classname="com.revature.service.ReimbursementServiceTest" name="com.revature.service.ReimbursementServiceTest.testGetAllEmployeeReimbPastHistorySQLExceptionNegativeTest" time="0.143"/>
+  <testcase classname="com.revature.service.ReimbursementServiceTest" name="com.revature.service.ReimbursementServiceTest.testGetAllReimbursementSQLExceptionNegative" time="0.001"/>
+  <testcase classname="com.revature.service.ReimbursementServiceTest" name="com.revature.service.ReimbursementServiceTest.testGetAllReimbursementNumberFormatException" time="0.001"/>
   <testcase classname="com.revature.service.ReimbursementServiceTest" name="com.revature.service.ReimbursementServiceTest.testGetAllReimbursementNegativeInvalidParameterException" time="0.001"/>
   <testcase classname="com.revature.service.ReimbursementServiceTest" name="com.revature.service.ReimbursementServiceTest.testUpdateReimbursementSQLExceptionNegative" time="0"/>
   <testcase classname="com.revature.service.ReimbursementServiceTest" name="com.revature.service.ReimbursementServiceTest.testUpdateReimbursementInvalidParameterNegative" time="0"/>
-  <testcase classname="com.revature.service.ReimbursementServiceTest" name="com.revature.service.ReimbursementServiceTest.testGetAllEmployeeReimbPastHistoryPositiveTest" time="0"/>
-  <testcase classname="com.revature.service.ReimbursementServiceTest" name="com.revature.service.ReimbursementServiceTest.testGetEmployeePastHistoryNumberFormatException" time="0"/>
+  <testcase classname="com.revature.service.ReimbursementServiceTest" name="com.revature.service.ReimbursementServiceTest.testGetAllEmployeeReimbPastHistoryPositiveTest" time="0.003"/>
+  <testcase classname="com.revature.service.ReimbursementServiceTest" name="com.revature.service.ReimbursementServiceTest.testGetEmployeePastHistoryNumberFormatException" time="0.001"/>
+  <testcase classname="com.revature.service.ReimbursementServiceTest" name="com.revature.service.ReimbursementServiceTest.testGetAllReimbursementPositve" time="0"/>
+  <testcase classname="com.revature.service.ReimbursementServiceTest" name="com.revature.service.ReimbursementServiceTest.testUpdateReimbursementPositve" time="0.002"/>
+  <testcase classname="com.revature.service.ReimbursementServiceTest" name="com.revature.service.ReimbursementServiceTest.testGetReimbursementByStatusPositive" time="0"/>
+  <testcase classname="com.revature.service.ReimbursementServiceTest" name="com.revature.service.ReimbursementServiceTest.testGetPendingRequestByIdPositive" time="0"/>
 </testsuite>
