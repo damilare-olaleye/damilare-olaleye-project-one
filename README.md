@@ -39,7 +39,7 @@
 * Authentication email for new users
 * Redesign profile page
 * Change front end from JavaScript to Angular
-* Inform employees whenever the finance manager accept or decline reimbursement requests
+* Inform employees via email whenever finance manager accept or decline reimbursement requests
 
 ## How to run the project:
 http://ec2-3-138-126-45.us-east-2.compute.amazonaws.com:8081/
