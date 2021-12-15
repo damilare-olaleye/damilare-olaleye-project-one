@@ -34,6 +34,12 @@
 * AWS (RDS and EC2) and Jenkins for Deployment
 * SonarCloud for code analysis
 
+## To-do list
+* Host on AWS S3 bucket
+* Authentication email for new users
+* Redesign profile page
+* Inform employees whenever the finance manager accept or decline reimbursement requests
+
 ## How to run the project:
 http://ec2-3-138-126-45.us-east-2.compute.amazonaws.com:8081/
 * Default username for Finance Manger: aWenger
