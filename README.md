@@ -48,3 +48,6 @@ http://ec2-3-138-126-45.us-east-2.compute.amazonaws.com:8081/
 * Default username for Employee: bWhite
 * Default password for Employee: disIsMyPassword13
 * You can also create a new account
+
+## License 
+* This project uses the following license:apache-2.0
