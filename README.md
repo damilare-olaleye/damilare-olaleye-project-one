@@ -38,7 +38,7 @@
 * Host on AWS S3 bucket
 * Authentication email for new users
 * Redesign profile page
-* Change front end from JavaScript to Angular
+* Change front end from JavaScript to Angular (in progress)
 * Inform employees via email whenever finance manager accept or decline reimbursement requests
 
 ## How to run the project:
